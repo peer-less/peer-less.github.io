@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      863 字
+      891 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      11
        分钟
     </span>
   
@@ -271,8 +271,7 @@
 <p>   ​    1.$K = \varnothing$<br>   ​    2.对于有限属性集$A\subseteq M$，若存在有限属性集$B$，有$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$成立，则考虑蕴涵式$A\rightarrow B$；如果不存在，则算法终止，输出$K$与$c_{cert}$。</p>
 <p>   ​    3.若$q$认为$A\rightarrow B$成立，那么</p>
 <p>​        4.否则，$(C, D)=q(A\rightarrow B)$作为反例，加入形式背景$K$。</p>
-<p>​        5.对所有的反例$(C, D)$有：</p>
-<p>​        6.对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$。</p>
+<p>​        5.对所有的反例$(C, D)$有：<br>$$<br>\begin{align}<br>C’:&amp;=c_{cert}(C) \<br>D’:&amp;=D\bigcup { {m\in M\backslash D\mid c_{cert}(C\bigcup {m})\bigcap D\neq \varnothing}}<br>\end{align}<br>$$<br>​        6.对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$。</p>
 <p>​        7.跳转到2。</p>
 <h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5.Computing Undecided Implications"></a>5.Computing Undecided Implications</h2><h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6.Conclusions"></a>6.Conclusions</h2><p style='text-indent:2em'>从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
 
