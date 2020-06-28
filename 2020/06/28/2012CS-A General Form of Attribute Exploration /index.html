@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      442 字
+      863 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      10
        分钟
     </span>
   
@@ -205,13 +205,20 @@
             
             <article class="markdown-body">
               <!--
- * @Author: your name
+
+ * @Author: peerless
+
  * @Date: 2020-06-28 18:25:20
+
  * @LastEditTime: 2020-06-28 21:58:08
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+
+ * @LastEditors: peerless
+
+ * @Description: A General Form of Attribute Exploration
+
  * @FilePath: \peer-less.github.io\source\_posts\2012CS-A General Form of Attribute Exploration .md
---> 
+
+  --> 
 <h1 id="A-General-Form-of-Attribute-Exploration"><a href="#A-General-Form-of-Attribute-Exploration" class="headerlink" title="A General Form of Attribute Exploration"></a>A General Form of Attribute Exploration</h1><h2 id="论文基本信息："><a href="#论文基本信息：" class="headerlink" title="论文基本信息："></a>论文基本信息：</h2><p>​            1.作者：Daniel Borchmann</p>
 <p>​            2.期刊：Computer Science</p>
 <p>​            3.时间：2018/11/15</p>
@@ -221,8 +228,11 @@
 <li>将属性探索的现有变种转换为一般形式，简化理论。</li>
 </ul>
 <h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><p>1.属性探索的变种：</p>
-<pre><code>* 部分形式背景的属性探索[3]。
-* 描述逻辑模型的探索[1, 2]。</code></pre><p><font color='red'>研究问题：寻找一种将所有变种都包含在内的一般属性探索。</font></p>
+<ul>
+<li>部分形式背景的属性探索[3]。</li>
+<li>描述逻辑模型的探索[1, 2]。</li>
+</ul>
+<p><font color='red'>研究问题：寻找一种将所有变种都包含在内的一般属性探索。</font></p>
 <p>可行原因：</p>
 <pre><code>1.属性探索算法的整体结构均保持不变。
 
@@ -234,7 +244,38 @@
 <p>3.如果专家认为$r$成立，把$r$加入蕴涵集$Imp(K)$中。</p>
 <p>4.如果专家认为$r$不成立，给出相应的一个反例$C$，将$C$（及其相应的属性）作为新对象加入当前工作形式背景$K$中。</p>
 <p>5.找到字典序$P$的下一个属性集$Q$，若不存在下一个，则算法终止，否则，将$P$设置为$Q$。</p>
-<h2 id="4-Generalizing-Attribute-Exploration"><a href="#4-Generalizing-Attribute-Exploration" class="headerlink" title="4.Generalizing Attribute Exploration"></a>4.Generalizing Attribute Exploration</h2><h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5.Computing Undecided Implications"></a>5.Computing Undecided Implications</h2><h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6.Conclusions"></a>6.Conclusions</h2><p>​        从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
+<h2 id="4-Generalizing-Attribute-Exploration"><a href="#4-Generalizing-Attribute-Exploration" class="headerlink" title="4.Generalizing Attribute Exploration"></a>4.Generalizing Attribute Exploration</h2><p><font color='red'>推广目的：用更抽象的术语来描述属性探索，以允许该算法在经典属性探索算法之外的应用。</font></p>
+<p>3个扩展：</p>
+<p>1.提出两个闭包操作符：$c_{univ}、c_{cert}$。</p>
+<ul>
+<li><p>$c_{univ}$：我们已知的全部领域知识。$c_{univ}(A)$可以从$A$推出的属性集。</p>
+</li>
+<li><p>$c_{cert}$：我们已知的某些知识。$c_{cert}(A)$确定可以从$A$推出的属性集。</p>
+</li>
+</ul>
+<p>2.采用如下方法对算法进行扩展：</p>
+<ul>
+<li><p>提供反例时，不需要完全指定。</p>
+</li>
+<li><p>只需要所提反例所拥有的信息与所给的蕴涵式相矛盾即可。</p>
+</li>
+<li><p>提供关于该对象具有哪些属性以及不具有的属性信息即可。</p>
+</li>
+</ul>
+<p>3.我们向专家提出的蕴涵式是一种特殊的形式：</p>
+<ul>
+<li>搜索关于$c_{cert}$和$c_{univ}$未确定的蕴涵式$A\rightarrow B$，即$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$。对于这样的蕴涵式，我们不能从$c_{cert}$和$c_{univ}$推断出属性集$c_{univ}(A) \backslash B$是否能从$A$推出或不能推出，因此，我们需要向专家询问。</li>
+</ul>
+<p>Algorithm(General Attribute Exploration)</p>
+<p>   $q$为部分领域专家。  </p>
+<p>   ​    1.$K = \varnothing$<br>   ​    2.对于有限属性集$A\subseteq M$，若存在有限属性集$B$，有$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$成立，则考虑蕴涵式$A\rightarrow B$；如果不存在，则算法终止，输出$K$与$c_{cert}$。</p>
+<p>   ​    3.若$q$认为$A\rightarrow B$成立，那么</p>
+<p>​        4.否则，$(C, D)=q(A\rightarrow B)$作为反例，加入形式背景$K$。</p>
+<p>​        5.对所有的反例$(C, D)$有：</p>
+<p>​        6.对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$。</p>
+<p>​        7.跳转到2。</p>
+<h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5.Computing Undecided Implications"></a>5.Computing Undecided Implications</h2><h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6.Conclusions"></a>6.Conclusions</h2><p style='text-indent:2em'>从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
+
 
             </article>
             <hr>
