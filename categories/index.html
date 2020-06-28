@@ -217,7 +217,7 @@
   <!--
  * @Author: your name
  * @Date: 2020-06-04 05:16:36
- * @LastEditTime: 2020-06-27 00:33:14
+ * @LastEditTime: 2020-06-27 11:15:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \blog\themes\fluid\layout\_partial\footer.ejs
@@ -225,7 +225,7 @@
 <footer class="mt-5">
   <div class="text-center py-3">
     <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>peerless</span></a>
+      <a href="https://github.com/SuperficialJ/peerless.github.io." target="_blank" rel="nofollow noopener"><span>peerless</span></a>
       <i class="iconfont icon-love"></i>
       <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
         <span>Fluid</span></a>
@@ -237,13 +237,24 @@
     
   </div>
 
+  <p id="hitokoto" align='center'>:D 获取中...</p>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto')
+        hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+  </script>
+
   <div align='center'>
     <span id="timeDate">载入天数...</span>
     <span id="times">载入时分秒...</span>
     <script>
     var now = new Date();
     function createtime(){
-        var grt= new Date("02/14/2017 00:00:00");//此处修改你的建站时间或者网站上线时间
+        var grt= new Date("06/26/2020 22:53:55");//此处修改你的建站时间或者网站上线时间
         now.setTime(now.getTime()+250);
         days = (now - grt ) / 1000 / 60 / 60 / 24;
         dnum = Math.floor(days);
@@ -269,16 +280,7 @@
     </script>
   </div>
 
-  <p id="hitokoto" align='center'>:D 获取中...</p>
-<script>
-  fetch('https://v1.hitokoto.cn')
-    .then(response => response.json())
-    .then(data => {
-      const hitokoto = document.getElementById('hitokoto')
-      hitokoto.innerText = data.hitokoto
-      })
-      .catch(console.error)
-</script>
+  
 </footer>
 
 <!-- SCRIPTS -->
