@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      891 字
+      1.3k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      16
        分钟
     </span>
   
@@ -238,6 +238,24 @@
 
 2.属性探索的所有重要属性均保留了下来。</code></pre><p>单词积累:</p>
 <pre><code>discourse: 论述、谈话、演讲。</code></pre><h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2.Preliminaries"></a>2.Preliminaries</h2><p>蕴涵式<br>$$<br>A\rightarrow B \Leftrightarrow A^{‘}\subseteq B^{‘} \Leftrightarrow B\subseteq A^{‘’}<br>$$</p>
+<p>一些声明：</p>
+<ul>
+<li><p>$Imp(M)$：$M$上的所有蕴涵式集合。</p>
+</li>
+<li><p>$Imp(K)$：形式背景$K$上的所有蕴涵式集合。</p>
+</li>
+<li><p>$Th(K)$：形式背景$K$上的所有成立的蕴涵式集合。</p>
+</li>
+<li><p>$L\subseteq Imp(K)$，$A\subseteq M$。如果对于所有的蕴涵式$(X\rightarrow Y)\in L$，都有$X\subsetneq A或Y\subseteq A$成立，则集合$A$在$L$下为封闭集合。则可做如下定义：<br>  $$<br>  \begin{align}<br>  L^0(A):&amp;=A \newline<br>  L^1(A):&amp;=\bigcup{ {Y\mid (X\rightarrow Y)\in L, X\subseteq A} } \newline<br>  L^i(A):&amp;=L^1(L^{i-1}(A))\ for\ i &gt; 1 \newline<br>  L(A):&amp;=\bigcup\limits_{i\in N}{L^i(A)}<br>  \end{align}<br>  $$<br>  $L(A)$是基于$L$下比集合A大的最小集合。</p>
+<p>  由上可知$L^N(A)$表示集合$A$的子集所能推出来的属性集合的子集所能推出来的属性集合。</p>
+<p>  $Cn(L)$：在$L$下成立的所有蕴涵式集合。</p>
+<ul>
+<li>$B\subseteq Imp(K)$在$L$下是非冗余的。$\Leftrightarrow B\subseteq Cn(L)$。</li>
+<li>$B\subseteq Imp(K)$在$L$下是完备的。$\Leftrightarrow Cn(B)\supseteq L$。</li>
+<li>$B$是主基。$\Leftrightarrow Cn(B)=Cn(L)$。</li>
+</ul>
+</li>
+</ul>
 <h2 id="3-Classical-Attribute-Exploration"><a href="#3-Classical-Attribute-Exploration" class="headerlink" title="3.Classical Attribute Exploration"></a>3.Classical Attribute Exploration</h2><p>$M$是一个有限的属性集合，$K$是基于$M$的形式背景，$p$是基于$M$的领域专家。</p>
 <p>1.对属性集通过字典序进行初始化，并获得第一个属性$\varnothing / P$.</p>
 <p>2.如果$P^{‘}=P$，跳到第5步；否则，令$r:=(P\rightarrow P^{“})$</p>
@@ -271,9 +289,14 @@
 <p>   ​    1.$K = \varnothing$<br>   ​    2.对于有限属性集$A\subseteq M$，若存在有限属性集$B$，有$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$成立，则考虑蕴涵式$A\rightarrow B$；如果不存在，则算法终止，输出$K$与$c_{cert}$。</p>
 <p>   ​    3.若$q$认为$A\rightarrow B$成立，那么</p>
 <p>​        4.否则，$(C, D)=q(A\rightarrow B)$作为反例，加入形式背景$K$。</p>
-<p>​        5.对所有的反例$(C, D)$有：<br>$$<br>\begin{align}<br>C’:&amp;=c_{cert}(C) \<br>D’:&amp;=D\bigcup { {m\in M\backslash D\mid c_{cert}(C\bigcup {m})\bigcap D\neq \varnothing}}<br>\end{align}<br>$$<br>​        6.对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$。</p>
+<p>​        5.对所有的反例$(C, D)$有：<br>$$<br>\begin{align}<br>C’:&amp;=c_{cert}(C) \newline<br>D’:&amp;=D\bigcup { {m\in M\backslash D\mid c_{cert}(C\bigcup {m})\bigcap D\neq \varnothing}}<br>\end{align}<br>$$<br>​        6.对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$。</p>
 <p>​        7.跳转到2。</p>
-<h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5.Computing Undecided Implications"></a>5.Computing Undecided Implications</h2><h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6.Conclusions"></a>6.Conclusions</h2><p style='text-indent:2em'>从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
+<h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5.Computing Undecided Implications"></a>5.Computing Undecided Implications</h2><p>目的：使向专家询问蕴涵式的数量是最小的。</p>
+<p>原因：该扩展算法对询问蕴涵式的顺序未做约束。</p>
+<p>​            询问蕴涵式的顺序：先询问蕴涵式$A\rightarrow B$，成立则直接询问蕴涵式$A\rightarrow C\ with\ C\supseteq B$。</p>
+<p>经典属性探索下计算未确定的蕴涵式：</p>
+<p>​            在基于已知蕴涵式$k$的条件下，计算属性集$P$字典序之后的最小属性集$Q(Q\subseteq M，且Q不是当前工作形式背景的内涵)$。那么就需要向专家询问蕴涵式$Q\rightarrow Q^{“}$。</p>
+<h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6.Conclusions"></a>6.Conclusions</h2><p style='text-indent:2em'>从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
 
 
             </article>
