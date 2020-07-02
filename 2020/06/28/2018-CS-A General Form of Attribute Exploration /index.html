@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      2k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      25
        分钟
     </span>
   
@@ -226,7 +226,7 @@
    tags:                                                  # 标签
       - 学术
       - 属性探索
-      --> 
+         --> 
 
 
 <h1 id="A-General-Form-of-Attribute-Exploration"><a href="#A-General-Form-of-Attribute-Exploration" class="headerlink" title="A General Form of Attribute Exploration"></a>A General Form of Attribute Exploration</h1><h2 id="行文思路简要总结"><a href="#行文思路简要总结" class="headerlink" title="行文思路简要总结"></a>行文思路简要总结</h2><p>问题：如何从经典属性探索出发获得通用的属性探索？</p>
@@ -243,9 +243,14 @@
 <li>改进方法：若属性集$A=c_{cert}(A)\subsetneq c_{univ}(A)$，则向专家询问蕴涵式$A\rightarrow c_{univ}(A)$。</li>
 </ul>
 <p>总结：</p>
-<p>​            1.该通用属性算法首先保留了经典属性探索算法的大多性质：完备性、非冗余性和向专家询问蕴涵式的数量最少等。</p>
-<p>​            2.该通用属性探索算法能够处理抽象给定的闭包算子和部分形式背景下给出的反例。</p>
-<h2 id="论文基本信息："><a href="#论文基本信息：" class="headerlink" title="论文基本信息："></a>论文基本信息：</h2><p>​            1.作者：Daniel Borchmann</p>
+<p>​            1. 该通用属性算法首先保留了经典属性探索算法的大多性质：完备性、非冗余性和向专家询问蕴涵式的数量最少等。</p>
+<p>​            2. 该通用属性探索算法能够处理抽象给定的闭包算子和部分形式背景下给出的反例。</p>
+<p>问题：</p>
+<ol>
+<li>理论层面：该通用属性探索算法理论上的时间复杂度仍为指数级，无法在多项式时间内计算主基。</li>
+<li>应用层面：该通用属性探索算法并未说明在实际的应用领域中效果如何。</li>
+</ol>
+<h2 id="论文基本信息："><a href="#论文基本信息：" class="headerlink" title="论文基本信息："></a>论文基本信息：</h2><p>​            1.作者：Daniel Borchmann（德累斯顿州立大学数学与科学学院代数研究所丹尼尔·博尔赫曼）</p>
 <p>​            2.期刊：Computer Science</p>
 <p>​            3.时间：2018/11/15</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ul>
@@ -253,18 +258,18 @@
 <li>扩展属性探索的适用性。</li>
 <li>将属性探索的现有变种转换为一般形式，简化理论。</li>
 </ul>
-<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h2><p>1.属性探索的变种：</p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>1.属性探索的变种：</p>
 <ul>
 <li>部分形式背景的属性探索$^{[3]}$。</li>
 <li>描述逻辑模型的探索$^{[1, 2]}$。</li>
 </ul>
-<p><font color='red'>研究问题：寻找一种将所有变种都包含在内的一般属性探索。</font></p>
+<p><font color="red">研究问题：寻找一种将所有变种都包含在内的一般属性探索。</font></p>
 <p>可行原因：</p>
 <pre><code>1.属性探索算法的整体结构均保持不变。
 
 2.属性探索的所有重要属性均保留了下来。</code></pre><p>单词积累:</p>
 <pre><code>discourse: 论述、谈话、演讲。</code></pre><p>​         have a close look: 仔细研究。</p>
-<h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2.Preliminaries"></a>2.Preliminaries</h2><p>蕴涵式<br>$$<br>A\rightarrow B \Leftrightarrow A^{‘}\subseteq B^{‘} \Leftrightarrow B\subseteq A^{‘’}<br>$$</p>
+<h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2 Preliminaries"></a>2 Preliminaries</h2><p>蕴涵式<br>$$<br>A\rightarrow B \Leftrightarrow A^{‘}\subseteq B^{‘} \Leftrightarrow B\subseteq A^{‘’}<br>$$</p>
 <p>一些声明：</p>
 <ul>
 <li><p>$Imp(M)$：$M$上的所有蕴涵式集合。</p>
@@ -297,13 +302,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="3-Classical-Attribute-Exploration"><a href="#3-Classical-Attribute-Exploration" class="headerlink" title="3.Classical Attribute Exploration"></a>3.Classical Attribute Exploration</h2><p>$M$是一个有限的属性集合，$K$是基于$M$的形式背景，$p$是基于$M$的领域专家。</p>
+<h2 id="3-Classical-Attribute-Exploration"><a href="#3-Classical-Attribute-Exploration" class="headerlink" title="3 Classical Attribute Exploration"></a>3 Classical Attribute Exploration</h2><p>$M$是一个有限的属性集合，$K$是基于$M$的形式背景，$p$是基于$M$的领域专家。</p>
 <p>1.对属性集通过字典序进行初始化，并获得第一个属性$\varnothing / P$.</p>
 <p>2.如果$P^{‘}=P$，跳到第5步；否则，令$r:=(P\rightarrow P^{“})$</p>
 <p>3.如果专家认为$r$成立，把$r$加入蕴涵集$Imp(K)$中。</p>
 <p>4.如果专家认为$r$不成立，给出相应的一个反例$C$，将$C$（及其相应的属性）作为新对象加入当前工作形式背景$K$中。</p>
 <p>5.找到字典序$P$的下一个属性集$Q$，若不存在下一个，则算法终止，否则，将$P$设置为$Q$。</p>
-<h2 id="4-Generalizing-Attribute-Exploration"><a href="#4-Generalizing-Attribute-Exploration" class="headerlink" title="4.Generalizing Attribute Exploration"></a>4.Generalizing Attribute Exploration</h2><p><font color='red'>推广目的：用更抽象的术语来描述属性探索，以允许该算法在经典属性探索算法之外的应用。</font></p>
+<h2 id="4-Generalizing-Attribute-Exploration"><a href="#4-Generalizing-Attribute-Exploration" class="headerlink" title="4 Generalizing Attribute Exploration"></a>4 Generalizing Attribute Exploration</h2><p><font color="red">推广目的：用更抽象的术语来描述属性探索，以允许该算法在经典属性探索算法之外的应用。</font></p>
 <p>3个扩展：</p>
 <p>1.提出两个闭包操作符：$c_{univ}、c_{cert}$。</p>
 <ul>
@@ -327,22 +332,22 @@
 </ul>
 <p>Algorithm(General Attribute Exploration)</p>
 <p>   $q$为部分领域专家。  </p>
-<p>   ​    1.$K = \varnothing$<br>   ​    2.对于有限属性集$A\subseteq M$，若存在有限属性集$B$，有$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$成立，则考虑蕴涵式$A\rightarrow B$；如果不存在，则算法终止，输出$K$与$c_{cert}$。</p>
-<p>   ​    3.若$q$认为$A\rightarrow B$成立，那么更新$c_{cert}^{‘}=X\longmapsto c_{cert}(L(c_{cert}(X) ) )$。</p>
-<p>​        4.否则，$(C, D)=q(A\rightarrow B)$作为反例，加入形式背景$K$。</p>
-<p>​        5.对所有的反例$(C, D)$有：<br>$$<br>\begin{align}<br>C’:&amp;=c_{cert}(C) \newline<br>D’:&amp;=D\bigcup { {m\in M\backslash D\mid c_{cert}(C\bigcup {m})\bigcap D\neq \varnothing}}<br>\end{align}<br>$$<br>​        6.对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$，即将$c_{univ}$更新为$c_{univ}^{‘}(X)=c_{univ}(X)\bigcap K(X)$。</p>
-<p>​        7.跳转到2。</p>
+<p>   ​    1. $K = \varnothing$<br>   ​    2. 对于有限属性集$A\subseteq M$，若存在有限属性集$B$，有$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$成立，则考虑蕴涵式$A\rightarrow B$；如果不存在，则算法终止，输出$K$与$c_{cert}$。</p>
+<p>   ​    3. 若$q$认为$A\rightarrow B$成立，那么更新$c_{cert}^{‘}=X\longmapsto c_{cert}(L(c_{cert}(X) ) )$。</p>
+<p>​        4. 否则，$(C, D)=q(A\rightarrow B)$作为反例，加入形式背景$K$。</p>
+<p>​        5. 对所有的反例$(C, D)$有：<br>$$<br>\begin{align}<br>C’:&amp;=c_{cert}(C) \newline<br>D’:&amp;=D\bigcup { {m\in M\backslash D\mid c_{cert}(C\bigcup {m})\bigcap D\neq \varnothing}}<br>\end{align}<br>$$<br>​        6. 对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$，即将$c_{univ}$更新为$c_{univ}^{‘}(X)=c_{univ}(X)\bigcap K(X)$。</p>
+<p>​        7. 跳转到2。</p>
 <p>两条性质：非冗余性与完备性。</p>
-<h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5.Computing Undecided Implications"></a>5.Computing Undecided Implications</h2><p>目的：使向专家询问蕴涵式的数量是最小的。</p>
+<h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5 Computing Undecided Implications"></a>5 Computing Undecided Implications</h2><p>目的：使向专家询问蕴涵式的数量是最小的。</p>
 <p>原因：该通用属性探索算法对询问蕴涵式的顺序未做约束。（可能询问以确定的蕴涵式）</p>
 <p>经典属性探索下计算未确定的蕴涵式：</p>
 <p>​        在基于已知蕴涵式$k$的条件下，计算属性集$P$字典序之后的最小属性集$Q(Q\subseteq M，且Q不是当前工作形式背景的内涵)$。那么就需要向专家询问蕴涵式$Q\rightarrow Q^{“}$。</p>
 <p>通用属性探索下计算未确定的蕴涵式：</p>
 <p>​        为了保证向专家询问的蕴涵式的数量是最小的，将通用属性探索算法的第二步更改为：$对于有限属性集A\subseteq M$，有$A=c_{cert}(A)\subsetneq c_{univ}(A)$并且$A$是$\subseteq-minimal$成立，则考虑蕴涵式$A\rightarrow c_{univ}(A)$。</p>
 <p>在给出算法总是能得到最小数量的询问蕴涵式前，先给出如下定义：</p>
-<h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6.Conclusions"></a>6.Conclusions</h2><p style='text-indent:2em'>从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
+<h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6 Conclusions"></a>6 Conclusions</h2><p style="text-indent:2em">从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
 
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h2 id><a href="#" class="headerlink" title></a></h2>
             </article>
             <hr>
             <div>
@@ -358,9 +363,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/28/hello-world/">
+                      <a href="/2020/06/30/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%AD%A6%E7%A7%91%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hello World</span>
+                        <span class="hidden-mobile">2020-计算机科学-并行计算学科发展历程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -373,6 +378,31 @@
               
             </div>
 
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.defer = false
+      s.setAttribute('repo', 'https://github.com/peer-less/peer-less.github.io.git');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      var e = document.getElementsByTagName('script')[0];
+      e.parentNode.insertBefore(s, e);
+    }
+    createObserver(loadUtterances, 'comments')
+  </script>
+
+
+              </div>
             
           </div>
         </div>

@@ -17,7 +17,7 @@
   <meta name="description" content="个人博客，记录成长的点滴。">
   <meta name="author" content="peerless">
   <meta name="keywords" content="">
-  <title>Hello World - peerless</title>
+  <title>2015-CLA-NextCloures Parallel Computation of the Canonical Base - peerless</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-28 18:25">
-      2020年6月28日 晚上
+    <time datetime="2020-07-01 16:54">
+      2020年7月1日 下午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      73 字
+      905 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      11
        分钟
     </span>
   
@@ -204,19 +204,82 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre>
+              <h1 id="NextClosures-Parallel-Computation-of-the-Canonical-Base"><a href="#NextClosures-Parallel-Computation-of-the-Canonical-Base" class="headerlink" title="NextClosures:Parallel Computation of the Canonical Base"></a>NextClosures:Parallel Computation of the Canonical Base</h1><h2 id="论文基本信息"><a href="#论文基本信息" class="headerlink" title="论文基本信息"></a>论文基本信息</h2><p>​            1. 作者：Francesco Kriegel 、Daniel Borchmann</p>
+<p>​            2. 会议：CLA</p>
+<p>​            3. 时间：2015</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><ul>
+<li>前人所提的计算主基的算法大多均为串行，一次只计算一个伪内涵。</li>
+<li>本文引入一种并行方式计算主基。</li>
+</ul>
+<p>词汇积累：</p>
+<ul>
+<li>canonical base: 主基，正则基，规范基。</li>
+<li>remedies: 救济方法，弥补手段。</li>
+<li>deficit: 缺陷。</li>
+<li>is proportional to: 与之成正比。</li>
+</ul>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><ol>
+<li><p>有两种串行算法$^{[6, 12]}$，即它们一个接一个的计算蕴涵式。</p>
+</li>
+<li><p>目前为止，还不知道能否在多项式时间内计算主基。</p>
+</li>
+<li><p>已有并行计算形式背景的方法$^{[5, 13]}$。</p>
+</li>
+</ol>
+<h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2 Preliminaries"></a>2 Preliminaries</h2><ol>
+<li>A model of $X\rightarrow Y$ is a set $T\subseteq M\Leftrightarrow X\subseteq T\Rightarrow Y\subseteq T$.</li>
+</ol>
+<p>2.A model of $L$ is a model of all implications in $L$, and $X^L$ is the superset of $X$ that is a model of $L$.</p>
+<p>3.$X^L$的计算方式如下：<br>$$<br>\begin{align}<br>X^L:=\bigcup_{n\geq 1}X^{L_n}\ where\ X^{L_1}:&amp;=X\bigcup {B\mid A\rightarrow B\in L\ and\ A\subseteq X} \newline<br>and\ X^{L_{n+1} }:&amp;=(X^{L_n})^{L_1} for\ all\ n\in N<br>\end{align}<br>$$<br>4.内涵：$B=B^{II}$。</p>
+<p>伪内涵：$P\neq P^{II}$，且$P$的每一个伪内涵子集$Q，Q\subsetneq P$，满足$Q^{II}\subseteq P$。将形式背景$K$上的所有伪内涵集合记为$PsInt(K)$。</p>
+<p>蕴涵式：${P\rightarrow P^{II}\mid P\in PsInt(K)}$。</p>
+<h2 id="3-Parallel-Computation-of-the-Canonical-Base"><a href="#3-Parallel-Computation-of-the-Canonical-Base" class="headerlink" title="3 Parallel Computation of the Canonical Base"></a>3 Parallel Computation of the Canonical Base</h2><p>1.$NextCloures$算法由Ganter$^{[6]}$提出，用于枚举主基。</p>
+<ul>
+<li>算法思想：以一定的线性顺序(即选择顺序)计算形式背景K的所有内涵和伪内涵。</li>
+<li>优势：下一个(伪)意图是唯一确定的，但我们可能需要回溯才能找到它。</li>
+<li>该算法本质上是顺序的，即不可能将其并行化。</li>
+</ul>
+<p>2.我们的方法按照子集序枚举所有的内涵和伪内涵。</p>
+<ul>
+<li>易于并行化枚举。</li>
+<li>多线程实现中，不同线程之间不需要通信。</li>
+</ul>
+<p>原因：检测$P$是否为伪内涵时，只需判断$P$的伪内涵子集$Q\subsetneq P$，是否满足满足$Q^{II}\subseteq P$。即可按基数递增来判断伪内涵。</p>
+<p>算法思想的基本工作流程：</p>
+<p>​            1. 判断$\varnothing=\varnothing^{II}\Rightarrow \varnothing$是内涵/伪内涵。</p>
+<ol start="2">
+<li>假设基数$&lt;k$的所有伪内涵均已确定，然后就可正确判断出属性集$P，P\subseteq M，|P|=k$是内涵/伪内涵。</li>
+</ol>
+<p>具体的工作流程：</p>
+<p>基本定义：</p>
+<ol>
+<li><p>$K$：有限的形式背景。</p>
+</li>
+<li><p>$k$：当前候选集的基数。候选集为储存当前层级的内涵/伪内涵。</p>
+</li>
+<li><p>$C$：候选集合。</p>
+</li>
+<li><p>$\mathcal{B}$：形式概念集合。</p>
+</li>
+<li><p>$L$：蕴涵式集合。</p>
+</li>
+</ol>
+<p>1.$k:=0，C:={\varnothing}，\mathcal{B}:=\varnothing，L:=\varnothing$.</p>
+<p>2.并行化：对于每个基数$|C|=k$的候选集合C $\in C$，确定它是否是$L^<em>-closed$。如果不是，则将它的$L^</em>-closure$加入候选集合$C$，跳到5。</p>
+<p>3.如果C是形式背景$K$的内涵，那么将形式概念$(C^I，C)$加入集合$\mathcal{B}$中。否则C必为伪内涵，则将蕴涵式$C\rightarrow C^{II}$加入集合$L$，并且将形式概念$(C^I，C^{II})$加入集合$\mathcal{B}$中。</p>
+<p>4.对得到的每一个内涵$C^{II}$，将它的上层邻居$C^{II}\bigcup {m}且m\notin C^{II}$加入候选集合$C$中。</p>
+<p>5.等待基数为$k$的所有候选集合都处理完毕，如果$k&lt;M$则递增$k$，并且跳到2；否则算法结束，返回形式概念集合$\mathcal{B}$和蕴涵式集合$L$。</p>
+<p><img src="../images/2015-CLA-NextClouresParallel%20Computation%20of%20the%20Canonical%20Base/1593623335.jpg" srcset="/img/loading.gif" alt></p>
+<p><img src="/peerless.github/FCA\github\peer-less.github.io\source\_posts\2015-CLA-NextCloures Parallel Computation of the Canonical Base" srcset="/img/loading.gif"></p>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="hljs bash">$ hexo server</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="hljs bash">$ hexo generate</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="hljs bash">$ hexo deploy</code></pre>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>词汇积累：</p>
+<ul>
+<li>backtracking：回溯。</li>
+<li>level-wise：逐级。</li>
+<li>coincide：一致。</li>
+<li>inductive：归纳的；感应的，诱导的。</li>
+<li>suffices：满足。</li>
+</ul>
 
             </article>
             <hr>
@@ -233,9 +296,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/30/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%AD%A6%E7%A7%91%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/">
+                      <a href="/2020/07/02/%E5%8F%B0%E5%A4%A7%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-HW1/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2020-计算机科学-并行计算学科发展历程</span>
+                        <span class="hidden-mobile">台大李宏毅机器学习-HW1</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -243,8 +306,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/28/2018-CS-A%20General%20Form%20of%20Attribute%20Exploration%20/">
-                        <span class="hidden-mobile">2018-CS-A General Form of Attribute Exploration </span>
+                      <a href="/2020/06/30/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%AD%A6%E7%A7%91%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/">
+                        <span class="hidden-mobile">2020-计算机科学-并行计算学科发展历程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -254,6 +317,31 @@
               
             </div>
 
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.defer = false
+      s.setAttribute('repo', 'https://github.com/peer-less/peer-less.github.io.git');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      var e = document.getElementsByTagName('script')[0];
+      e.parentNode.insertBefore(s, e);
+    }
+    createObserver(loadUtterances, 'comments')
+  </script>
+
+
+              </div>
             
           </div>
         </div>
@@ -436,7 +524,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Hello World&nbsp;",
+        "2015-CLA-NextCloures Parallel Computation of the Canonical Base&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

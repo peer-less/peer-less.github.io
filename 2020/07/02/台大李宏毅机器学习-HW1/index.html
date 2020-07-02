@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客，记录成长的点滴。">
+  <meta name="author" content="peerless">
+  <meta name="keywords" content="">
+  <title>台大李宏毅机器学习-HW1 - peerless</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>peerless</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-02 23:41">
+      2020年7月2日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="李宏毅Machine-Learning-HW1（利用线性回归预测PM2-5的数值）"><a href="#李宏毅Machine-Learning-HW1（利用线性回归预测PM2-5的数值）" class="headerlink" title="李宏毅Machine Learning HW1（利用线性回归预测PM2.5的数值）"></a>李宏毅Machine Learning HW1（利用线性回归预测PM2.5的数值）</h1><p>本文主要参考了博文<a href="https://blog.csdn.net/m123_45n/article/details/106560274" target="_blank" rel="noopener">https://blog.csdn.net/m123_45n/article/details/106560274</a>，本人对其进行了实现。</p>
+<h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1 问题描述"></a>1 问题描述</h2><p style="text-indent:2em">本次任务的目的是利用Liner Regression去预测丰原市PM2.5的数值。对丰原市一年的观测记录分为了train set和test set，其中train set 是丰原市每个月前20天的所有记录。test set则是从丰原市剩下的记录取样出来。train set和test set都是以csv格式的文件进行保存的。</p>
+
+<ul>
+<li>train.csv：每个月前20天的完整数据。</li>
+<li>test.csv：从剩下的数据中取样出连续的10小时为一组，前九个小时的所有观测数据当作==特征值==，第十个小时的PM2.5当作==目标值==。共取出240组不重复的test data，然后根据feature去预测出第十小时的PM2.5的值。</li>
+<li>Data（中含有18项观测数据）：AMB_TEMP，CH4，CO，NHMC，NO，NO2，NOx，O3，PM10，PM2.5，RAINFALL，RH，SO2，THC，WD_HR，WIND_DIREC，WIND_SPEED，WS_HR。</li>
+</ul>
+<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2 模型选择"></a>2 模型选择</h2><p>本次任务选择的模型为线性回归模型：<br>$$<br>y=\sum\limits_{i=0}^8w_ix_i+b。<br>$$</p>
+<ul>
+<li><p>$i$从0到8是因为选取前9个小时作为==特征值==输入，每个输入都有一个==权重值==$w$与之相乘，再加上一个偏置$b$，即为线性回归模型。通过这个模型去预测第十个小时的PM2.5的值。</p>
+</li>
+<li><p>此外，可将该模型的运算转换为向量运算：<br>  $$<br>  \begin{align}<br>  y=<br>  \begin{bmatrix}<br>  w_0\ \dots\ w_8<br>  \end{bmatrix}<br>  \begin{bmatrix}<br>  x_0\newline \vdots\newline x_8<br>  \end{bmatrix}<br>  +b<br>\end{align}<br>  $$</p>
+</li>
+<li><p>选择的<strong>Loss Function</strong>为：</p>
+</li>
+</ul>
+<p>$$<br>Loss=\frac{1}{2m}\sum\limits_{i=0}^{m-1}(\hat{y}^i-y^i)^2+\frac12\lambda\sum\limits_{j=0}^8w_j^2<br>$$</p>
+<ul>
+<li><p>Loss对$w_j$求导为：<br>  $$<br>  \frac{\partial L}{\partial w_j}=\frac1m\sum\limits_{i=0}^{m-1}(\hat{y}^i-w_jx_j-b)(-x_j)+\lambda w_j<br>  $$</p>
+</li>
+<li></li>
+</ul>
+<p>$$<br>\frac{\partial L}{\partial b}=\frac1m\sum\limits_{i=0}^{m-1}(\hat{y}^i-w_jx_j-b)(-1)<br>$$</p>
+<ul>
+<li><p>则参数更新为：<br>  $$<br>  \begin{align}<br>  w_j:=w_j-\eta \frac{\partial L}{\partial w_j} \newline<br>  b:=b-\eta \frac{\partial L}{\partial b}<br>  \end{align}<br>  $$<br>  其中将$w_j$的更新转换为向量运算：<br>  $$<br>  \begin{bmatrix}<br>  w_0 \newline \vdots \newline w_8<br>  \end{bmatrix}<br>  :=<br>  \begin{bmatrix}<br>  w_0 \newline \vdots \newline w_8<br>  \end{bmatrix}<br>  -\eta<br>  \begin{bmatrix}<br>  \frac{\partial L}{\partial w_0} \newline \vdots \newline \frac{\partial L}{\partial w_8}<br>  \end{bmatrix}<br>  $$</p>
+</li>
+<li></li>
+</ul>
+<p>$$<br>w^1=w^0-\frac{\eta^0}{\sigma^0}g^0 \<br>\vdots \<br>w^{t+1}=w^t-\frac{\eta^t}{\sigma^t}g^t<br>$$</p>
+<p>​                其中$g^t$为$w^t$的梯度值，而且有：<br>$$<br>\begin{align}<br>\sigma^t=&amp;\sqrt{\frac{1}{t+1}\sum\limits_{i=0}^t(g^i)^2} \newline<br>\eta^t=&amp;\frac{\eta}{t+1}<br>\end{align}<br>$$<br>​                带入后，则有：<br>$$<br>w^{t+1}=w^t-\frac{\eta}{\sqrt{\sum\limits_{i=0}^t(g^i)^2} }<br>$$</p>
+<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><h3 id="3-1-数据预处理"><a href="#3-1-数据预处理" class="headerlink" title="3.1 数据预处理"></a>3.1 数据预处理</h3><p>train.csv当中保存的是丰原市一年当中每个月前20天的观测数据，由于每次==输入==的数据为前9个小时的PM2.5的数值，第10个小时的数值用来做==label==，所以一天当中的PM2.5的观测数据可以分为15组（15=24-10+1）。因此，train.csv当中的数据可以分为3600组（3600=12×20×15）。</p>
+<pre><code class="hljs python"><span class="hljs-comment"># 读取数据集</span>
+data = pd.read_csv(<span class="hljs-string">"train.csv"</span>, header=<span class="hljs-number">0</span>)
+<span class="hljs-comment"># 删除无关特征</span>
+data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"測站"</span>,<span class="hljs-string">"測項"</span>], axis=<span class="hljs-number">1</span>, inplace=<span class="hljs-literal">True</span>)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">dataProcess</span><span class="hljs-params">(data)</span>:</span>
+    <span class="hljs-string">''' 数据预处理</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">    参数：</span>
+<span class="hljs-string">        data: 原始训练集数据</span>
+<span class="hljs-string">         </span>
+<span class="hljs-string">    返回：</span>
+<span class="hljs-string">        x: 一天中PM2.5前9项特征构成的训练集。</span>
+<span class="hljs-string">        y: 一天中PM2.5第10项特征构成的目标集。</span>
+<span class="hljs-string">        data: 将原始数据集的每个数据值均转换为float类型后的数据集。</span>
+<span class="hljs-string">    '''</span>
+
+    x_list, y_list = [], []
+
+    data = data.replace([<span class="hljs-string">'NR'</span>], [<span class="hljs-number">0.0</span>])
+    <span class="hljs-comment"># 将所有数据转换成float类型</span>
+    data = np.array(data).astype(float)
+
+    <span class="hljs-comment"># 将数据集拆分为多个数据帧</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">4320</span>, <span class="hljs-number">18</span>): <span class="hljs-comment"># 18 * 240 = 4320</span>
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">15</span>): <span class="hljs-comment"># 24-9=15(组)</span>
+            <span class="hljs-comment"># 截取PM2.5前9项作为训练数据</span>
+            sample = data[i:i+<span class="hljs-number">18</span>][<span class="hljs-number">9</span>][j:j+<span class="hljs-number">9</span>]
+            <span class="hljs-comment"># 截取PM2.5第10项作为目标数据</span>
+            label = data[i:i+<span class="hljs-number">18</span>][<span class="hljs-number">9</span>][j+<span class="hljs-number">9</span>]
+            x_list.append(sample)
+            y_list.append(label)
+
+    x = np.array(x_list)
+    y = np.array(y_list)
+
+    <span class="hljs-keyword">return</span> x, y, data</code></pre>
+
+<h3 id="3-2-模型训练"><a href="#3-2-模型训练" class="headerlink" title="3.2 模型训练"></a>3.2 模型训练</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trainModel</span><span class="hljs-params">(x_data, y_data, epoch)</span>:</span>
+    <span class="hljs-string">''' 训练模型，从训练集中拿出3200个数据用来训练，剩余400个数据用于验证。</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">    参数</span>
+<span class="hljs-string">        x_data: </span>
+<span class="hljs-string">        y_data:</span>
+<span class="hljs-string">        epoch:</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">    返回</span>
+<span class="hljs-string">        weight: 权重</span>
+<span class="hljs-string">        bias：偏置</span>
+<span class="hljs-string">        </span>
+<span class="hljs-string">    '''</span>
+
+    <span class="hljs-comment"># 初始化偏置</span>
+    bias = <span class="hljs-number">0</span>
+    <span class="hljs-comment"># 初始化权重,生成一个9列的行向量，并全部初始化为1。</span>
+    weight = np.ones(<span class="hljs-number">9</span>)
+    <span class="hljs-comment"># 初始化学习率为1。</span>
+    learning_rate = <span class="hljs-number">1</span>
+    <span class="hljs-comment"># 初始化正则项系数为0.001。</span>
+    reg_rate = <span class="hljs-number">0.001</span>
+    <span class="hljs-comment"># 用于存放偏置的梯度平方和。</span>
+    bias_sum = <span class="hljs-number">0</span>
+    <span class="hljs-comment"># 用于存放权重的梯度平方和。</span>
+    weight_sum = <span class="hljs-number">0</span>
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(epoch):
+        <span class="hljs-comment"># 偏置梯度平均值。</span>
+        b_g = <span class="hljs-number">0</span>
+        <span class="hljs-comment"># 权重梯度平均值</span>
+        w_g = np.zeros(<span class="hljs-number">9</span>)
+
+        <span class="hljs-comment"># 在所有数据上计算w和b的梯度。</span>
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">3200</span>):
+            b_g += (y_data[j] - weight.dot(x_data[j]) - bias) * (<span class="hljs-number">-1</span>) <span class="hljs-comment"># 如果2个一维向量dot，则结果为它们的内积。</span>
+            <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">9</span>):
+                w_g[k] += (y_data[j] - weight.dot(x_data[j]) - bias) * (-x_data[j, k])
+
+        <span class="hljs-comment"># 求平均值</span>
+        b_g /= <span class="hljs-number">3200</span>
+        w_g /= <span class="hljs-number">3200</span>
+
+        <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">9</span>):
+            w_g[k] += reg_rate * weight[k]
+        
+        <span class="hljs-comment"># adagrad优化</span>
+        bias_sum += b_g ** <span class="hljs-number">2</span>
+        weight_sum += w_g ** <span class="hljs-number">2</span>
+        bias -= learning_rate / (bias_sum ** <span class="hljs-number">0.5</span>) * b_g
+        weight -= learning_rate / (weight_sum ** <span class="hljs-number">0.5</span>) * w_g
+
+        <span class="hljs-comment"># 每训练200次输出一次误差</span>
+        <span class="hljs-keyword">if</span> i % <span class="hljs-number">200</span> == <span class="hljs-number">0</span>:
+            loss = <span class="hljs-number">0</span>
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">3200</span>):
+                loss += (y_data[j] - weight.dot(x_data[j]) - bias) ** <span class="hljs-number">2</span>
+            loss /= <span class="hljs-number">3200</span>
+
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">9</span>):
+                loss += reg_rate * (weight[j] ** <span class="hljs-number">2</span>)
+            print(<span class="hljs-string">' &#123;&#125; 次训练后, 训练集的损失为&#123;:.2f&#125;'</span>.format(i, loss / <span class="hljs-number">2</span>))
+    
+    <span class="hljs-keyword">return</span> weight, bias</code></pre>
+
+<h3 id="3-3-验证模型"><a href="#3-3-验证模型" class="headerlink" title="3.3 验证模型"></a>3.3 验证模型</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validateModel</span><span class="hljs-params">(x_val, y_val, weight, bias)</span>:</span>
+    <span class="hljs-string">''' 验证模型，返回损失值。</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">    参数</span>
+<span class="hljs-string">        x_val: </span>
+<span class="hljs-string">        y_val: </span>
+<span class="hljs-string">        weight: 权重。</span>
+<span class="hljs-string">        bias: 偏置。</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">    返回</span>
+<span class="hljs-string">        loss: 平均损失值。</span>
+<span class="hljs-string">    '''</span>
+
+    loss = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">400</span>):
+        loss += (y_val[i] - weight.dot(x_val[i]) - bias) ** <span class="hljs-number">2</span>
+    
+    <span class="hljs-keyword">return</span> loss / <span class="hljs-number">400</span></code></pre>
+
+<h3 id="3-4-测试数据预处理"><a href="#3-4-测试数据预处理" class="headerlink" title="3.4 测试数据预处理"></a>3.4 测试数据预处理</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testDataProcess</span><span class="hljs-params">(test_data)</span>:</span>
+    <span class="hljs-string">''' 测试数据预处理</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">    参数</span>
+<span class="hljs-string">        test_data: 测试数据集。</span>
+<span class="hljs-string">    </span>
+<span class="hljs-string">    返回</span>
+<span class="hljs-string">        testList: 测试数据集。</span>
+<span class="hljs-string">    '''</span>
+
+    testList = []
+    test_data = test_data.replace([<span class="hljs-string">'NR'</span>], [<span class="hljs-number">0.0</span>])
+    test_data = np.array(test_data).astype(float)
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">0</span>, <span class="hljs-number">4320</span>, <span class="hljs-number">18</span>):
+        testList.append(test_data[i:i+<span class="hljs-number">18</span>][<span class="hljs-number">9</span>])
+
+    <span class="hljs-keyword">return</span> np.array(testList)</code></pre>
+
+<h3 id="3-5-训练模型"><a href="#3-5-训练模型" class="headerlink" title="3.5 训练模型"></a>3.5 训练模型</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">''' 训练 '''</span>
+
+    <span class="hljs-comment"># 读取训练数据，并将其转换为列表形式。</span>
+    data = pd.read_csv(<span class="hljs-string">"train.csv"</span>, usecols=np.arange(<span class="hljs-number">3</span>, <span class="hljs-number">27</span>).tolist())
+    x_data, y_data, data = dataProcess(data)
+    
+    x_train, y_train = x_data[<span class="hljs-number">0</span>:<span class="hljs-number">3200</span>], y_data[<span class="hljs-number">0</span>:<span class="hljs-number">3200</span>]
+    x_val, y_val = x_data[<span class="hljs-number">3200</span>:<span class="hljs-number">3600</span>], y_data[<span class="hljs-number">3200</span>:<span class="hljs-number">3600</span>]
+    weight, bias = trainModel(x_train, y_train, <span class="hljs-number">2000</span>)
+
+    savePre(weight, bias)
+
+    print(<span class="hljs-string">"训练得到的模型的weight为&#123;&#125;"</span>.format(weight))
+    print(<span class="hljs-string">"训练得到的模型的bias为&#123;&#125;"</span>.format(bias))
+    loss = validateModel(x_val, y_val, weight, bias)
+    print(<span class="hljs-string">"模型模型在验证集的loss为&#123;:.2f&#125;"</span>.format(loss))</code></pre>
+
+
+
+<h3 id="3-6-测试模型"><a href="#3-6-测试模型" class="headerlink" title="3.6 测试模型"></a>3.6 测试模型</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testModel</span><span class="hljs-params">(x_test, weight, bias)</span>:</span>
+    <span class="hljs-string">''' 用测试数据集测试模型，并将结果保存到output.csv中</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">    参数</span>
+<span class="hljs-string">        x_test: </span>
+<span class="hljs-string">        weight: 权重。</span>
+<span class="hljs-string">        bias: 偏置。</span>
+<span class="hljs-string">    '''</span>
+
+    f = open(<span class="hljs-string">"output.csv"</span>, <span class="hljs-string">'w'</span>, encoding=<span class="hljs-string">'utf-8'</span>, newline=<span class="hljs-string">""</span>)
+    csv_write = csv.writer(f)
+    csv_write.writerow([<span class="hljs-string">"id"</span>, <span class="hljs-string">"value"</span>])
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(x_test)):
+        output = weight.dot(x_test[i]) + bias
+        csv_write.writerow([<span class="hljs-string">"id_"</span> + str(i), str(output)])
+    f.close()
+    
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">''' 测试 '''</span>
+
+    <span class="hljs-comment"># 读取测试数据集</span>
+    pre = pd.read_csv(<span class="hljs-string">"pre.csv"</span>)
+    preList = list(pre.replace(<span class="hljs-string">","</span>, <span class="hljs-string">" "</span>))
+    weight = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> list(preList[<span class="hljs-number">0</span>].split(<span class="hljs-string">","</span>)):
+        weight.append(float(i))
+    bias = float(preList[<span class="hljs-number">1</span>])
+    test_data = pd.read_csv(<span class="hljs-string">"test.csv"</span>,header=<span class="hljs-literal">None</span>,usecols=np.arange(<span class="hljs-number">2</span>, <span class="hljs-number">11</span>).tolist())
+    x_test = testDataProcess(test_data)
+    print(x_test.shape)
+    print(x_test)
+    testModel(x_test, np.array(weight), bias)</code></pre>
+
+<h3 id="3-7-实验结果"><a href="#3-7-实验结果" class="headerlink" title="3.7 实验结果"></a>3.7 实验结果</h3><pre><code class="hljs python"><span class="hljs-number">0</span> 次训练后, 训练集的损失为<span class="hljs-number">477.65</span>
+ <span class="hljs-number">200</span> 次训练后, 训练集的损失为<span class="hljs-number">24.93</span>
+ <span class="hljs-number">400</span> 次训练后, 训练集的损失为<span class="hljs-number">23.10</span>
+ <span class="hljs-number">600</span> 次训练后, 训练集的损失为<span class="hljs-number">22.45</span>
+ <span class="hljs-number">800</span> 次训练后, 训练集的损失为<span class="hljs-number">22.14</span>
+ <span class="hljs-number">1000</span> 次训练后, 训练集的损失为<span class="hljs-number">21.98</span>
+ <span class="hljs-number">1200</span> 次训练后, 训练集的损失为<span class="hljs-number">21.89</span>
+ <span class="hljs-number">1400</span> 次训练后, 训练集的损失为<span class="hljs-number">21.85</span>
+ <span class="hljs-number">1600</span> 次训练后, 训练集的损失为<span class="hljs-number">21.82</span>
+ <span class="hljs-number">1800</span> 次训练后, 训练集的损失为<span class="hljs-number">21.81</span>
+训练得到的模型的weight为[ <span class="hljs-number">0.0041924</span>  <span class="hljs-number">-0.03002267</span>  <span class="hljs-number">0.18515256</span> <span class="hljs-number">-0.19707856</span> <span class="hljs-number">-0.03064956</span>  <span class="hljs-number">0.4192367</span>
+ <span class="hljs-number">-0.52283658</span>  <span class="hljs-number">0.05472427</span>  <span class="hljs-number">1.04587455</span>]
+训练得到的模型的bias为<span class="hljs-number">1.9972854726781095</span>
+模型模型在验证集的loss为<span class="hljs-number">40.35</span></code></pre>
+
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p style="text-indent:2em">由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3200项作为training data，后400项作为validation data；此外，本次训练只考虑了PM2.5作为输入，其他观测信息并未使用，所以可能并没有达到很好的效果。在这个模型当中，感觉增加Regularization并未起多大的作用。</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/">
+                        <span class="hidden-mobile">2015-CLA-NextCloures Parallel Computation of the Canonical Base</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.defer = false
+      s.setAttribute('repo', 'https://github.com/peer-less/peer-less.github.io.git');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      var e = document.getElementsByTagName('script')[0];
+      e.parentNode.insertBefore(s, e);
+    }
+    createObserver(loadUtterances, 'comments')
+  </script>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <!--
+ * @Author: your name
+ * @Date: 2020-06-04 05:16:36
+ * @LastEditTime: 2020-06-27 11:15:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blog\themes\fluid\layout\_partial\footer.ejs
+--> 
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://github.com/SuperficialJ/peerless.github.io." target="_blank" rel="nofollow noopener"><span>peerless</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+
+  <p id="hitokoto" align='center'>:D 获取中...</p>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto')
+        hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+  </script>
+
+  <div align='center'>
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>
+    <script>
+    var now = new Date();
+    function createtime(){
+        var grt= new Date("06/26/2020 22:53:55");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if(String(mnum).length ==1 ){
+                  mnum = "0" + mnum;
+        }
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if(String(snum).length ==1 ){
+                  snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+        document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+    }
+    setInterval("createtime()",250);
+    </script>
+  </div>
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "台大李宏毅机器学习-HW1&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
