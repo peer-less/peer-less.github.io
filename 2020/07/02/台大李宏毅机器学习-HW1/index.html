@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.1k 字
     </span>
   
 
@@ -236,7 +236,8 @@
 </ul>
 <p>$$<br>\begin{align}<br>w^1=&amp;w^0-\frac{\eta^0}{\sigma^0}g^0 \newline<br>\vdots \newline<br>w^{t+1}=&amp;w^t-\frac{\eta^t}{\sigma^t}g^t<br>\end{align}<br>$$</p>
 <p>​                其中$g^t$为$w^t$的梯度值，而且有：<br>$$<br>\begin{align}<br>\sigma^t=&amp;\sqrt{\frac{1}{t+1}\sum\limits_{i=0}^t(g^i)^2} \newline<br>\eta^t=&amp;\frac{\eta}{t+1}<br>\end{align}<br>$$<br>​                带入后，则有：<br>$$<br>w^{t+1}=w^t-\frac{\eta}{\sqrt{\sum\limits_{i=0}^t(g^i)^2} }<br>$$</p>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><h3 id="3-1-数据预处理"><a href="#3-1-数据预处理" class="headerlink" title="3.1 数据预处理"></a>3.1 数据预处理</h3><p>train.csv当中保存的是丰原市一年当中每个月前20天的观测数据，由于每次==输入==的数据为前9个小时的PM2.5的数值，第10个小时的数值用来做==label==，所以一天当中的PM2.5的观测数据可以分为15组（15=24-10+1）。因此，train.csv当中的数据可以分为3600组（3600=12×20×15）。</p>
+<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><h3 id="3-1-数据预处理"><a href="#3-1-数据预处理" class="headerlink" title="3.1 数据预处理"></a>3.1 数据预处理</h3><p style="text-indent:2em">本次训练结果损失值为nan是因为涉及到log0的运算，结果为无穷大，则打印出来的Loss为nan。但是在这个模型当中，可以看到在经过4000次训练后，训练集分类的正确率能达到90%，验证集分类的正确率能达到87.2%。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后1000项作为validation data，所以可能并没有达到很好的效果。</p>
+
 <pre><code class="hljs python"><span class="hljs-comment"># 读取数据集</span>
 data = pd.read_csv(<span class="hljs-string">"train.csv"</span>, header=<span class="hljs-number">0</span>)
 <span class="hljs-comment"># 删除无关特征</span>
@@ -276,7 +277,7 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
     <span class="hljs-keyword">return</span> x, y, data</code></pre>
 
 <h3 id="3-2-模型训练"><a href="#3-2-模型训练" class="headerlink" title="3.2 模型训练"></a>3.2 模型训练</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trainModel</span><span class="hljs-params">(x_data, y_data, epoch)</span>:</span>
-    <span class="hljs-string">''' 训练模型，从训练集中拿出3200个数据用来训练，剩余400个数据用于验证。</span>
+    <span class="hljs-string">''' 训练模型，从训练集中拿出3000个数据用来训练，剩余600个数据用于验证。</span>
 <span class="hljs-string">    </span>
 <span class="hljs-string">    参数</span>
 <span class="hljs-string">        x_data: </span>
@@ -309,14 +310,14 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
         w_g = np.zeros(<span class="hljs-number">9</span>)
 
         <span class="hljs-comment"># 在所有数据上计算w和b的梯度。</span>
-        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">3200</span>):
+        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">3000</span>):
             b_g += (y_data[j] - weight.dot(x_data[j]) - bias) * (<span class="hljs-number">-1</span>) <span class="hljs-comment"># 如果2个一维向量dot，则结果为它们的内积。</span>
             <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">9</span>):
                 w_g[k] += (y_data[j] - weight.dot(x_data[j]) - bias) * (-x_data[j, k])
 
         <span class="hljs-comment"># 求平均值</span>
-        b_g /= <span class="hljs-number">3200</span>
-        w_g /= <span class="hljs-number">3200</span>
+        b_g /= <span class="hljs-number">3000</span>
+        w_g /= <span class="hljs-number">3000</span>
 
         <span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> range(<span class="hljs-number">9</span>):
             w_g[k] += reg_rate * weight[k]
@@ -330,9 +331,9 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
         <span class="hljs-comment"># 每训练200次输出一次误差</span>
         <span class="hljs-keyword">if</span> i % <span class="hljs-number">200</span> == <span class="hljs-number">0</span>:
             loss = <span class="hljs-number">0</span>
-            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">3200</span>):
+            <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">3000</span>):
                 loss += (y_data[j] - weight.dot(x_data[j]) - bias) ** <span class="hljs-number">2</span>
-            loss /= <span class="hljs-number">3200</span>
+            loss /= <span class="hljs-number">3000</span>
 
             <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">9</span>):
                 loss += reg_rate * (weight[j] ** <span class="hljs-number">2</span>)
@@ -354,10 +355,10 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
 <span class="hljs-string">    '''</span>
 
     loss = <span class="hljs-number">0</span>
-    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">400</span>):
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">600</span>):
         loss += (y_val[i] - weight.dot(x_val[i]) - bias) ** <span class="hljs-number">2</span>
     
-    <span class="hljs-keyword">return</span> loss / <span class="hljs-number">400</span></code></pre>
+    <span class="hljs-keyword">return</span> loss / <span class="hljs-number">600</span></code></pre>
 
 <h3 id="3-4-测试数据预处理"><a href="#3-4-测试数据预处理" class="headerlink" title="3.4 测试数据预处理"></a>3.4 测试数据预处理</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testDataProcess</span><span class="hljs-params">(test_data)</span>:</span>
     <span class="hljs-string">''' 测试数据预处理</span>
@@ -385,8 +386,8 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
     data = pd.read_csv(<span class="hljs-string">"train.csv"</span>, usecols=np.arange(<span class="hljs-number">3</span>, <span class="hljs-number">27</span>).tolist())
     x_data, y_data, data = dataProcess(data)
     
-    x_train, y_train = x_data[<span class="hljs-number">0</span>:<span class="hljs-number">3200</span>], y_data[<span class="hljs-number">0</span>:<span class="hljs-number">3200</span>]
-    x_val, y_val = x_data[<span class="hljs-number">3200</span>:<span class="hljs-number">3600</span>], y_data[<span class="hljs-number">3200</span>:<span class="hljs-number">3600</span>]
+    x_train, y_train = x_data[<span class="hljs-number">0</span>:<span class="hljs-number">3000</span>], y_data[<span class="hljs-number">0</span>:<span class="hljs-number">3000</span>]
+    x_val, y_val = x_data[<span class="hljs-number">3000</span>:<span class="hljs-number">3600</span>], y_data[<span class="hljs-number">3000</span>:<span class="hljs-number">3600</span>]
     weight, bias = trainModel(x_train, y_train, <span class="hljs-number">2000</span>)
 
     savePre(weight, bias)
@@ -432,23 +433,22 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
     print(x_test)
     testModel(x_test, np.array(weight), bias)</code></pre>
 
-<h3 id="3-7-实验结果"><a href="#3-7-实验结果" class="headerlink" title="3.7 实验结果"></a>3.7 实验结果</h3><pre><code class="hljs python"><span class="hljs-number">0</span> 次训练后, 训练集的损失为<span class="hljs-number">477.65</span>
- <span class="hljs-number">200</span> 次训练后, 训练集的损失为<span class="hljs-number">24.93</span>
- <span class="hljs-number">400</span> 次训练后, 训练集的损失为<span class="hljs-number">23.10</span>
- <span class="hljs-number">600</span> 次训练后, 训练集的损失为<span class="hljs-number">22.45</span>
- <span class="hljs-number">800</span> 次训练后, 训练集的损失为<span class="hljs-number">22.14</span>
- <span class="hljs-number">1000</span> 次训练后, 训练集的损失为<span class="hljs-number">21.98</span>
- <span class="hljs-number">1200</span> 次训练后, 训练集的损失为<span class="hljs-number">21.89</span>
- <span class="hljs-number">1400</span> 次训练后, 训练集的损失为<span class="hljs-number">21.85</span>
- <span class="hljs-number">1600</span> 次训练后, 训练集的损失为<span class="hljs-number">21.82</span>
- <span class="hljs-number">1800</span> 次训练后, 训练集的损失为<span class="hljs-number">21.81</span>
-训练得到的模型的weight为[ <span class="hljs-number">0.0041924</span>  <span class="hljs-number">-0.03002267</span>  <span class="hljs-number">0.18515256</span> <span class="hljs-number">-0.19707856</span> <span class="hljs-number">-0.03064956</span>  <span class="hljs-number">0.4192367</span>
- <span class="hljs-number">-0.52283658</span>  <span class="hljs-number">0.05472427</span>  <span class="hljs-number">1.04587455</span>]
-训练得到的模型的bias为<span class="hljs-number">1.9972854726781095</span>
-模型模型在验证集的loss为<span class="hljs-number">40.35</span></code></pre>
+<h3 id="3-7-实验结果"><a href="#3-7-实验结果" class="headerlink" title="3.7 实验结果"></a>3.7 实验结果</h3><pre><code class="hljs python"><span class="hljs-number">0</span> 次训练后, 训练集的损失为<span class="hljs-number">477.36</span>
+ <span class="hljs-number">200</span> 次训练后, 训练集的损失为<span class="hljs-number">25.08</span>
+ <span class="hljs-number">400</span> 次训练后, 训练集的损失为<span class="hljs-number">23.30</span>
+ <span class="hljs-number">600</span> 次训练后, 训练集的损失为<span class="hljs-number">22.67</span>
+ <span class="hljs-number">800</span> 次训练后, 训练集的损失为<span class="hljs-number">22.37</span>
+ <span class="hljs-number">1000</span> 次训练后, 训练集的损失为<span class="hljs-number">22.22</span>
+ <span class="hljs-number">1200</span> 次训练后, 训练集的损失为<span class="hljs-number">22.14</span>
+ <span class="hljs-number">1400</span> 次训练后, 训练集的损失为<span class="hljs-number">22.10</span>
+ <span class="hljs-number">1600</span> 次训练后, 训练集的损失为<span class="hljs-number">22.08</span>
+ <span class="hljs-number">1800</span> 次训练后, 训练集的损失为<span class="hljs-number">22.07</span>
+训练得到的模型的weight为[ <span class="hljs-number">0.00194352</span> <span class="hljs-number">-0.02562139</span>  <span class="hljs-number">0.18138721</span> <span class="hljs-number">-0.19572767</span> <span class="hljs-number">-0.0230436</span>   <span class="hljs-number">0.40959797</span>
+ <span class="hljs-number">-0.51985702</span>  <span class="hljs-number">0.06835844</span>  <span class="hljs-number">1.03413381</span>]
+训练得到的模型的bias为<span class="hljs-number">1.948721373892966</span>
+模型模型在验证集的loss为<span class="hljs-number">39.17</span></code></pre>
 
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p style="text-indent:2em">由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3200项作为training data，后400项作为validation data。此外，本次训练只考虑了PM2.5的值作为输入，其他观测信息并未使用，所以可能并没有达到很好的效果。在这个模型当中，感觉增加Regularization并未起多大的作用。</p>
-
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p style="text-indent:2em">在这个模型当中，可以看到在经过2000次训练后，模型在验证集上的损失已达到了39.17。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后600项作为validation data，所以可能并没有达到很好的效果。</p>
             </article>
             <hr>
             <div>
