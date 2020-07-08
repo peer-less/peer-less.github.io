@@ -376,7 +376,7 @@ print(<span class="hljs-string">'验证集的精度值为:'</span>, acc)</code><
 验证集的损失值为: [nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan]
 验证集的精度值为: <span class="hljs-number">0.864</span></code></pre>
 
-<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p style="text-indent:2em">本次训练结果损失值为nan是因为涉及到log0的运算，结果为无穷大，则打印出来的Loss为nan。但是在这个模型当中，可以看到在经过4000次训练后，训练集分类的正确率基本能达到90%，验证集分类的正确率能达到86.4%。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后1000项作为validation data，所以可能并没有达到很好的效果。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p style="text-indent:2em">本次训练结果损失值为nan是因为涉及到log0的运算，结果为无穷大，则打印出来的Loss为nan。但是在这个模型当中，可以看到在经过4000次训练后，训练集分类的正确率基本能达到90%，验证集分类的正确率能达到86.4%。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后1000项作为validation data，所以可能并没有达到很好的效果。</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
             <div>
