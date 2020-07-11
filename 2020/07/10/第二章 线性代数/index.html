@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客，记录成长的点滴。">
+  <meta name="author" content="peerless">
+  <meta name="keywords" content="">
+  <title>第二章 线性代数 - peerless</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>peerless</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-10 12:17">
+      2020年7月10日 中午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="第二章-线性代数"><a href="#第二章-线性代数" class="headerlink" title="第二章 线性代数"></a>第二章 线性代数</h1><p class="note note-info">深度学习、花书、线性代数</p>
+
+<a id="more"></a>
+
+<h2 id="2-1-标量、向量、矩阵和张量"><a href="#2-1-标量、向量、矩阵和张量" class="headerlink" title="2.1 标量、向量、矩阵和张量"></a>2.1 标量、向量、矩阵和张量</h2><p>基本概念</p>
+<ul>
+<li><span style="color:red">标量（scalar）</span>：一个标量就是一个单独的数。</li>
+</ul>
+<p style="text-indent:2em">它不同于线性代数中研究的其他大部分对象（通常是多个数的数组）。我们用<i>斜体</i>表示标量。标量通常被赋予<i>小写的变量名称</i>。当我们介绍标量时，会明确它们是哪种类型的数。比如，在定义实数标量时，我们可能会说 ‘‘令 <i>s ∈ R</i> 表示一条线的斜率’’；在定义自然数标量时，我们可能会说 ‘‘令 <i>n ∈ N</i> 表示元素的数目’’。</p>
+
+<ul>
+<li><span style="color:red">向量（vector）</span>：一个向量就是有序排列的一列数。通过次序中的索引，我们可以确定每个单独的数。</li>
+</ul>
+<p style="text-indent:2em">通过次序中的索引，我们可以确定每个单独的数。通常我们赋予向量<b>粗体的小写变量名称</b>，比如 <b>x</b>。向量中的元素可以通过带<i>脚标的斜体</i>表示。向量 <b>x</b> 的第一个元素是 <b>x</b><sub><i>1</i></sub>，第二个元素是 <b>x</b><sub><i>2</i></sub>，等等。</p>
+
+<p>$\mathbb{R}^n$：如果每个元素都属于 $\mathbb{R}$，并且该向量有 $n$ 个元素，那么该向量属于实数集 $\mathbb{R}$ 的 $n$ 次笛卡尔乘积构成的集合，记为 $\mathbb{R}^n$。</p>
+<ul>
+<li><p><span style="color:red">—</span>：集合补集的索引。比如 $x_{-1}$ 表示 $x$ 中除 $x_1$ 外的所有元素。</p>
+</li>
+<li><p><span style="color:red">矩阵（matrix）</span>：矩阵是一个二维数组，其中的每一个元素被两个索引（而非一个）所确定。</p>
+<ul>
+<li>$A_{i,:}$：$A$ 的第 $i$ 行（row）。</li>
+<li>$A_{:,i}$： $A$的第 $i$ 列（column）。</li>
+<li>$f(A)_{i,j}$：表示函数$f$ 作用在$A$上输出的矩阵的第 $i$行第 $j$ 列元素。</li>
+</ul>
+</li>
+<li><p><span style="color:red">张量（tensor）</span>：一个数组中的元素分布在若干维坐标（坐标超过两维）的规则网格中，我们称之为张量。我们使用字体 <b>A</b> 来表示张量 “A’’。张量 <b>A</b> 中坐标为 (i, j, k) 的元素记作 $\bf{A_{i,j,k} }$。</p>
+</li>
+<li><p><span style="color:red">主对角线（main diagonal）</span>：从左上角到右下角的对角线。</p>
+</li>
+<li><p><span style="color:red">广播（broadcasting）</span>：向量$b$ 和矩阵$A$ 的每一行相加。这个简写方法使我们无需在加法操作前定义一个将向量 $b$ 复制到每一行而生成的矩阵。这种隐式地复制向量 $b$ 到很多位置的方式称为广播。即$C=A+b\Leftrightarrow C_{i,j}=A_{i,j}+b_j$。</p>
+</li>
+</ul>
+<h2 id="2-2-矩阵与向量相乘"><a href="#2-2-矩阵与向量相乘" class="headerlink" title="2.2 矩阵与向量相乘"></a>2.2 矩阵与向量相乘</h2><p>基本概念</p>
+<ul>
+<li><span style="color:red">元素对应乘积（element-wise product）或者 <strong>Hadamard</strong> 乘积（Hadamard product）</span>：两个矩阵中对应元素的乘积，记为$A\odot B$。</li>
+<li><span style="color:red">点积（dot product）</span>：两个相同维数的向量 <strong>x</strong> 和 <strong>y</strong> 的 点积（dot product）可看作是矩阵乘积$x^Ty$。注：$x^Ty=y^Tx$。</li>
+</ul>
+<h2 id="2-3-线性相关与生成子空间"><a href="#2-3-线性相关与生成子空间" class="headerlink" title="2.3 线性相关与生成子空间"></a>2.3 线性相关与生成子空间</h2><p>基本概念</p>
+<ul>
+<li><span style="color:red">线性组合（linear combination）</span>：<p style="text-indent:2em">为了分析方程有多少个解，我们可以将 A 的列向量看作从 原点（origin）（元素都是零的向量）出发的不同方向，确定有多少种方法可以到达向量 b。在这个观点下，向量 x 中的每个元素表示我们应该沿着这些方向走多远，即 xi 表示我们需要沿着第 i 个向量的方向走多远：</p>
+$$
+  Ax=\sum\limits_i x_iA_{:,i}
+$$
+<p style="text-indent:2em">一般而言，这种操作被称为 线性组合（linear combination）。形式上，一组向量的线性组合，是指每个向量乘以对应标量系数之后的和，即：</p>
+$$
+  \sum\limits_i c_iv^{(i)}
+$$</li>
+<li><span style="color:red">列空间（column space）或值域（range）</span>：确定 <strong>Ax</strong> = <strong>b</strong> 是否有解相当于确定向量 <strong>b</strong> 是否在 <strong>A</strong> 列向量的生成子空间中。这个特殊的生成子空间被称为 <strong>A</strong> 的 列空间（column space）或者 <strong>A</strong> 的 值域（range）。</li>
+<li><span style="color:red">线性无关（linearly independent）</span>：如果一组向量中的任意一个向量都不能表示成其他向量的线性组合，那么这组向量称为 线性无关（linearly independent）。</li>
+<li><span style="color:red">奇异的（singular）</span>：一个列向量线性相关的方阵。</li>
+</ul>
+<h2 id="2-4-范数"><a href="#2-4-范数" class="headerlink" title="2.4 范数"></a>2.4 范数</h2><p style="text-indent:2em"><span style="color:red">范数（singular）</span>是将向量映射到非负值的函数。。直观上来说，向量 x 的范数衡量从原点到点 x 的距离。更严格地说，范数是满足下列性质的任意函数：</p>
+
+<ul>
+<li>$f(x)=0\Rightarrow x=0$</li>
+<li>$f(x+y)\le f(x)+f(y)$  （三角不等式（triangle inequality））</li>
+<li>$\forall \alpha\in \mathbb{R},\ f(\alpha x)=|\alpha|f(x)$</li>
+</ul>
+<p>$L^p$范数：<br>$$<br>\parallel x\parallel_p=\left(\sum\limits_i |x_i|^p \right)^{\frac1p}\qquad 其中p\in\mathbb{R},\ p\ge1。<br>$$</p>
+<p style="text-indent:2em"><span style="color:red">L<sup>2</sup> 范数（singular）</span>被称为欧几里得范数（Euclidean norm）。它表示从原点出发到向量 x 确定的点的欧几里得距离。</p>
+
+<p>$$<br>\parallel x\parallel_2=\left(\sum\limits_i |x_i|^2 \right)^{\frac12}<br>$$</p>
+<p style="text-indent:2em">两个向量的 点积（dot product）可以用范数来表示。具体地：</p>
+
+<p>$$<br>x^Ty=\parallel x\parallel_2\parallel y\parallel_2 \cos\theta\qquad 其中\theta表示x和y之间的夹角。<br>$$</p>
+<p><span style="color:red">平方L<sup>2</sup> 范数（singular）</span>：<br>$$<br>\parallel x\parallel_2=\sum\limits_i |x_i|^2=x^Tx<br>$$</p>
+<p style="text-indent:2em">平方 L<sup>2</sup> 范数对x 中每个元素的导数只取决于对应的元素，而 L<sup>2</sup> 范数对每个元素的导数却和整个向量相关。但是在很多情况下，平方 L<sup>2</sup> 范数也可能不受欢迎，因为它在原点附近增长得十分缓慢。</p>
+
+<p><span style="color:red">L<sup>1</sup> 范数（singular）</span>：<br>$$<br>\parallel x\parallel_1=\sum\limits_i |x_i|<br>$$</p>
+<p style="text-indent:2em">当机器学习问题中零和非零元素之间的差异非常重要时，通常会使用 L<sup>1</sup> 范数。每当x 中某个元素从 0 增加 ϵ，对应的 L<sup>1</sup> 范数也会增加 ϵ。</p>
+
+<p><span style="color:red">L<sup>&infin;</sup> 范数（singular）</span>：表示向量中具有最大幅值的元素的绝对值。<br>$$<br>\parallel x\parallel_{\infin}=\max\limits_i |x_i|<br>$$</p>
+<p><span style="color:red"><strong>Frobenius</strong> 范数（Frobenius norm）</span>：衡量矩阵的大小。<br>$$<br>\parallel A\parallel_F=\sqrt{\sum\limits_{i,j} A_{i,j}^2}<br>$$</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-AI%E5%9C%A3%E7%BB%8F/">深度学习(AI圣经)</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%8A%B1%E4%B9%A6/">花书</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/">
+                        <span class="hidden-mobile">深度学习-第一章 引言</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "RcI3ePX6qkbdKOX0xjPq8Xy3-gzGzoHsz",
+          app_key: "suQG3XDbcx2bpMJLeuKCcqS7",
+          placeholder: "由于作者水平有限，加上时间仓促，文中难免存在不足之处，敬请读者批评指正。",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://rci3epx6.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <!--
+ * @Author: your name
+ * @Date: 2020-06-04 05:16:36
+ * @LastEditTime: 2020-07-04 16:26:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blog\themes\fluid\layout\_partial\footer.ejs
+--> 
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://github.com/SuperficialJ/peerless.github.io." target="_blank" rel="nofollow noopener"><span>peerless</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    <!--
+ * @Author: your name
+ * @Date: 2020-06-28 18:23:11
+ * @LastEditTime: 2020-07-04 16:28:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \peer-less.github.io\themes\fluid\layout\_partial\statistics.ejs
+--> 
+
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: inline-block">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: inline-block">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+
+  <p id="hitokoto" align='center'>:D 获取中...</p>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto')
+        hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+  </script>
+
+  <div align='center'>
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>
+    <script>
+    var now = new Date();
+    function createtime(){
+        var grt= new Date("06/26/2020 22:53:55");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if(String(mnum).length ==1 ){
+                  mnum = "0" + mnum;
+        }
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if(String(snum).length ==1 ){
+                  snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+        document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+    }
+    setInterval("createtime()",250);
+    </script>
+  </div>
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "第二章 线性代数&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>

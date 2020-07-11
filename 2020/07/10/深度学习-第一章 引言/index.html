@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客，记录成长的点滴。">
+  <meta name="author" content="peerless">
+  <meta name="keywords" content="">
+  <title>深度学习-第一章 引言 - peerless</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>peerless</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-07-10 08:55">
+      2020年7月10日 早上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      54
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="第一章-引言"><a href="#第一章-引言" class="headerlink" title="第一章 引言"></a>第一章 引言</h1><p class="note note-info">深度学习、花书</p>
+
+<a id="more"></a>
+
+<h2 id="1-早期问题"><a href="#1-早期问题" class="headerlink" title="1 早期问题"></a>1 早期问题</h2><p style="text-indent:2em">在人工智能的早期，那些对人类智力来说非常困难、但对计算机来说相对简单的问题得到迅速解决。比如，那些可以通过一系列形式化的数学规则来描述的问题。</p><p style="text-indent:2em">人工智能的真正挑战在于解决那些对人来说很容易执行、但很难形式化描述的任务，如识别人们所说的话或图像中的脸。对于这些问题，我们人类往往可以凭借直觉轻易地解决。</p>
+
+<p>针对这些比较直观的问题，本书讨论一种解决方案<span style="color:red">(AI 深度学习（deep learning）)</span>。</p>
+<ul>
+<li>该方案可以让计算机从经验中学习，并根据层次化的概念体系来理解世界，而每个概念则通过与某些相对简单的概念之间的关系来定义。</li>
+<li>让计算机从经验获取知识，可以避免由人类来给计算机形式化地指定它需要的所有知识。</li>
+<li>层次化的概念让计算机构建较简单的概念来学习复杂概念。</li>
+</ul>
+<p>一个<span style="color:red">关键挑战</span>：如何将这些非形式化的知识传达给计算机。</p>
+<p><span style="color:red">硬编码 (hard code)</span>：计算机可以使用逻辑推理规则来自动地理解这些形式化语言中的声明。这就是众所周知的人工智能的知识库（knowledge base）方法。</p>
+<p><span style="color:red">机器学习（machine learning）</span>：由于依靠硬编码的知识体系面对的困难表明，AI 系统需要具备自己获取知识的能力，即从原始数据中提取模式的能力。</p>
+<p>引入机器学习使计算机能够解决涉及现实世界知识的问题，并能作出看似主观的决</p>
+<p>策。如：</p>
+<ul>
+<li>一个被称为 逻辑回归（logistic regression）的简单机器学习算法可以决定是否建议剖腹产 (Mor-Yosef <em>et al.</em>, 1990)。</li>
+<li>简单机器学习算法朴素贝叶斯（naive Bayes）则可以区分垃圾电子邮件和合法电子邮件。</li>
+</ul>
+<p>但是这些简单的机器学习算法的性能在很大程度上依赖于给定数据的<span style="color:red">表示（repre sentation）</span>。，表示的选择对机器学习算法的性能产生巨大的影响。</p>
+<p style="text-indent:2em">许多人工智能任务都可以通过以下方式解决：先提取一个合适的特征集，然后将这些特征提供给简单的机器学习算法。例如，对于通过声音鉴别说话者的任务来说，一个有用的特征是对其声道大小的估计。这个特征为判断说话者是男性、女性还是儿童提供了有力线索。</p>
+
+<p style="text-indent:2em">然而，对于许多任务来说，我们很难知道应该提取哪些特征。例如，假设我们想编写一个程序来检测照片中的车。我们知道，汽车有轮子，所以我们可能会想用车轮的存在与否作为特征。不幸的是，我们难以准确地根据像素值来描述车轮看上去像什么。虽然车轮具有简单的几何形状，但它的图像可能会因场景而异，如落在车轮上的阴影、太阳照亮的车轮的金属零件、汽车的挡泥板或者遮挡的车轮一部分的前景物体等等。</p>
+
+<p style="text-indent:2em">解决这个问题的途径之一是使用机器学习来发掘表示本身，而不仅仅把表示映射到输出。这种方法我们称之为<span style="color:red">表示学习（representation learning）</span>。</p>
+
+<p style="text-indent:2em">表示学习算法的典型例子是<span style="color:red">自编码器</span>（autoencoder）。自编码器由一个编码器encoder）函数和一个解码器（decoder）函数组合而成。</p>
+
+<p><span style="color:red">编码器</span>：编码器函数将输入数据转换为一种不同的表示。</p>
+<p><span style="color:red">解码器</span>：解码器函数则将这个新的表示转换到原来的形式。</p>
+<p style="text-indent:2em">我们期望当输入数据经过编码器和解码器之后尽可能多地保留信息，同时希望新的表示有各种好的特性，这也是自编码器的训练目标。为了实现不同的特性，我们可以设计不同形式的自编码器。</p>
+
+<p style="text-indent:2em">当设计特征或设计用于学习特征的算法时，我们的目标通常是分离出能解释观察数据的<span style="color:red">变差因素（factors of variation）</span>。在此背景下，‘‘因素’’ 这个词仅指代影响的不同来源；因素通常不是乘性组合。这些因素通常是不能被直接观察到的量。相反，它们可能是现实世界中观察不到的物体或者不可观测的力，但会影响可观测的量。为了对观察到的数据提供有用的简化解释或推断其原因，它们还可能以概念的形式存在于人类的思维中。它们可以被看作数据的概念或者抽象，帮助我们了解这些数据的丰富多样性。当分析语音记录时，变差因素包括说话者的年龄、性别、他们的口音和他们正在说的词语。当分析汽车的图像时，变差因素包括汽车的位置、它的颜色、太阳的角度和亮度。</p>
+
+<p style="text-indent:2em">显然，从原始数据中提取如此高层次、抽象的特征是非常困难的。许多诸如说话口音这样的变差因素，只能通过对数据进行复杂的、接近人类水平的理解来辨识。这几乎与获得原问题的表示一样困难，因此，乍一看，表示学习似乎并不能帮助我们。</p>
+
+<p><span style="color:red">深度学习（deep learning）</span>通过其他较简单的表示来表达复杂表示，解决了表示学习中的核心问题。深度学习让计算机通过较简单概念构建复杂的概念。图 1.2 展示了深度学习系统。</p>
+<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710112001631.png" srcset="/img/loading.gif" class>
+
+<p><img src="/peerless.github/image-20200710112001631.png" srcset="/img/loading.gif" alt></p>
+<p><span style="color:red">多层感知机（multilayer perceptron, MLP）</span>：是一个将一组输入值映射到输出值的数学函数。该函数由许多较简单的函数复合而成。我们可以认为不同数学函数的每一次应用都为输入提供了新的表示。</p>
+<p>种度量模型深度的方式：</p>
+<ol>
+<li>基于评估架构所需执行的顺序指令的数目。<p style="text-indent:2em">假设我们将模型表示为给定输入后，计算对应输出的流程图，则可以将这张流程图中的最长路径视为模型的深度。正如两个使用不同语言编写的等价程序将具有不同的长度；相同的函数可以被绘制为具有不同深度的流程图，其深度取决于我们可以用来作为一个步骤的函数。图 1.3 说明了语言的选择如何给相同的架构两个不同的衡量。</p>
+<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710113610351.png" srcset="/img/loading.gif" class>
+
+</li>
+</ol>
+<p><img src="/peerless.github/image-20200710113610351.png" srcset="/img/loading.gif" alt></p>
+<ol start="3">
+<li>将描述概念彼此如何关联的图的深度视为模型深度。<p style="text-indent:2em">在这种情况下，计算每个概念表示的计算流程图的深度可能比概念本身的图更深。这是因为系统对较简单概念的理解在给出更复杂概念的信息后可以进一步精细化。例如，一个 AI 系统观察其中一只眼睛在阴影中的脸部图像时，它最初可能只看到一只眼睛。但当检测到脸部的存在后，系统可以推断第二只眼睛也可能是存在的。在这种情况下，概念的图仅包括两层（关于眼睛的层和关于脸的层），但如果我们细化每个概念的估计将需要额外的 n 次计算，即计算的图将包含 2n 层。 </p>
+
+</li>
+</ol>
+<p style="text-indent:2em">深度学习是一种特定类型的机器学习，具有强大的能力和灵活性，它将大千世界表示为嵌套的层次概念体系（由较简单概念间的联系定义复杂概念、从一般抽象概括到高级抽象表示）。</p>
+
+<p>图1.4 说明了这些不同的 AI 学科之间的关系。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115035883.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github/image-20200710115035883.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.5 展示了每个学科如何工作的高层次原理。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115508658.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github/image-20200710115508658.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.6 展示了本书的组织架构。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115751350.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github/image-20200710115751350.png" srcset="/img/loading.gif" alt></p>
+<h2 id="2-深度学习的历史趋势"><a href="#2-深度学习的历史趋势" class="headerlink" title="2 深度学习的历史趋势"></a>2 深度学习的历史趋势</h2><h3 id="2-1-神经网络的众多名称和命运变迁"><a href="#2-1-神经网络的众多名称和命运变迁" class="headerlink" title="2.1 神经网络的众多名称和命运变迁"></a>2.1 神经网络的众多名称和命运变迁</h3><p>三次发展浪潮：</p>
+<ol>
+<li>20世纪40年代到60年代深度学习的雏形出现在控制论（cybernetics）中。</li>
+<li>20 世纪 80 年代到 90 年代深度学习表现为联结主义（connectionism）。</li>
+<li>直到 2006 年，才真正以深度学习之名复兴。</li>
+</ol>
+<p>图 1.7 给出了定量的展示。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710121022428.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github/image-20200710121022428.png" srcset="/img/loading.gif" alt></p>
+<p><span style="color:red">控制论</span>：</p>
+<ul>
+<li>$n$个输入：$x_1, x_2, \cdots, x_n$。</li>
+<li>一组权重：$w_1, w_2, \cdots, w_n$。</li>
+<li>输出：$f(x, w)=x_1w_1+\cdots+x_nw_n$。</li>
+</ul>
+<p style="text-indent:2em">McCulloch-Pitts 神经元 (McCulloch and Pitts, 1943) 是脑功能的早期模型。该线性模型通过检验函数 f(x, w) 的正负来识别两种不同类别的输入。显然，模型的权重需要正确设置后才能使模型的输出对应于期望的类别。这些权重可以由操作人员设定。在 20 世纪 50 年代，<span style="color:red">感知机</span> (Rosenblatt, 1956, 1958) 成为第一个能根据每个类别的输入样本来学习权重的模型。约在同一时期，<span style="color:red">自适应线性单元 (adaptive linear element, ADALINE)</span> 简单地返回函数 *f*(**x**) 本身的值来预测一个实数 (Widrow and Hoffff, 1960)，并且它还可以学习从数据预测这些数。</p>
+
+<p><span style="color:red">随机梯度下降（stochastic gradient descent）</span>的一种特例：调节 ADALINE 权重的训练算法。</p>
+<p><span style="color:red">线性模型（linear model）</span>：基于感知机和 ADALINE 中使用的函数 <em>f</em>(x, w) 的模型。</p>
+<p>局限性：无法学习异或（XOR）函数，即$f([0, 1], w)=1和f([1, 0], w)=1，但f([1, 1], w)=0和f([0, 0], w)=0$。</p>
+<p><span style="color:red">计算神经科学</span>：了解大脑是如何在算法层面上工作的尝试。</p>
+<p><span style="color:red">深度学习领域主要关注任务</span>：如何构建计算机系统，从而成功解决需要智能才能解决的任务。</p>
+<p><span style="color:red">计算神经科学领域主要关注任务</span>：构建大脑如何真实工作的比较精确的模型。</p>
+<p><span style="color:red">联结主义（connectionism）或并行分布处理 ( parallel distributed processing) </span>：当网络将大量简单的计算单元连接在一起时可以实现智能行为。</p>
+<p><span style="color:red"> 分布式表示（distributed representation）</span>：系统的每一个输入都应该由多个特征表示，并且每一个特征都应该参与到多个可能输入的表示。</p>
+<p style="text-indent:2em">例如，假设我们有一个能够识别红色、绿色、或蓝色的汽车、卡车和鸟类的视觉系统，表示这些输入的其中一个方法是将九个可能的组合：红卡车，红汽车，红鸟，绿卡车等等使用单独的神经元或隐藏单元激活。这需要九个不同的神经元，并且每个神经必须独立地学习颜色和对象身份的概念。改善这种情况的方法之一是使用分布式表示，即用三个神经元描述颜色，三个神经元描述对象身份。这仅仅需要 6 个神经元而不是 9 个，并且描述红色的神经元能够从汽车、卡车和鸟类的图像中学习红色，而不仅仅是从一个特定类别的图像中学习。</p>
+
+<p> 相关研究进展：</p>
+<ul>
+<li>在 20 世纪 90 年代，研究人员在使用神经网络进行序列建模的方面取得了重要进展。Hochreiter (1991b) 和 Bengio <em>et al.</em> (1994a) 指出了对长序列进行建模的一些根本性数学难题。</li>
+<li>Hochreiter and Schmidhuber (1997)引入 长短期记忆（long short-term memory, LSTM）网络来解决这些难题。如今，LSTM 在许多序列建模任务中广泛应用，包括 Google 的许多自然语言处理任务。</li>
+<li>神经网络继续在某些任务上获得令人印象深刻的表现 (LeCun <em>et al.</em>,  1998c; Bengio <em>et al.</em>, 2001a)。加拿大高级研究所（CIFAR）通过其神经计算和自适应感知（NCAP）研究计划帮助维持神经网络研究。该计划联合了分别由 Geoffffrey Hinton、Yoshua Bengio和 Yann LeCun 领导的多伦多大学、蒙特利尔大学和纽约大学的机器学习研究小组。这个多学科的 CIFAR NCAP 研究计划还囊括了神经科学家、人类和计算机视觉专家。</li>
+</ul>
+<p style="text-indent:2em">神经网络研究的第三次浪潮始于 2006 年的突破。Geoffffrey Hinton 表明名为深度信念网络的神经网络可以使用一种称为贪婪逐层预训练的策略来有效地训练(Hinton *et al.*, 2006a)，神经网络研究的第三次浪潮始于 2006 年的突破。eoffffrey Hinton 表明名为深度信念网络的神经网络可以使用一种称为贪婪逐层预训练的策略来有效地训练(Hinton *et al.*, 2006a)，我们将在第 15.1 节中更详细地描述。其他 CIFAR 附属研究小组很快表明，同样的策略可以被用来训练许多其他类型的深度网络 (Bengio andLeCun, 2007a; Ranzato *et al.*, 2007b)，并能系统地帮助提高在测试样例上的泛化能力。神经网络研究的这一次浪潮普及了 “深度学习’’ 这一术语的使用，强调研究者现在有能力训练以前不可能训练的比较深的神经网络，并着力于深度的理论重要性上 (Bengio and LeCun, 2007b; Delalleau and Bengio, 2011; ascanu *et al.*, 2014a; Montufar *et al.*, 2014)。此时，深度神经网络已经优于与之竞争的基于其他机器学习技术以及手工设计功能的 AI 系统。在写这本书的时候，神经网络的第三次发展浪潮仍在继续，尽管深度学习的研究重点在这一段时间内发生了巨大变化。第三次浪潮已开始着眼于新的无监督学习技术和深度模型在小数据集的泛化能力，但目前更多的兴趣点仍是比较传统的监督学习算法和深度模型充分利用大型标注数据集的能力。</p>
+
+<h3 id="2-2-与日俱增的数据量"><a href="#2-2-与日俱增的数据量" class="headerlink" title="2.2 与日俱增的数据量"></a>2.2 与日俱增的数据量</h3><p>图 1.8 展示了基准数据集的大小如何随着时间的推移而显著增加。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154348314.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github/image-20200710154348314.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.10 展示了神经元连接数如何随着时间的推移而显著增加。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154829899.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github/image-20200710154829899.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.11 展示了神经元网络规模如何随着时间的推移而显著增加。</p>
+<p><img src="/peerless.github/image-20200710155243539.png" srcset="/img/loading.gif" alt></p>
+<h3 id="2-3-应用领域"><a href="#2-3-应用领域" class="headerlink" title="2.3 应用领域"></a>2.3 应用领域</h3><p>图像识别：</p>
+<ol>
+<li>最早的深度模型被用来识别裁剪紧凑且非常小的图像中的单个对象(Rumelhart <em>et al.</em>, 1986d)。</li>
+<li>此后，神经网络可以处理的图像尺寸逐渐增加。现代对象识别网络能处理丰富的高分辨率照片，并且不需要在被识别的对象附近进行裁剪(Krizhevsky <em>et al.</em>, 2012b)。</li>
+<li>类似地，最早的网络只能识别两种对象（或在某些情况下，单类对象的存在与否），而这些现代网络通常能够识别至少1000个不同类别的对象。对象识别中最大的比赛是每年举行的 ImageNet 大型视觉识别挑战（ILSVRC）。深度学习迅速崛起的激动人心的一幕是卷积网络第一次大幅赢得这一挑战，它将最高水准的前5 错误率从 26.1% 降到 15.3% (Krizhevsky <em>et al.</em>, 2012b)，这意味着该卷积网络针对每个图像的可能类别生成一个顺序列表，除了 15.3% 的测试样本，其他测试样本的正确类标都出现在此列表中的前 5 项里。此后，深度卷积网络连续地赢得这些比赛，截至写本书时，深度学习的最新结果将这个比赛中的前 5 错误率降到了 3.6%，如图 1.12 所示。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710165940221.png" srcset="/img/loading.gif" class>
+<img src="/peerless.github/image-20200710165940221.png" srcset="/img/loading.gif" alt></li>
+</ol>
+<p>语音识别：</p>
+<ul>
+<li>语音识别在 20 世纪 90 年代得到提高后，直到约 2000 年都停滞不前。深度学习的引入 (Dahl <em>et al.</em>, 2010; Deng <em>et al.</em>, 2010b; Seide <em>et al.</em>, 2011; Hinton <em>et al.</em>, 2012a) 使得语音识别错误率陡然下降，有些错误率甚至降低了一半。</li>
+</ul>
+<p>行人检测和图像分割:</p>
+<ul>
+<li>(Sermanet <em>et al.</em>, 2013; Farabet <em>et al.</em>, 2013; Couprie <em>et al.</em>, 2013)，并且在交通标志分类上取得了超越人类的表现 (Ciresan <em>et al.</em>, 2012)</li>
+</ul>
+<p style="text-indent:2em">在深度网络的规模和精度有所提高的同时，它们可以解决的任务也日益复杂。Goodfellow *et al.* (2014d) 表明，神经网络可以学习输出描述图像的整个字符序列，而不是仅仅识别单个对象。此前，人们普遍认为，这种学习需要对序列中的单个元素进行标注 (Gulcehre and Bengio, 2013)。循环神经网络，如之前提到的LSTM 序列模型，现在用于对序列和其他序列之间的关系进行建模，而不是仅仅固定输入之间的关系。这种序列到序列的学习似乎引领着另一个应用的颠覆性发展，即机器翻译 (Sutskever et al., 2014; Bahdanau et al., 2015)。</p>
+
+<p>这种复杂性日益增加的趋势已将其推向逻辑结论，即神经图灵机 (Graves <em>et al.</em>, 2014) 的引入。</p>
+<p><span style="color:red">神经图灵机 </span>：能学习读取存储单元和向存储单元写入任意内容。这样的神经网络可以从期望行为的样本中学习简单的程序。</p>
+<p style="text-indent:2em">例如，从杂乱和排好序的样本中学习对一系列数进行排序。这种自我编程技术正处于起步阶段，但原则上未来可以适用于几乎所有的任务。</p>
+
+<p>深度学习的另一个最大的成就是其在 强化学习（reinforcement learning）领域的扩展。</p>
+<p><span style="color:red">强化学习 </span>：在强化学习中，一个自主的智能体必须在没有人类操作者指导的情况下，通过试错来学习执行任务。</p>
+<p style="text-indent:2em">DeepMind 表明，基于深度学习的强化学习系统能够学会玩Atari 视频游戏，并在多种任务中可与人类匹敌 (Mnih et al., 2015)。深度学习也显著改善了机器人强化学习的性能 (Finn et al., 2015)。</p>
+
+<p>技术公司：Google、Microsoft、Facebook、IBM、Baidu、Apple、Adobe、Netflflix、NVIDIA和 NEC 等。</p>
+<p>软件基础架构的进展：软件库如 Theano (Bergstra <em>et al.</em>, 2010a; Bastien <em>et al.</em>, 2012a)、PyLearn2 (Goodfellow <em>et al.</em>, 2013e)、Torch (Col lobert <em>et al.</em>, 2011b)、DistBelief (Dean <em>et al.</em>, 2012)、Caffffe (Jia, 2013)、MXNet (Chen <em>et al.</em>, 2015) 和 TensorFlow (Abadi <em>et al.</em>, 2015) 都能支持重要的研究项目或商业产品。</p>
+<p style="text-indent:2em">深度学习也为其他科学做出了贡献。用于对象识别的现代卷积网络为神经科学家们提供了可以研究的视觉处理模型 (DiCarlo, 2013)。深度学习也为处理海量数据以及在科学领域作出有效的预测提供了非常有用的工具。它已成功地用于预测分子如何相互作用从而帮助制药公司设计新的药物 (Dahl et al., 2014)，搜索亚原子粒子 (Baldi et al., 2014)，以及自动解析用于构建人脑三维图的显微镜图像(Knowles-Barley et al., 2014) 等。我们期待深度学习未来能够出现在越来越多的科学领域中。</p>
+
+<p style="text-indent:2em">总之，深度学习是机器学习的一种方法。在过去几十年的发展中，它大量借鉴了我们关于人脑、统计学和应用数学的知识。近年来，得益于更强大的计算机、更大的数据集和能够训练更深网络的技术，深度学习的普及性和实用性都有了极大的发展。未来几年充满了进一步提高深度学习并将它带到新领域的挑战和机遇。</p>
+
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span><a href="https://www.deeplearningbook.org/" target="_blank" rel="noopener">deep learning</a>.
+<a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li><li><span id="fn:2" class="footnote-text"><span><a href="https://github.com/MingchaoZhu/DeepLearning" target="_blank" rel="noopener">深度学习</a>。
+<a href="#fnref:2" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-AI%E5%9C%A3%E7%BB%8F/">深度学习(AI圣经)</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%8A%B1%E4%B9%A6/">花书</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/10/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">第二章 线性代数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/">
+                        <span class="hidden-mobile">2014-Fast Algorithms for Implication Bases and Attribute Exploration Using Proper Premises</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "RcI3ePX6qkbdKOX0xjPq8Xy3-gzGzoHsz",
+          app_key: "suQG3XDbcx2bpMJLeuKCcqS7",
+          placeholder: "由于作者水平有限，加上时间仓促，文中难免存在不足之处，敬请读者批评指正。",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://rci3epx6.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <!--
+ * @Author: your name
+ * @Date: 2020-06-04 05:16:36
+ * @LastEditTime: 2020-07-04 16:26:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blog\themes\fluid\layout\_partial\footer.ejs
+--> 
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://github.com/SuperficialJ/peerless.github.io." target="_blank" rel="nofollow noopener"><span>peerless</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    <!--
+ * @Author: your name
+ * @Date: 2020-06-28 18:23:11
+ * @LastEditTime: 2020-07-04 16:28:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \peer-less.github.io\themes\fluid\layout\_partial\statistics.ejs
+--> 
+
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: inline-block">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: inline-block">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+
+  <p id="hitokoto" align='center'>:D 获取中...</p>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto')
+        hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+  </script>
+
+  <div align='center'>
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>
+    <script>
+    var now = new Date();
+    function createtime(){
+        var grt= new Date("06/26/2020 22:53:55");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if(String(mnum).length ==1 ){
+                  mnum = "0" + mnum;
+        }
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if(String(snum).length ==1 ){
+                  snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+        document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+    }
+    setInterval("createtime()",250);
+    </script>
+  </div>
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "深度学习-第一章 引言&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
