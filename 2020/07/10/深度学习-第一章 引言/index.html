@@ -243,18 +243,18 @@
 <p style="text-indent:2em">显然，从原始数据中提取如此高层次、抽象的特征是非常困难的。许多诸如说话口音这样的变差因素，只能通过对数据进行复杂的、接近人类水平的理解来辨识。这几乎与获得原问题的表示一样困难，因此，乍一看，表示学习似乎并不能帮助我们。</p>
 
 <p><span style="color:red">深度学习（deep learning）</span>通过其他较简单的表示来表达复杂表示，解决了表示学习中的核心问题。深度学习让计算机通过较简单概念构建复杂的概念。图 1.2 展示了深度学习系统。</p>
-<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710112001631.png" srcset="/img/loading.gif" class>
+<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710112001631.png" srcset="/img/loading.gif" class>
 
-<p><img src="/peerless.github/image-20200710112001631.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710112001631.png" srcset="/img/loading.gif" alt></p>
 <p><span style="color:red">多层感知机（multilayer perceptron, MLP）</span>：是一个将一组输入值映射到输出值的数学函数。该函数由许多较简单的函数复合而成。我们可以认为不同数学函数的每一次应用都为输入提供了新的表示。</p>
 <p>种度量模型深度的方式：</p>
 <ol>
 <li>基于评估架构所需执行的顺序指令的数目。<p style="text-indent:2em">假设我们将模型表示为给定输入后，计算对应输出的流程图，则可以将这张流程图中的最长路径视为模型的深度。正如两个使用不同语言编写的等价程序将具有不同的长度；相同的函数可以被绘制为具有不同深度的流程图，其深度取决于我们可以用来作为一个步骤的函数。图 1.3 说明了语言的选择如何给相同的架构两个不同的衡量。</p>
-<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710113610351.png" srcset="/img/loading.gif" class>
+<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710113610351.png" srcset="/img/loading.gif" class>
 
 </li>
 </ol>
-<p><img src="/peerless.github/image-20200710113610351.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710113610351.png" srcset="/img/loading.gif" alt></p>
 <ol start="3">
 <li>将描述概念彼此如何关联的图的深度视为模型深度。<p style="text-indent:2em">在这种情况下，计算每个概念表示的计算流程图的深度可能比概念本身的图更深。这是因为系统对较简单概念的理解在给出更复杂概念的信息后可以进一步精细化。例如，一个 AI 系统观察其中一只眼睛在阴影中的脸部图像时，它最初可能只看到一只眼睛。但当检测到脸部的存在后，系统可以推断第二只眼睛也可能是存在的。在这种情况下，概念的图仅包括两层（关于眼睛的层和关于脸的层），但如果我们细化每个概念的估计将需要额外的 n 次计算，即计算的图将包含 2n 层。 </p>
 
@@ -262,20 +262,20 @@
 </ol>
 <p style="text-indent:2em">深度学习是一种特定类型的机器学习，具有强大的能力和灵活性，它将大千世界表示为嵌套的层次概念体系（由较简单概念间的联系定义复杂概念、从一般抽象概括到高级抽象表示）。</p>
 
-<p>图1.4 说明了这些不同的 AI 学科之间的关系。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115035883.png" srcset="/img/loading.gif" class></p>
-<p><img src="/peerless.github/image-20200710115035883.png" srcset="/img/loading.gif" alt></p>
-<p>图 1.5 展示了每个学科如何工作的高层次原理。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115508658.png" srcset="/img/loading.gif" class></p>
-<p><img src="/peerless.github/image-20200710115508658.png" srcset="/img/loading.gif" alt></p>
-<p>图 1.6 展示了本书的组织架构。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115751350.png" srcset="/img/loading.gif" class></p>
-<p><img src="/peerless.github/image-20200710115751350.png" srcset="/img/loading.gif" alt></p>
+<p>图1.4 说明了这些不同的 AI 学科之间的关系。<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115035883.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115035883.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.5 展示了每个学科如何工作的高层次原理。<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115508658.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115508658.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.6 展示了本书的组织架构。<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115751350.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710115751350.png" srcset="/img/loading.gif" alt></p>
 <h2 id="2-深度学习的历史趋势"><a href="#2-深度学习的历史趋势" class="headerlink" title="2 深度学习的历史趋势"></a>2 深度学习的历史趋势</h2><h3 id="2-1-神经网络的众多名称和命运变迁"><a href="#2-1-神经网络的众多名称和命运变迁" class="headerlink" title="2.1 神经网络的众多名称和命运变迁"></a>2.1 神经网络的众多名称和命运变迁</h3><p>三次发展浪潮：</p>
 <ol>
 <li>20世纪40年代到60年代深度学习的雏形出现在控制论（cybernetics）中。</li>
 <li>20 世纪 80 年代到 90 年代深度学习表现为联结主义（connectionism）。</li>
 <li>直到 2006 年，才真正以深度学习之名复兴。</li>
 </ol>
-<p>图 1.7 给出了定量的展示。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710121022428.png" srcset="/img/loading.gif" class></p>
-<p><img src="/peerless.github/image-20200710121022428.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.7 给出了定量的展示。<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710121022428.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710121022428.png" srcset="/img/loading.gif" alt></p>
 <p><span style="color:red">控制论</span>：</p>
 <ul>
 <li>$n$个输入：$x_1, x_2, \cdots, x_n$。</li>
@@ -302,18 +302,18 @@
 </ul>
 <p style="text-indent:2em">神经网络研究的第三次浪潮始于 2006 年的突破。Geoffffrey Hinton 表明名为深度信念网络的神经网络可以使用一种称为贪婪逐层预训练的策略来有效地训练(Hinton *et al.*, 2006a)，神经网络研究的第三次浪潮始于 2006 年的突破。eoffffrey Hinton 表明名为深度信念网络的神经网络可以使用一种称为贪婪逐层预训练的策略来有效地训练(Hinton *et al.*, 2006a)，我们将在第 15.1 节中更详细地描述。其他 CIFAR 附属研究小组很快表明，同样的策略可以被用来训练许多其他类型的深度网络 (Bengio andLeCun, 2007a; Ranzato *et al.*, 2007b)，并能系统地帮助提高在测试样例上的泛化能力。神经网络研究的这一次浪潮普及了 “深度学习’’ 这一术语的使用，强调研究者现在有能力训练以前不可能训练的比较深的神经网络，并着力于深度的理论重要性上 (Bengio and LeCun, 2007b; Delalleau and Bengio, 2011; ascanu *et al.*, 2014a; Montufar *et al.*, 2014)。此时，深度神经网络已经优于与之竞争的基于其他机器学习技术以及手工设计功能的 AI 系统。在写这本书的时候，神经网络的第三次发展浪潮仍在继续，尽管深度学习的研究重点在这一段时间内发生了巨大变化。第三次浪潮已开始着眼于新的无监督学习技术和深度模型在小数据集的泛化能力，但目前更多的兴趣点仍是比较传统的监督学习算法和深度模型充分利用大型标注数据集的能力。</p>
 
-<h3 id="2-2-与日俱增的数据量"><a href="#2-2-与日俱增的数据量" class="headerlink" title="2.2 与日俱增的数据量"></a>2.2 与日俱增的数据量</h3><p>图 1.8 展示了基准数据集的大小如何随着时间的推移而显著增加。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154348314.png" srcset="/img/loading.gif" class></p>
-<p><img src="/peerless.github/image-20200710154348314.png" srcset="/img/loading.gif" alt></p>
-<p>图 1.10 展示了神经元连接数如何随着时间的推移而显著增加。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154829899.png" srcset="/img/loading.gif" class></p>
-<p><img src="/peerless.github/image-20200710154829899.png" srcset="/img/loading.gif" alt></p>
+<h3 id="2-2-与日俱增的数据量"><a href="#2-2-与日俱增的数据量" class="headerlink" title="2.2 与日俱增的数据量"></a>2.2 与日俱增的数据量</h3><p>图 1.8 展示了基准数据集的大小如何随着时间的推移而显著增加。<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154348314.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154348314.png" srcset="/img/loading.gif" alt></p>
+<p>图 1.10 展示了神经元连接数如何随着时间的推移而显著增加。<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154829899.png" srcset="/img/loading.gif" class></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710154829899.png" srcset="/img/loading.gif" alt></p>
 <p>图 1.11 展示了神经元网络规模如何随着时间的推移而显著增加。</p>
-<p><img src="/peerless.github/image-20200710155243539.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710155243539.png" srcset="/img/loading.gif" alt></p>
 <h3 id="2-3-应用领域"><a href="#2-3-应用领域" class="headerlink" title="2.3 应用领域"></a>2.3 应用领域</h3><p>图像识别：</p>
 <ol>
 <li>最早的深度模型被用来识别裁剪紧凑且非常小的图像中的单个对象(Rumelhart <em>et al.</em>, 1986d)。</li>
 <li>此后，神经网络可以处理的图像尺寸逐渐增加。现代对象识别网络能处理丰富的高分辨率照片，并且不需要在被识别的对象附近进行裁剪(Krizhevsky <em>et al.</em>, 2012b)。</li>
-<li>类似地，最早的网络只能识别两种对象（或在某些情况下，单类对象的存在与否），而这些现代网络通常能够识别至少1000个不同类别的对象。对象识别中最大的比赛是每年举行的 ImageNet 大型视觉识别挑战（ILSVRC）。深度学习迅速崛起的激动人心的一幕是卷积网络第一次大幅赢得这一挑战，它将最高水准的前5 错误率从 26.1% 降到 15.3% (Krizhevsky <em>et al.</em>, 2012b)，这意味着该卷积网络针对每个图像的可能类别生成一个顺序列表，除了 15.3% 的测试样本，其他测试样本的正确类标都出现在此列表中的前 5 项里。此后，深度卷积网络连续地赢得这些比赛，截至写本书时，深度学习的最新结果将这个比赛中的前 5 错误率降到了 3.6%，如图 1.12 所示。<img src="/peerless.github/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710165940221.png" srcset="/img/loading.gif" class>
-<img src="/peerless.github/image-20200710165940221.png" srcset="/img/loading.gif" alt></li>
+<li>类似地，最早的网络只能识别两种对象（或在某些情况下，单类对象的存在与否），而这些现代网络通常能够识别至少1000个不同类别的对象。对象识别中最大的比赛是每年举行的 ImageNet 大型视觉识别挑战（ILSVRC）。深度学习迅速崛起的激动人心的一幕是卷积网络第一次大幅赢得这一挑战，它将最高水准的前5 错误率从 26.1% 降到 15.3% (Krizhevsky <em>et al.</em>, 2012b)，这意味着该卷积网络针对每个图像的可能类别生成一个顺序列表，除了 15.3% 的测试样本，其他测试样本的正确类标都出现在此列表中的前 5 项里。此后，深度卷积网络连续地赢得这些比赛，截至写本书时，深度学习的最新结果将这个比赛中的前 5 错误率降到了 3.6%，如图 1.12 所示。<img src="/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710165940221.png" srcset="/img/loading.gif" class>
+<img src="/peerless.github.io/2020/07/10/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%BC%95%E8%A8%80/image-20200710165940221.png" srcset="/img/loading.gif" alt></li>
 </ol>
 <p>语音识别：</p>
 <ul>
