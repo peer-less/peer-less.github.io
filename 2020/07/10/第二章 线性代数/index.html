@@ -207,7 +207,6 @@
               <h1 id="第二章-线性代数"><a href="#第二章-线性代数" class="headerlink" title="第二章 线性代数"></a>第二章 线性代数</h1><p class="note note-info">深度学习、花书、线性代数</p>
 
 <a id="more"></a>
-
 <h2 id="2-1-标量、向量、矩阵和张量"><a href="#2-1-标量、向量、矩阵和张量" class="headerlink" title="2.1 标量、向量、矩阵和张量"></a>2.1 标量、向量、矩阵和张量</h2><p>基本概念</p>
 <ul>
 <li><span style="color:red">标量（scalar）</span>：一个标量就是一个单独的数。</li>
@@ -221,7 +220,7 @@
 
 <p>$\mathbb{R}^n$：如果每个元素都属于 $\mathbb{R}$，并且该向量有 $n$ 个元素，那么该向量属于实数集 $\mathbb{R}$ 的 $n$ 次笛卡尔乘积构成的集合，记为 $\mathbb{R}^n$。</p>
 <ul>
-<li><p><span style="color:red">—</span>：集合补集的索引。比如 $x_{-1}$ 表示 $x$ 中除 $x_1$ 外的所有元素。</p>
+<li><p><span style="color:red">—-</span>：集合补集的索引。比如 $x_{-1}$ 表示 $x$ 中除 $x_1$ 外的所有元素。</p>
 </li>
 <li><p><span style="color:red">矩阵（matrix）</span>：矩阵是一个二维数组，其中的每一个元素被两个索引（而非一个）所确定。</p>
 <ul>
@@ -234,7 +233,7 @@
 </li>
 <li><p><span style="color:red">主对角线（main diagonal）</span>：从左上角到右下角的对角线。</p>
 </li>
-<li><p><span style="color:red">广播（broadcasting）</span>：向量$b$ 和矩阵$A$ 的每一行相加。这个简写方法使我们无需在加法操作前定义一个将向量 $b$ 复制到每一行而生成的矩阵。这种隐式地复制向量 $b$ 到很多位置的方式称为广播。即$C=A+b\Leftrightarrow C_{i,j}=A_{i,j}+b_j$。</p>
+<li><p><span style="color:red">广播（broadcasting）</span>：向量$b$ 和矩阵$A$ 的每一行相加。这个简写方法使我们无需在加法操作前定义一个将向量 $b$ 复制到每一行而生成的矩阵。这种隐式地复制向量 $b$ 到很多位置的方式称为广播。即$C=A+b\Leftrightarrow C<em>{i,j}=A</em>{i,j}+b_j$。</p>
 </li>
 </ul>
 <h2 id="2-2-矩阵与向量相乘"><a href="#2-2-矩阵与向量相乘" class="headerlink" title="2.2 矩阵与向量相乘"></a>2.2 矩阵与向量相乘</h2><p>基本概念</p>
@@ -244,14 +243,9 @@
 </ul>
 <h2 id="2-3-线性相关与生成子空间"><a href="#2-3-线性相关与生成子空间" class="headerlink" title="2.3 线性相关与生成子空间"></a>2.3 线性相关与生成子空间</h2><p>基本概念</p>
 <ul>
-<li><span style="color:red">线性组合（linear combination）</span>：<p style="text-indent:2em">为了分析方程有多少个解，我们可以将 A 的列向量看作从 原点（origin）（元素都是零的向量）出发的不同方向，确定有多少种方法可以到达向量 b。在这个观点下，向量 x 中的每个元素表示我们应该沿着这些方向走多远，即 xi 表示我们需要沿着第 i 个向量的方向走多远：</p>
-$$
-  Ax=\sum\limits_i x_iA_{:,i}
-$$
-<p style="text-indent:2em">一般而言，这种操作被称为 线性组合（linear combination）。形式上，一组向量的线性组合，是指每个向量乘以对应标量系数之后的和，即：</p>
-$$
-  \sum\limits_i c_iv^{(i)}
-$$</li>
+<li><span style="color:red">线性组合（linear combination）</span>：<br><p style="text-indent:2em">为了分析方程有多少个解，我们可以将 A 的列向量看作从 原点（origin）（元素都是零的向量）出发的不同方向，确定有多少种方法可以到达向量 b。在这个观点下，向量 x 中的每个元素表示我们应该沿着这些方向走多远，即 xi 表示我们需要沿着第 i 个向量的方向走多远：</p><script type="math/tex; mode=display">
+  Ax=\sum\limits_i x_iA_{:,i}</script><p style="text-indent:2em">一般而言，这种操作被称为 线性组合（linear combination）。形式上，一组向量的线性组合，是指每个向量乘以对应标量系数之后的和，即：</p><script type="math/tex; mode=display">
+  \sum\limits_i c_iv^{(i)}</script></li>
 <li><span style="color:red">列空间（column space）或值域（range）</span>：确定 <strong>Ax</strong> = <strong>b</strong> 是否有解相当于确定向量 <strong>b</strong> 是否在 <strong>A</strong> 列向量的生成子空间中。这个特殊的生成子空间被称为 <strong>A</strong> 的 列空间（column space）或者 <strong>A</strong> 的 值域（range）。</li>
 <li><span style="color:red">线性无关（linearly independent）</span>：如果一组向量中的任意一个向量都不能表示成其他向量的线性组合，那么这组向量称为 线性无关（linearly independent）。</li>
 <li><span style="color:red">奇异的（singular）</span>：一个列向量线性相关的方阵。</li>
@@ -263,22 +257,27 @@ $$</li>
 <li>$f(x+y)\le f(x)+f(y)$  （三角不等式（triangle inequality））</li>
 <li>$\forall \alpha\in \mathbb{R},\ f(\alpha x)=|\alpha|f(x)$</li>
 </ul>
-<p>$L^p$范数：<br>$$<br>\parallel x\parallel_p=\left(\sum\limits_i |x_i|^p \right)^{\frac1p}\qquad 其中p\in\mathbb{R},\ p\ge1。<br>$$</p>
-<p style="text-indent:2em"><span style="color:red">L<sup>2</sup> 范数（singular）</span>被称为欧几里得范数（Euclidean norm）。它表示从原点出发到向量 x 确定的点的欧几里得距离。</p>
+<p>$L^p$范数：</p>
+<script type="math/tex; mode=display">
+\parallel x\parallel_p=\left(\sum\limits_i |x_i|^p \right)^{\frac1p}\qquad 其中p\in\mathbb{R},\ p\ge1。</script><p style="text-indent:2em"><span style="color:red">L<sup>2</sup> 范数（singular）</span>被称为欧几里得范数（Euclidean norm）。它表示从原点出发到向量 x 确定的点的欧几里得距离。</p>
 
-<p>$$<br>\parallel x\parallel_2=\left(\sum\limits_i |x_i|^2 \right)^{\frac12}<br>$$</p>
-<p style="text-indent:2em">两个向量的 点积（dot product）可以用范数来表示。具体地：</p>
+<script type="math/tex; mode=display">
+\parallel x\parallel_2=\left(\sum\limits_i |x_i|^2 \right)^{\frac12}</script><p style="text-indent:2em">两个向量的 点积（dot product）可以用范数来表示。具体地：</p>
 
-<p>$$<br>x^Ty=\parallel x\parallel_2\parallel y\parallel_2 \cos\theta\qquad 其中\theta表示x和y之间的夹角。<br>$$</p>
-<p><span style="color:red">平方L<sup>2</sup> 范数（singular）</span>：<br>$$<br>\parallel x\parallel_2=\sum\limits_i |x_i|^2=x^Tx<br>$$</p>
-<p style="text-indent:2em">平方 L<sup>2</sup> 范数对x 中每个元素的导数只取决于对应的元素，而 L<sup>2</sup> 范数对每个元素的导数却和整个向量相关。但是在很多情况下，平方 L<sup>2</sup> 范数也可能不受欢迎，因为它在原点附近增长得十分缓慢。</p>
+<script type="math/tex; mode=display">
+x^Ty=\parallel x\parallel_2\parallel y\parallel_2 \cos\theta\qquad 其中\theta表示x和y之间的夹角。</script><p><span style="color:red">平方L<sup>2</sup> 范数（singular）</span>：</p>
+<script type="math/tex; mode=display">
+\parallel x\parallel_2=\sum\limits_i |x_i|^2=x^Tx</script><p style="text-indent:2em">平方 L<sup>2</sup> 范数对x 中每个元素的导数只取决于对应的元素，而 L<sup>2</sup> 范数对每个元素的导数却和整个向量相关。但是在很多情况下，平方 L<sup>2</sup> 范数也可能不受欢迎，因为它在原点附近增长得十分缓慢。</p>
 
-<p><span style="color:red">L<sup>1</sup> 范数（singular）</span>：<br>$$<br>\parallel x\parallel_1=\sum\limits_i |x_i|<br>$$</p>
-<p style="text-indent:2em">当机器学习问题中零和非零元素之间的差异非常重要时，通常会使用 L<sup>1</sup> 范数。每当x 中某个元素从 0 增加 ϵ，对应的 L<sup>1</sup> 范数也会增加 ϵ。</p>
+<p><span style="color:red">L<sup>1</sup> 范数（singular）</span>：</p>
+<script type="math/tex; mode=display">
+\parallel x\parallel_1=\sum\limits_i |x_i|</script><p style="text-indent:2em">当机器学习问题中零和非零元素之间的差异非常重要时，通常会使用 L<sup>1</sup> 范数。每当x 中某个元素从 0 增加 ϵ，对应的 L<sup>1</sup> 范数也会增加 ϵ。</p>
 
-<p><span style="color:red">L<sup>&infin;</sup> 范数（singular）</span>：表示向量中具有最大幅值的元素的绝对值。<br>$$<br>\parallel x\parallel_{\infin}=\max\limits_i |x_i|<br>$$</p>
-<p><span style="color:red"><strong>Frobenius</strong> 范数（Frobenius norm）</span>：衡量矩阵的大小。<br>$$<br>\parallel A\parallel_F=\sqrt{\sum\limits_{i,j} A_{i,j}^2}<br>$$</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+<p><span style="color:red">L<sup>&infin;</sup> 范数（singular）</span>：表示向量中具有最大幅值的元素的绝对值。</p>
+<script type="math/tex; mode=display">
+\parallel x\parallel_{\infin}=\max\limits_i |x_i|</script><p><span style="color:red"><strong>Frobenius</strong> 范数（Frobenius norm）</span>：衡量矩阵的大小。</p>
+<script type="math/tex; mode=display">
+\parallel A\parallel_F=\sqrt{\sum\limits_{i,j} A_{i,j}^2}</script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
             <div>

@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25
+      24
        分钟
     </span>
   
@@ -227,20 +227,18 @@
       - 学术
       - 属性探索
          --> 
-
-
 <h1 id="A-General-Form-of-Attribute-Exploration"><a href="#A-General-Form-of-Attribute-Exploration" class="headerlink" title="A General Form of Attribute Exploration"></a>A General Form of Attribute Exploration</h1><h2 id="行文思路简要总结"><a href="#行文思路简要总结" class="headerlink" title="行文思路简要总结"></a>行文思路简要总结</h2><p>问题：如何从经典属性探索出发获得通用的属性探索？</p>
 <p>​            1.回顾经典属性探索算法。</p>
 <p>​            2.通过引入3个条件扩展属性探索算法：</p>
 <ul>
-<li>引入两个闭包算子$c_{cert}(A)$与$c_{univ}(A)$。</li>
+<li>引入两个闭包算子$c<em>{cert}(A)$与$c</em>{univ}(A)$。</li>
 <li>不明确指定提供的反例。</li>
-<li>只向专家询问满足$c_{cert}(A)\subsetneq B\subset c_{univ}(A)$的蕴涵式$A\rightarrow B$。</li>
+<li>只向专家询问满足$c<em>{cert}(A)\subsetneq B\subset c</em>{univ}(A)$的蕴涵式$A\rightarrow B$。</li>
 </ul>
 <p>​            3.对通用属性探索算法进行非冗余性与完备性验证。</p>
 <p>​            4.对通用算法询问蕴涵式时进行改进，使算法向专家询问的蕴涵式的数量是最小的。</p>
 <ul>
-<li>改进方法：若属性集$A=c_{cert}(A)\subsetneq c_{univ}(A)$，则向专家询问蕴涵式$A\rightarrow c_{univ}(A)$。</li>
+<li>改进方法：若属性集$A=c<em>{cert}(A)\subsetneq c</em>{univ}(A)$，则向专家询问蕴涵式$A\rightarrow c_{univ}(A)$。</li>
 </ul>
 <p>总结：</p>
 <p>​            1. 该通用属性算法首先保留了经典属性探索算法的大多性质：完备性、非冗余性和向专家询问蕴涵式的数量最少等。</p>
@@ -263,14 +261,18 @@
 <li>部分形式背景的属性探索$^{[3]}$。</li>
 <li>描述逻辑模型的探索$^{[1, 2]}$。</li>
 </ul>
-<p><font color="red">研究问题：寻找一种将所有变种都包含在内的一般属性探索。</font></p>
-<p>可行原因：</p>
-<pre><code>1.属性探索算法的整体结构均保持不变。
+<font color="red">研究问题：寻找一种将所有变种都包含在内的一般属性探索。</font>
 
-2.属性探索的所有重要属性均保留了下来。</code></pre><p>单词积累:</p>
-<pre><code>discourse: 论述、谈话、演讲。</code></pre><p>​         have a close look: 仔细研究。</p>
-<h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2 Preliminaries"></a>2 Preliminaries</h2><p>蕴涵式<br>$$<br>A\rightarrow B \Leftrightarrow A^{‘}\subseteq B^{‘} \Leftrightarrow B\subseteq A^{‘’}<br>$$</p>
-<p>一些声明：</p>
+<p>可行原因：</p>
+<pre><code>     1.属性探索算法的整体结构均保持不变。
+
+     2.属性探索的所有重要属性均保留了下来。
+</code></pre><p>单词积累:</p>
+<pre><code>     discourse: 论述、谈话、演讲。
+</code></pre><p>​         have a close look: 仔细研究。</p>
+<h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2 Preliminaries"></a>2 Preliminaries</h2><p>蕴涵式</p>
+<script type="math/tex; mode=display">
+A\rightarrow B \Leftrightarrow A^{'}\subseteq B^{'} \Leftrightarrow B\subseteq A^{''}</script><p>一些声明：</p>
 <ul>
 <li><p>$Imp(M)$：$M$上的所有蕴涵式集合。</p>
 </li>
@@ -278,14 +280,19 @@
 </li>
 <li><p>$Th(K)$：形式背景$K$上的所有成立的蕴涵式集合。</p>
 </li>
-<li><p>$L\subseteq Imp(K)$，$A\subseteq M$。如果对于所有的蕴涵式$(X\rightarrow Y)\in L$，都有$X\subsetneq A或Y\subseteq A$成立，则集合$A$在$L$下为封闭集合。则可做如下定义：<br>  $$<br>  \begin{align}<br>  L^0(A):&amp;=A \newline<br>  L^1(A):&amp;=\bigcup{ {Y\mid (X\rightarrow Y)\in L, X\subseteq A} } \newline<br>  L^i(A):&amp;=L^1(L^{i-1}(A))\ for\ i &gt; 1 \newline<br>  L(A):&amp;=\bigcup\limits_{i\in N}{L^i(A)}<br>  \end{align}<br>  $$<br>  $L(A)$是基于$L$下比集合A大的最小集合。</p>
+<li><p>$L\subseteq Imp(K)$，$A\subseteq M$。如果对于所有的蕴涵式$(X\rightarrow Y)\in L$，都有$X\subsetneq A或Y\subseteq A$成立，则集合$A$在$L$下为封闭集合。则可做如下定义：</p>
+<script type="math/tex; mode=display">
+  \begin{align}
+  L^0(A):&=A \newline
+  L^1(A):&=\bigcup{ \{Y\mid (X\rightarrow Y)\in L, X\subseteq A\} } \newline
+  L^i(A):&=L^1(L^{i-1}(A))\ for\ i > 1 \newline
+  L(A):&=\bigcup\limits_{i\in N}{L^i(A)}
+  \end{align}</script><p>  $L(A)$是基于$L$下比集合A大的最小集合。</p>
 <p>  由上可知$L^N(A)$表示集合$A$的子集所能推出来的属性集合的子集所能推出来的属性集合。</p>
 <p>  $Cn(L)$：在$L$下成立的所有蕴涵式集合。</p>
 <ul>
-<li><p>$B\subseteq Imp(K)$在$L$下是非冗余的。$\Leftrightarrow B\subseteq Cn(L)$。</p>
-</li>
-<li><p>$B\subseteq Imp(K)$在$L$下是完备的。$\Leftrightarrow Cn(B)\supseteq L$。</p>
-</li>
+<li>$B\subseteq Imp(K)$在$L$下是非冗余的。$\Leftrightarrow B\subseteq Cn(L)$。</li>
+<li>$B\subseteq Imp(K)$在$L$下是完备的。$\Leftrightarrow Cn(B)\supseteq L$。</li>
 <li><p>$B$是主基。$\Leftrightarrow Cn(B)=Cn(L)$。</p>
 <p>$P$在$L$下是伪闭集，如果以下条件成立：</p>
 </li>
@@ -297,8 +304,7 @@
 </li>
 <li><p>若$A\bigcup B=M$，则集合称为全局对象描述，即相应对象明确具有的属性集。</p>
 </li>
-<li><p>若$A\bigcup B\neq M$，则集合称为部分对象描述，即相应对象明确不具有的属性集。</p>
-</li>
+<li>若$A\bigcup B\neq M$，则集合称为部分对象描述，即相应对象明确不具有的属性集。</li>
 </ul>
 </li>
 </ul>
@@ -308,13 +314,14 @@
 <p>3.如果专家认为$r$成立，把$r$加入蕴涵集$Imp(K)$中。</p>
 <p>4.如果专家认为$r$不成立，给出相应的一个反例$C$，将$C$（及其相应的属性）作为新对象加入当前工作形式背景$K$中。</p>
 <p>5.找到字典序$P$的下一个属性集$Q$，若不存在下一个，则算法终止，否则，将$P$设置为$Q$。</p>
-<h2 id="4-Generalizing-Attribute-Exploration"><a href="#4-Generalizing-Attribute-Exploration" class="headerlink" title="4 Generalizing Attribute Exploration"></a>4 Generalizing Attribute Exploration</h2><p><font color="red">推广目的：用更抽象的术语来描述属性探索，以允许该算法在经典属性探索算法之外的应用。</font></p>
+<h2 id="4-Generalizing-Attribute-Exploration"><a href="#4-Generalizing-Attribute-Exploration" class="headerlink" title="4 Generalizing Attribute Exploration"></a>4 Generalizing Attribute Exploration</h2><font color="red">推广目的：用更抽象的术语来描述属性探索，以允许该算法在经典属性探索算法之外的应用。</font>
+
 <p>3个扩展：</p>
-<p>1.提出两个闭包操作符：$c_{univ}、c_{cert}$。</p>
+<p>1.提出两个闭包操作符：$c<em>{univ}、c</em>{cert}$。</p>
 <ul>
-<li><p>$c_{univ}$：我们已知的全部领域知识。$c_{univ}(A)$可以从$A$推出的属性集。</p>
+<li><p>$c<em>{univ}$：我们已知的全部领域知识。$c</em>{univ}(A)$可以从$A$推出的属性集。</p>
 </li>
-<li><p>$c_{cert}$：我们已知的某些知识。$c_{cert}(A)$确定可以从$A$推出的属性集。</p>
+<li><p>$c<em>{cert}$：我们已知的某些知识。$c</em>{cert}(A)$确定可以从$A$推出的属性集。</p>
 </li>
 </ul>
 <p>2.采用如下方法对算法进行扩展：</p>
@@ -328,14 +335,19 @@
 </ul>
 <p>3.我们向专家提出的蕴涵式是一种特殊的形式：</p>
 <ul>
-<li>搜索关于$c_{cert}$和$c_{univ}$未确定的蕴涵式$A\rightarrow B$，即$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$。对于这样的蕴涵式，我们不能从$c_{cert}$和$c_{univ}$推断出属性集$c_{univ}(A) \backslash B$是否能从$A$推出或不能推出，因此，我们需要向专家询问。</li>
+<li>搜索关于$c<em>{cert}$和$c</em>{univ}$未确定的蕴涵式$A\rightarrow B$，即$c<em>{cert}(A)\subsetneq B\subseteq c</em>{univ}(A)$。对于这样的蕴涵式，我们不能从$c<em>{cert}$和$c</em>{univ}$推断出属性集$c_{univ}(A) \backslash B$是否能从$A$推出或不能推出，因此，我们需要向专家询问。</li>
 </ul>
 <p>Algorithm(General Attribute Exploration)</p>
 <p>   $q$为部分领域专家。  </p>
-<p>   ​    1. $K = \varnothing$<br>   ​    2. 对于有限属性集$A\subseteq M$，若存在有限属性集$B$，有$c_{cert}(A)\subsetneq B\subseteq c_{univ}(A)$成立，则考虑蕴涵式$A\rightarrow B$；如果不存在，则算法终止，输出$K$与$c_{cert}$。</p>
-<p>   ​    3. 若$q$认为$A\rightarrow B$成立，那么更新$c_{cert}^{‘}=X\longmapsto c_{cert}(L(c_{cert}(X) ) )$。</p>
+<p>   ​    1. $K = \varnothing$<br>   ​    2. 对于有限属性集$A\subseteq M$，若存在有限属性集$B$，有$c<em>{cert}(A)\subsetneq B\subseteq c</em>{univ}(A)$成立，则考虑蕴涵式$A\rightarrow B$；如果不存在，则算法终止，输出$K$与$c_{cert}$。</p>
+<p>   ​    3. 若$q$认为$A\rightarrow B$成立，那么更新$c<em>{cert}^{‘}=X\longmapsto c</em>{cert}(L(c_{cert}(X) ) )$。</p>
 <p>​        4. 否则，$(C, D)=q(A\rightarrow B)$作为反例，加入形式背景$K$。</p>
-<p>​        5. 对所有的反例$(C, D)$有：<br>$$<br>\begin{align}<br>C’:&amp;=c_{cert}(C) \newline<br>D’:&amp;=D\bigcup { {m\in M\backslash D\mid c_{cert}(C\bigcup {m})\bigcap D\neq \varnothing}}<br>\end{align}<br>$$<br>​        6. 对所有的$X\subseteq M，X\longmapsto c_{univ}(X)\bigcap K(X)$，即将$c_{univ}$更新为$c_{univ}^{‘}(X)=c_{univ}(X)\bigcap K(X)$。</p>
+<p>​        5. 对所有的反例$(C, D)$有：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C':&=c_{cert}(C) \newline
+D':&=D\bigcup \{ {m\in M\backslash D\mid c_{cert}(C\bigcup \{m\})\bigcap D\neq \varnothing}\}
+\end{align}</script><p>​        6. 对所有的$X\subseteq M，X\longmapsto c<em>{univ}(X)\bigcap K(X)$，即将$c</em>{univ}$更新为$c<em>{univ}^{‘}(X)=c</em>{univ}(X)\bigcap K(X)$。</p>
 <p>​        7. 跳转到2。</p>
 <p>两条性质：非冗余性与完备性。</p>
 <h2 id="5-Computing-Undecided-Implications"><a href="#5-Computing-Undecided-Implications" class="headerlink" title="5 Computing Undecided Implications"></a>5 Computing Undecided Implications</h2><p>目的：使向专家询问蕴涵式的数量是最小的。</p>
@@ -343,11 +355,11 @@
 <p>经典属性探索下计算未确定的蕴涵式：</p>
 <p>​        在基于已知蕴涵式$k$的条件下，计算属性集$P$字典序之后的最小属性集$Q(Q\subseteq M，且Q不是当前工作形式背景的内涵)$。那么就需要向专家询问蕴涵式$Q\rightarrow Q^{“}$。</p>
 <p>通用属性探索下计算未确定的蕴涵式：</p>
-<p>​        为了保证向专家询问的蕴涵式的数量是最小的，将通用属性探索算法的第二步更改为：$对于有限属性集A\subseteq M$，有$A=c_{cert}(A)\subsetneq c_{univ}(A)$并且$A$是$\subseteq-minimal$成立，则考虑蕴涵式$A\rightarrow c_{univ}(A)$。</p>
+<p>​        为了保证向专家询问的蕴涵式的数量是最小的，将通用属性探索算法的第二步更改为：$对于有限属性集A\subseteq M$，有$A=c<em>{cert}(A)\subsetneq c</em>{univ}(A)$并且$A$是$\subseteq-minimal$成立，则考虑蕴涵式$A\rightarrow c_{univ}(A)$。</p>
 <p>在给出算法总是能得到最小数量的询问蕴涵式前，先给出如下定义：</p>
 <h2 id="6-Conclusions"><a href="#6-Conclusions" class="headerlink" title="6 Conclusions"></a>6 Conclusions</h2><p style="text-indent:2em">从使用领域专家的经典的属性探索中推导出一种更加通用的属性探索算法。它能够处理抽象给定的闭包算子，并且可以处理部分给定的反例。</p>
 
-<h2 id><a href="#" class="headerlink" title></a></h2><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
             <div>

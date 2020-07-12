@@ -212,31 +212,69 @@
 <li>test.csv：从剩下的数据中取样出连续的10小时为一组，前九个小时的所有观测数据当作==特征值==，第十个小时的PM2.5当作==目标值==。共取出240组不重复的test data，然后根据feature去预测出第十小时的PM2.5的值。</li>
 <li>Data（中含有18项观测数据）：AMB_TEMP，CH4，CO，NHMC，NO，NO2，NOx，O3，PM10，PM2.5，RAINFALL，RH，SO2，THC，WD_HR，WIND_DIREC，WIND_SPEED，WS_HR。</li>
 </ul>
-<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2 模型选择"></a>2 模型选择</h2><p>本次任务选择的模型为线性回归模型：<br>$$<br>y=\sum\limits_{i=0}^8w_ix_i+b。<br>$$</p>
-<ul>
+<h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2 模型选择"></a>2 模型选择</h2><p>本次任务选择的模型为线性回归模型：</p>
+<script type="math/tex; mode=display">
+y=\sum\limits_{i=0}^8w_ix_i+b。</script><ul>
 <li><p>$i$从0到8是因为选取前9个小时作为==特征值==输入，每个输入都有一个==权重值==$w$与之相乘，再加上一个偏置$b$，即为线性回归模型。通过这个模型去预测第十个小时的PM2.5的值。</p>
 </li>
-<li><p>此外，可将该模型的运算转换为向量运算：<br>  $$<br>  \begin{align}<br>  y=<br>  \begin{bmatrix}<br>  w_0\ \dots\ w_8<br>  \end{bmatrix}<br>  \begin{bmatrix}<br>  x_0\newline \vdots\newline x_8<br>  \end{bmatrix}<br>  +b<br>\end{align}<br>  $$</p>
-</li>
+<li><p>此外，可将该模型的运算转换为向量运算：</p>
+<script type="math/tex; mode=display">
+  \begin{align}
+  y=
+  \begin{bmatrix}
+  w_0\ \dots\ w_8 
+  \end{bmatrix}
+  \begin{bmatrix}
+  x_0\newline \vdots\newline x_8 
+  \end{bmatrix}
+  +b
+\end{align}</script></li>
 <li><p>选择的<strong>Loss Function</strong>为：</p>
 </li>
 </ul>
-<p>$$<br>Loss=\frac{1}{2m}\sum\limits_{i=0}^{m-1}(\hat{y}^i-y^i)^2+\frac12\lambda\sum\limits_{j=0}^8w_j^2<br>$$</p>
-<ul>
-<li><p>Loss对$w_j$求导为：<br>  $$<br>  \frac{\partial L}{\partial w_j}=\frac1m\sum\limits_{i=0}^{m-1}(\hat{y}^i-w_jx_j-b)(-x_j)+\lambda w_j<br>  $$</p>
-</li>
+<script type="math/tex; mode=display">
+Loss=\frac{1}{2m}\sum\limits_{i=0}^{m-1}(\hat{y}^i-y^i)^2+\frac12\lambda\sum\limits_{j=0}^8w_j^2</script><ul>
+<li><p>Loss对$w_j$求导为：</p>
+<script type="math/tex; mode=display">
+  \frac{\partial L}{\partial w_j}=\frac1m\sum\limits_{i=0}^{m-1}(\hat{y}^i-w_jx_j-b)(-x_j)+\lambda w_j</script></li>
 <li></li>
 </ul>
-<p>$$<br>\frac{\partial L}{\partial b}=\frac1m\sum\limits_{i=0}^{m-1}(\hat{y}^i-w_jx_j-b)(-1)<br>$$</p>
-<ul>
-<li><p>则参数更新为：<br>  $$<br>  \begin{align}<br>  w_j:=w_j-\eta \frac{\partial L}{\partial w_j} \newline<br>  b:=b-\eta \frac{\partial L}{\partial b}<br>  \end{align}<br>  $$<br>  其中将$w_j$的更新转换为向量运算：<br>  $$<br>  \begin{bmatrix}<br>  w_0 \newline \vdots \newline w_8<br>  \end{bmatrix}<br>  :=<br>  \begin{bmatrix}<br>  w_0 \newline \vdots \newline w_8<br>  \end{bmatrix}<br>  -\eta<br>  \begin{bmatrix}<br>  \frac{\partial L}{\partial w_0} \newline \vdots \newline \frac{\partial L}{\partial w_8}<br>  \end{bmatrix}<br>  $$</p>
-</li>
+<script type="math/tex; mode=display">
+\frac{\partial L}{\partial b}=\frac1m\sum\limits_{i=0}^{m-1}(\hat{y}^i-w_jx_j-b)(-1)</script><ul>
+<li><p>则参数更新为：</p>
+<script type="math/tex; mode=display">
+  \begin{align}
+  w_j:=w_j-\eta \frac{\partial L}{\partial w_j} \newline
+  b:=b-\eta \frac{\partial L}{\partial b}
+  \end{align}</script><p>  其中将$w_j$的更新转换为向量运算：</p>
+<script type="math/tex; mode=display">
+  \begin{bmatrix}
+  w_0 \newline \vdots \newline w_8 
+  \end{bmatrix}
+  :=
+  \begin{bmatrix}
+  w_0 \newline \vdots \newline w_8 
+  \end{bmatrix}
+  -\eta
+  \begin{bmatrix}
+  \frac{\partial L}{\partial w_0} \newline \vdots \newline \frac{\partial L}{\partial w_8} 
+  \end{bmatrix}</script></li>
 <li><p>Optimizer的选择：Adagrad。更新方式为：</p>
 </li>
 </ul>
-<p>$$<br>\begin{align}<br>w^1=&amp;w^0-\frac{\eta^0}{\sigma^0}g^0 \newline<br>\vdots \newline<br>w^{t+1}=&amp;w^t-\frac{\eta^t}{\sigma^t}g^t<br>\end{align}<br>$$</p>
-<p>​                其中$g^t$为$w^t$的梯度值，而且有：<br>$$<br>\begin{align}<br>\sigma^t=&amp;\sqrt{\frac{1}{t+1}\sum\limits_{i=0}^t(g^i)^2} \newline<br>\eta^t=&amp;\frac{\eta}{t+1}<br>\end{align}<br>$$<br>​                带入后，则有：<br>$$<br>w^{t+1}=w^t-\frac{\eta}{\sqrt{\sum\limits_{i=0}^t(g^i)^2} }<br>$$</p>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><h3 id="3-1-数据预处理"><a href="#3-1-数据预处理" class="headerlink" title="3.1 数据预处理"></a>3.1 数据预处理</h3><p style="text-indent:2em">本次训练结果损失值为nan是因为涉及到log0的运算，结果为无穷大，则打印出来的Loss为nan。但是在这个模型当中，可以看到在经过4000次训练后，训练集分类的正确率能达到90%，验证集分类的正确率能达到87.2%。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后1000项作为validation data，所以可能并没有达到很好的效果。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+w^1=&w^0-\frac{\eta^0}{\sigma^0}g^0 \newline 
+\vdots \newline
+w^{t+1}=&w^t-\frac{\eta^t}{\sigma^t}g^t
+\end{align}</script><p>​                其中$g^t$为$w^t$的梯度值，而且有：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sigma^t=&\sqrt{\frac{1}{t+1}\sum\limits_{i=0}^t(g^i)^2} \newline
+\eta^t=&\frac{\eta}{t+1}
+\end{align}</script><p>​                带入后，则有：</p>
+<script type="math/tex; mode=display">
+w^{t+1}=w^t-\frac{\eta}{\sqrt{\sum\limits_{i=0}^t(g^i)^2} }</script><h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><h3 id="3-1-数据预处理"><a href="#3-1-数据预处理" class="headerlink" title="3.1 数据预处理"></a>3.1 数据预处理</h3><p style="text-indent:2em">本次训练结果损失值为nan是因为涉及到log0的运算，结果为无穷大，则打印出来的Loss为nan。但是在这个模型当中，可以看到在经过4000次训练后，训练集分类的正确率能达到90%，验证集分类的正确率能达到87.2%。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后1000项作为validation data，所以可能并没有达到很好的效果。</p>
 
 <pre><code class="hljs python"><span class="hljs-comment"># 读取数据集</span>
 data = pd.read_csv(<span class="hljs-string">"train.csv"</span>, header=<span class="hljs-number">0</span>)
@@ -275,7 +313,6 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
     y = np.array(y_list)
 
     <span class="hljs-keyword">return</span> x, y, data</code></pre>
-
 <h3 id="3-2-模型训练"><a href="#3-2-模型训练" class="headerlink" title="3.2 模型训练"></a>3.2 模型训练</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trainModel</span><span class="hljs-params">(x_data, y_data, epoch)</span>:</span>
     <span class="hljs-string">''' 训练模型，从训练集中拿出3000个数据用来训练，剩余600个数据用于验证。</span>
 <span class="hljs-string">    </span>
@@ -340,7 +377,6 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
             print(<span class="hljs-string">' &#123;&#125; 次训练后, 训练集的损失为&#123;:.2f&#125;'</span>.format(i, loss / <span class="hljs-number">2</span>))
     
     <span class="hljs-keyword">return</span> weight, bias</code></pre>
-
 <h3 id="3-3-验证模型"><a href="#3-3-验证模型" class="headerlink" title="3.3 验证模型"></a>3.3 验证模型</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validateModel</span><span class="hljs-params">(x_val, y_val, weight, bias)</span>:</span>
     <span class="hljs-string">''' 验证模型，返回损失值。</span>
 <span class="hljs-string">    </span>
@@ -359,7 +395,6 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
         loss += (y_val[i] - weight.dot(x_val[i]) - bias) ** <span class="hljs-number">2</span>
     
     <span class="hljs-keyword">return</span> loss / <span class="hljs-number">600</span></code></pre>
-
 <h3 id="3-4-测试数据预处理"><a href="#3-4-测试数据预处理" class="headerlink" title="3.4 测试数据预处理"></a>3.4 测试数据预处理</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testDataProcess</span><span class="hljs-params">(test_data)</span>:</span>
     <span class="hljs-string">''' 测试数据预处理</span>
 <span class="hljs-string"></span>
@@ -378,7 +413,6 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
         testList.append(test_data[i:i+<span class="hljs-number">18</span>][<span class="hljs-number">9</span>])
 
     <span class="hljs-keyword">return</span> np.array(testList)</code></pre>
-
 <h3 id="3-5-训练模型"><a href="#3-5-训练模型" class="headerlink" title="3.5 训练模型"></a>3.5 训练模型</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span><span class="hljs-params">()</span>:</span>
     <span class="hljs-string">''' 训练 '''</span>
 
@@ -396,9 +430,6 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
     print(<span class="hljs-string">"训练得到的模型的bias为&#123;&#125;"</span>.format(bias))
     loss = validateModel(x_val, y_val, weight, bias)
     print(<span class="hljs-string">"模型模型在验证集的loss为&#123;:.2f&#125;"</span>.format(loss))</code></pre>
-
-
-
 <h3 id="3-6-测试模型"><a href="#3-6-测试模型" class="headerlink" title="3.6 测试模型"></a>3.6 测试模型</h3><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">testModel</span><span class="hljs-params">(x_test, weight, bias)</span>:</span>
     <span class="hljs-string">''' 用测试数据集测试模型，并将结果保存到output.csv中</span>
 <span class="hljs-string"></span>
@@ -432,7 +463,6 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
     print(x_test.shape)
     print(x_test)
     testModel(x_test, np.array(weight), bias)</code></pre>
-
 <h3 id="3-7-实验结果"><a href="#3-7-实验结果" class="headerlink" title="3.7 实验结果"></a>3.7 实验结果</h3><pre><code class="hljs python"><span class="hljs-number">0</span> 次训练后, 训练集的损失为<span class="hljs-number">477.36</span>
  <span class="hljs-number">200</span> 次训练后, 训练集的损失为<span class="hljs-number">25.08</span>
  <span class="hljs-number">400</span> 次训练后, 训练集的损失为<span class="hljs-number">23.30</span>
@@ -447,7 +477,6 @@ data.drop([<span class="hljs-string">"日期"</span>,<span class="hljs-string">"
  <span class="hljs-number">-0.51985702</span>  <span class="hljs-number">0.06835844</span>  <span class="hljs-number">1.03413381</span>]
 训练得到的模型的bias为<span class="hljs-number">1.948721373892966</span>
 模型模型在验证集的loss为<span class="hljs-number">39.17</span></code></pre>
-
 <h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p style="text-indent:2em">在这个模型当中，可以看到在经过2000次训练后，模型在验证集上的损失已达到了39.17。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后600项作为validation data，所以可能并没有达到很好的效果。</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>

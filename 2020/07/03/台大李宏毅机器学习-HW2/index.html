@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.6k 字
+      2.5k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      36
+      35
        分钟
     </span>
   
@@ -213,18 +213,40 @@
 <h2 id="2-模型选择"><a href="#2-模型选择" class="headerlink" title="2 模型选择"></a>2 模型选择</h2><ol>
 <li>本次任务先对数据做线性回归，得出每个样本的回归值，计算公式为：</li>
 </ol>
-<p>$$<br>y^n=\sum\limits_{i=1}^{57}w_ix_i^n+b<br>$$</p>
-<p>其中，$x_i^n$为第$n$个样本值，$y^n$为对应的回归结果。</p>
-<ol start="2">
-<li><p>将回归结果送入$sigmod$函数，得到对应的概率值。计算公式为：<br> $$<br> p^n=\frac{1}{1+e^{-y^n} }<br> $$</p>
-</li>
+<script type="math/tex; mode=display">
+y^n=\sum\limits_{i=1}^{57}w_ix_i^n+b</script><p>其中，$x_i^n$为第$n$个样本值，$y^n$为对应的回归结果。</p>
+<ol>
+<li><p>将回归结果送入$sigmod$函数，得到对应的概率值。计算公式为：</p>
+<script type="math/tex; mode=display">
+ p^n=\frac{1}{1+e^{-y^n} }</script></li>
 <li><p>众所周知，不管线性回归还是Logistic回归，其关键和核心就在于通过误差的反向传播来更新参数，进而使模型不断优化。因此，损失函数的确定及对各参数的求导就成了重中之重。在分类问题中，模型一般针对各类别输出一个概率分布，因此常用交叉熵作为损失函数。交叉熵可用于衡量两个概率分布之间的相似、统一程度，两个概率分布越相似、越统一，则交叉熵越小；反之，两概率分布之间差异越大、越混乱，则交叉熵越大。</p>
 </li>
 </ol>
-<p>下式表示k分类问题的交叉熵，P为label，是一个概率分布，常用one_hot编码。例如针对3分类问题而言，若样本属于第一类，则P为(1,0,0)，若属于第二类，则P为(0,1,0)，若属于第三类，则为(0,0,1)。即所属的类概率值为1，其他类概率值为0。Q为模型得出的概率分布，可以是(0.1,0.8,0.1)等。具体计算公式为：<br>$$<br>Loss^n=-\sum\limits_1^kp^n\log Q^n<br>$$<br>在实际应用中，为求导方便，常使用以e为底的对数。则上式可化为：<br>$$<br>Loss^n=-\sum\limits_1^kp^n\ln Q^n<br>$$<br>针对本次作业而言，虽然模型只输出了一个概率值p，但由于处理的是二分类问题，因此可以很快求出另一概率值为1-p，即可视为模型输出的概率分布为Q(p，1-p)。将本次的label视为概率分布P(y,1-y)，即Winner(label为1)的概率分布为(1,0)，分类为Losser(label为0)的概率分布为(0,1)。则其==损失函数==为：<br>$$<br>Loss^n=-[\hat{y}^n\ln p^n+(1-\hat{y}^n)\ln(1-p^n)]<br>$$<br>Loss对权重$w$求偏导，有：<br>$$<br>\begin{align}<br>因为&amp;\frac{\partial\ln p^n}{\partial p^n}=\frac{1}{p^n}=1+e^{-y^n} \newline<br>同理&amp;\frac{\partial\ln (1-p^n)}{\partial p^n}=\frac{-1}{1-p^n}=\frac{-e^{-y^n} }{1+e^{-y^n} } \newline<br>而且&amp;\frac{\partial p^n}{\partial y^n}=-\frac{1}{(1+e^{-y^n})^2}(e^{-y^n})(-1)=\frac{-e^{-y^n} }{(1+e^{-y^n})^2} \newline<br>和&amp;\frac{\partial y^n}{\partial w_i}=x_i \newline\newline<br>\end{align}<br>$$</p>
-<p>$$<br>\begin{align}<br>所以有\frac{\partial Loss^n}{\partial w_i}&amp;=-[\hat{y}^n\frac{\partial\ln p^n}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial w_i}+(1-\hat{y}^n)\frac{\partial\ln (1-p^n)}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial w_i}]  \newline<br>&amp;=-[\hat{y}^n(1+e^{-y^n})(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})x_i+(1-\hat{y}^n)(\frac{-e^{-y^n} }{1+e^{-y^n} })(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})x_i]  \newline<br>&amp;=-x_i(\hat{y}^n-p^n)<br>\end{align}<br>$$</p>
-<p>同理Loss对偏置$b$求偏导，有：<br>$$<br>\begin{align}<br>\frac{\partial Loss^n}{\partial b}&amp;=-[\hat{y}^n\frac{\partial\ln p^n}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial b}+(1-\hat{y}^n)\frac{\partial\ln (1-p^n)}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial b}]  \newline<br>&amp;=-[\hat{y}^n(1+e^{-y^n})(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})+(1-\hat{y}^n)(\frac{-e^{-y^n} }{1+e^{-y^n} })(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})]  \newline<br>&amp;=-(\hat{y}^n-p^n)<br>\end{align}<br>$$</p>
-<h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><h3 id="3-1-数据预处理"><a href="#3-1-数据预处理" class="headerlink" title="3.1 数据预处理"></a>3.1 数据预处理</h3><p>首先将所有空值以0填充，然后对数据进行标准化处理。</p>
+<p>下式表示k分类问题的交叉熵，P为label，是一个概率分布，常用one_hot编码。例如针对3分类问题而言，若样本属于第一类，则P为(1,0,0)，若属于第二类，则P为(0,1,0)，若属于第三类，则为(0,0,1)。即所属的类概率值为1，其他类概率值为0。Q为模型得出的概率分布，可以是(0.1,0.8,0.1)等。具体计算公式为：</p>
+<script type="math/tex; mode=display">
+Loss^n=-\sum\limits_1^kp^n\log Q^n</script><p>在实际应用中，为求导方便，常使用以e为底的对数。则上式可化为：</p>
+<script type="math/tex; mode=display">
+Loss^n=-\sum\limits_1^kp^n\ln Q^n</script><p>针对本次作业而言，虽然模型只输出了一个概率值p，但由于处理的是二分类问题，因此可以很快求出另一概率值为1-p，即可视为模型输出的概率分布为Q(p，1-p)。将本次的label视为概率分布P(y,1-y)，即Winner(label为1)的概率分布为(1,0)，分类为Losser(label为0)的概率分布为(0,1)。则其==损失函数==为：</p>
+<script type="math/tex; mode=display">
+Loss^n=-[\hat{y}^n\ln p^n+(1-\hat{y}^n)\ln(1-p^n)]</script><p>Loss对权重$w$求偏导，有：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+因为&\frac{\partial\ln p^n}{\partial p^n}=\frac{1}{p^n}=1+e^{-y^n} \newline
+同理&\frac{\partial\ln (1-p^n)}{\partial p^n}=\frac{-1}{1-p^n}=\frac{-e^{-y^n} }{1+e^{-y^n} } \newline
+而且&\frac{\partial p^n}{\partial y^n}=-\frac{1}{(1+e^{-y^n})^2}(e^{-y^n})(-1)=\frac{-e^{-y^n} }{(1+e^{-y^n})^2} \newline
+和&\frac{\partial y^n}{\partial w_i}=x_i \newline\newline
+\end{align}</script><script type="math/tex; mode=display">
+\begin{align}
+所以有\frac{\partial Loss^n}{\partial w_i}&=-[\hat{y}^n\frac{\partial\ln p^n}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial w_i}+(1-\hat{y}^n)\frac{\partial\ln (1-p^n)}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial w_i}]  \newline
+&=-[\hat{y}^n(1+e^{-y^n})(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})x_i+(1-\hat{y}^n)(\frac{-e^{-y^n} }{1+e^{-y^n} })(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})x_i]  \newline
+&=-x_i(\hat{y}^n-p^n)  
+\end{align}</script><p>同理Loss对偏置$b$求偏导，有：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{\partial Loss^n}{\partial b}&=-[\hat{y}^n\frac{\partial\ln p^n}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial b}+(1-\hat{y}^n)\frac{\partial\ln (1-p^n)}{\partial p^n}\frac{\partial p^n}{\partial y^n}\frac{\partial y^n}{\partial b}]  \newline
+&=-[\hat{y}^n(1+e^{-y^n})(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})+(1-\hat{y}^n)(\frac{-e^{-y^n} }{1+e^{-y^n} })(\frac{-e^{-y^n} }{(1+e^{-y^n})^2})]  \newline
+&=-(\hat{y}^n-p^n)  
+\end{align}</script><h2 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3 代码实现"></a>3 代码实现</h2><h3 id="3-1-数据预处理"><a href="#3-1-数据预处理" class="headerlink" title="3.1 数据预处理"></a>3.1 数据预处理</h3><p>首先将所有空值以0填充，然后对数据进行标准化处理。</p>
 <p>上述操作完成后，将表格的第2列至58列取出为x(shape为4000×57)，将最后一列取出做label y(shape为4000×1)。</p>
 <p>进一步划分训练集和验证集，分别取x、y中前3000个样本为训练集x_train(shape为3000×57)，y_train(shape为3000×1)，后1000个样本为验证集x_val(shape为1000×57)，y_val(shape为1000×1)。</p>
 <pre><code class="hljs python"><span class="hljs-comment"># 读取数据集</span>
@@ -244,7 +266,6 @@ y = data[:, <span class="hljs-number">-1</span>]
 <span class="hljs-comment"># 划分训练集与验证集</span>
 x_train, x_val = x[<span class="hljs-number">0</span>:<span class="hljs-number">3000</span>, :], x[<span class="hljs-number">3000</span>:, :]
 y_train, y_val = y[<span class="hljs-number">0</span>:<span class="hljs-number">3000</span>], y[<span class="hljs-number">3000</span>:]</code></pre>
-
 <h3 id="3-2-模型训练"><a href="#3-2-模型训练" class="headerlink" title="3.2 模型训练"></a>3.2 模型训练</h3><pre><code class="hljs python"><span class="hljs-comment"># 训练模型，更新参数。</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">train</span><span class="hljs-params">(x_train, y_train, epoch)</span>:</span>
     num = x_train.shape[<span class="hljs-number">0</span>]
@@ -301,7 +322,6 @@ y_train, y_val = y[<span class="hljs-number">0</span>:<span class="hljs-number">
             print(<span class="hljs-string">'&#123;&#125; 次训练后, 训练集的精度为&#123;:.2f&#125;'</span>.format(i, acc / num))
 
     <span class="hljs-keyword">return</span> weights, bias</code></pre>
-
 <h3 id="3-3-验证模型"><a href="#3-3-验证模型" class="headerlink" title="3.3 验证模型"></a>3.3 验证模型</h3><pre><code class="hljs python"><span class="hljs-comment"># 验证模型效果</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">validate</span><span class="hljs-params">(x_val, y_val, weights, bias)</span>:</span>
     num = <span class="hljs-number">1000</span>
@@ -322,7 +342,6 @@ y_train, y_val = y[<span class="hljs-number">0</span>:<span class="hljs-number">
         loss += (<span class="hljs-number">-1</span>) * (y_val * np.log(sig) + (<span class="hljs-number">1</span> - y_val[j]) * np.log(<span class="hljs-number">1</span> - sig))
 
     <span class="hljs-keyword">return</span> loss / num, acc / num</code></pre>
-
 <h3 id="3-4-测试模型"><a href="#3-4-测试模型" class="headerlink" title="3.4 测试模型"></a>3.4 测试模型</h3><pre><code class="hljs python"><span class="hljs-comment"># 训练轮数</span>
 epoch = <span class="hljs-number">4000</span>
 <span class="hljs-comment"># 开始训练</span>
@@ -331,7 +350,6 @@ w, b = train(x_train, y_train, epoch)
 loss, acc = validate(x_val, y_val, w, b)
 print(<span class="hljs-string">'验证集的损失值为:'</span>, loss)
 print(<span class="hljs-string">'验证集的精度值为:'</span>, acc)</code></pre>
-
 <h3 id="3-5-实验结果"><a href="#3-5-实验结果" class="headerlink" title="3.5 实验结果"></a>3.5 实验结果</h3><pre><code class="hljs python"><span class="hljs-number">0</span> 次训练后, 训练集的损失为 [<span class="hljs-number">1.50623089</span> <span class="hljs-number">0.1929692</span>  <span class="hljs-number">1.50623089</span> ... <span class="hljs-number">1.50623089</span> <span class="hljs-number">1.50623089</span> <span class="hljs-number">0.1929692</span> ]
 <span class="hljs-number">0</span> 次训练后, 训练集的精度为<span class="hljs-number">0.62</span>
  <span class="hljs-number">200</span> 次训练后, 训练集的损失为 [nan nan nan ... nan nan nan]
@@ -375,7 +393,6 @@ print(<span class="hljs-string">'验证集的精度值为:'</span>, acc)</code><
 
 验证集的损失值为: [nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan nan]
 验证集的精度值为: <span class="hljs-number">0.864</span></code></pre>
-
 <h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p style="text-indent:2em">本次训练结果损失值为nan是因为涉及到log0的运算，结果为无穷大，则打印出来的Loss为nan。但是在这个模型当中，可以看到在经过4000次训练后，训练集分类的正确率基本能达到90%，验证集分类的正确率能达到86.4%。不过由于本次任务选择的模型较为简单，而且训练数据集也并没有按照正规方法分为training data和validation data，只是简单地将前3000项作为training data，后1000项作为validation data，所以可能并没有达到很好的效果。</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>

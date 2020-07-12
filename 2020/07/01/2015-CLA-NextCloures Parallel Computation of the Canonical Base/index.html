@@ -207,11 +207,8 @@
               <h1 id="NextClosures-Parallel-Computation-of-the-Canonical-Base"><a href="#NextClosures-Parallel-Computation-of-the-Canonical-Base" class="headerlink" title="NextClosures: Parallel Computation of the Canonical Base"></a>NextClosures: Parallel Computation of the Canonical Base</h1><div class="note note-primary">
             <p>属性探索、并行算法、NextCloures</p>
           </div> 
-
 <a id="more"></a>
-
 <!-- <p class='note note-info'>论文、属性探索</p> -->
-
 <h2 id="论文基本信息"><a href="#论文基本信息" class="headerlink" title="论文基本信息"></a>论文基本信息</h2><p>​            1. 作者：Francesco Kriegel 、Daniel Borchmann</p>
 <p>​            2. 会议：CLA</p>
 <p>​            3. 时间：2015</p>
@@ -238,7 +235,12 @@
 <li>A model of $X\rightarrow Y$ is a set $T\subseteq M\Leftrightarrow X\subseteq T\Rightarrow Y\subseteq T$.</li>
 </ol>
 <p>2.A model of $L$ is a model of all implications in $L$, and $X^L$ is the superset of $X$ that is a model of $L$.</p>
-<p>3.$X^L$的计算方式如下：<br>$$<br>\begin{align}<br>X^L:=\bigcup_{n\geq 1}X^{L_n}\ where\ X^{L_1}:&amp;=X\bigcup {B\mid A\rightarrow B\in L\ and\ A\subseteq X} \newline<br>and\ X^{L_{n+1} }:&amp;=(X^{L_n})^{L_1} for\ all\ n\in N<br>\end{align}<br>$$<br>4.内涵：$B=B^{II}$。</p>
+<p>3.$X^L$的计算方式如下：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+X^L:=\bigcup_{n\geq 1}X^{L_n}\ where\ X^{L_1}:&=X\bigcup \{B\mid A\rightarrow B\in L\ and\ A\subseteq X\} \newline
+and\ X^{L_{n+1} }:&=(X^{L_n})^{L_1} for\ all\ n\in N
+\end{align}</script><p>4.内涵：$B=B^{II}$。</p>
 <p>伪内涵：$P\neq P^{II}$，且$P$的每一个伪内涵子集$Q，Q\subsetneq P$，满足$Q^{II}\subseteq P$。将形式背景$K$上的所有伪内涵集合记为$PsInt(K)$。</p>
 <p>蕴涵式：${P\rightarrow P^{II}\mid P\in PsInt(K)}$。</p>
 <h2 id="3-Parallel-Computation-of-the-Canonical-Base"><a href="#3-Parallel-Computation-of-the-Canonical-Base" class="headerlink" title="3 Parallel Computation of the Canonical Base"></a>3 Parallel Computation of the Canonical Base</h2><p>1.$NextCloures$算法由Ganter$^{[6]}$提出，用于枚举主基。</p>
@@ -255,7 +257,7 @@
 <p>原因：检测$P$是否为伪内涵时，只需判断$P$的伪内涵子集$Q\subsetneq P$，是否满足满足$Q^{II}\subseteq P$。即可按基数递增来判断伪内涵。</p>
 <p>算法思想的基本工作流程：</p>
 <p>​            1. 判断$\varnothing=\varnothing^{II}\Rightarrow \varnothing$是内涵/伪内涵。</p>
-<ol start="2">
+<ol>
 <li>假设基数$&lt;k$的所有伪内涵均已确定，然后就可正确判断出属性集$P，P\subseteq M，|P|=k$是内涵/伪内涵。</li>
 </ol>
 <p>具体的工作流程：</p>
@@ -274,7 +276,6 @@
 <p>4.对得到的每一个内涵$C^{II}$，将它的上层邻居$C^{II}\bigcup {m}且m\notin C^{II}$加入候选集合$C$中。</p>
 <p>5.等待基数为$k$的所有候选集合都处理完毕，如果$k&lt;M$则递增$k$，并且跳到2；否则算法结束，返回形式概念集合$\mathcal{B}$和蕴涵式集合$L$。</p>
 <img src="/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/1593623335.jpg" srcset="/img/loading.gif" class>
-
 <p><img src="/peerless.github.io/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/images/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/1593623335-1593786388801.jpg" srcset="/img/loading.gif" alt></p>
 <p>词汇积累：</p>
 <ul>
@@ -291,7 +292,7 @@
 </p>
 
 <p>​        特点：同一层的候选集不能彼此影响，即线程之间不需要通信。</p>
-<p>​        异常情况：在某些情况下，当使用所有可用的CPU时，计算时间会增加。（原因未知）—可能是由于平台或操作系统的一些技术细节，比如基准测试过程中执行的一些后台任务，或者线程维护带来的开销。</p>
+<p>​        异常情况：在某些情况下，当使用所有可用的CPU时，计算时间会增加。（原因未知）—-可能是由于平台或操作系统的一些技术细节，比如基准测试过程中执行的一些后台任务，或者线程维护带来的开销。</p>
 <p>词汇积累：</p>
 <ul>
 <li>benchmarks：基准测试。</li>
