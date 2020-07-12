@@ -289,8 +289,8 @@
 <p><span style="color:red">sound(非冗余的、无噪声的)</span>：$\mathscr{L}$中的所有蕴涵式对于形式背景$\mathbb{K}$均成立。</p>
 <p><span style="color:red">complete(完备的)</span>：形式背景$\mathbb{K}$中成立的所有蕴涵式均来自于$\mathscr{L}$。</p>
 <p>如果$\mathscr{L}$对于形式背景$\mathbb{K}$是sound and complete，则$\mathscr{L}$就称为形式背景$\mathbb{K}$的一个基。进一步地，$\mathscr{L}^1(A)=\mathscr{L}(A)\ holds\ for\ all\ A\subseteq M$，则$\mathscr{L}$称为直接基。</p>
-<p><span style="color:red">伪内涵</span>：$P\neq P^{“}$，且$P$的每一个伪内涵子集$Q，Q\subsetneq P$，满足$Q^{“}\subseteq P$。则形式背景的主基为${P\rightarrow P^{“}|P: pseudo-intent\ of\ \mathbb{K}}$。</p>
-<p><span style="color:red">前提</span>：B is called a premise for m if $m\in B^{“}\backslash B$，则形式背景的一个基为：$\mathscr{L}={B\rightarrow B^{“}|B: B\subseteq M, premise\ for\ some\ m\in M}$。</p>
+<p><span style="color:red">伪内涵</span>：$P\neq P^{“}$，且$P$的每一个伪内涵子集$Q，Q\subsetneq P$，满足$Q^{“}\subseteq P$。则形式背景的主基为$\{P\rightarrow P^{“}|P: pseudo-intent\ of\ \mathbb{K}\}$。</p>
+<p><span style="color:red">前提</span>：B is called a premise for m if $m\in B^{“}\backslash B$，则形式背景的一个基为：$\mathscr{L}=\{B\rightarrow B^{“}|B: B\subseteq M, premise\ for\ some\ m\in M\}$。</p>
 <p><span style="color:red">适当前提</span>：B  is called a proper premise if $B^{\bullet}$ is not empty，其中$B^{\bullet}=B^{“}\backslash \left(B\cup\bigcup\limits_{S\subsetneq B}S^{“}\right)$。如果$m\in B^{\bullet}$，则称$m$在$m\in M$中是一个适当前提。可以得到$B$对于$m$是一个适当前提，当且仅当$B$在$m$的前提中是$\subseteq-minimal$。</p>
 <p><span style="color:red">适当前提基</span>：进一步地有{$B\rightarrow B^{\bullet}|B: proper\ premise$}是形式背景$\mathbb{K}$的一个complete and sound 直接基。则该集合称为形式背景$\mathbb{K}$的适当前提基。</p>
 <img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/18fa1d96ab86c4723e998f61ddc13aa-1594124738433.png" srcset="/img/loading.gif" class><img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/c0c630c6145b2877b6a0a06c71ad0af-1594124834463.png" srcset="/img/loading.gif" class><img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/ea0112b26a45b674667e8603afc5dea-1594124814483.png" srcset="/img/loading.gif" class>
@@ -305,7 +305,7 @@
 <p>TRANSENUM：枚举出超图$\mathscr{G}$的所有minal hypergraph transversal 的问题。</p>
 <img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707224053977.png" srcset="/img/loading.gif" class><img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707224159024.png" srcset="/img/loading.gif" class>
 <p><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707224053977.png" srcset="/img/loading.gif" alt><br><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707224159024.png" srcset="/img/loading.gif" alt></p>
-<p>解释：$P\subseteq M\backslash{m}对于m\in M$是一个前提，当且仅当对于所有的$g\in G\ with\ g\swarrow m$成立。$P$对于$m$是一个适当前提，当且仅当在$m$的所有前提中，按子集序$P$是最小的。则有推论</p>
+<p>解释：$P\subseteq M\backslash\{m\}对于m\in M$是一个前提，当且仅当对于所有的$g\in G\ with\ g\swarrow m$成立。$P$对于$m$是一个适当前提，当且仅当在$m$的所有前提中，按子集序$P$是最小的。则有推论</p>
 <img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707225613699.png" srcset="/img/loading.gif" class><img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707230432218.png" srcset="/img/loading.gif" class>
 <p><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707225613699.png" srcset="/img/loading.gif" alt><br><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200707230432218.png" srcset="/img/loading.gif" alt></p>
 <img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200708154757386.png" srcset="/img/loading.gif" class>
@@ -411,7 +411,7 @@ Tr(\mathscr{G} \cup \mathscr{H})=\min(Tr(\mathscr{G}) \vee Tr(\mathscr{H}))</scr
 <li>该算法遍历所有的属性$m\in M$，并通过Berge Multiplication不断考虑$\mathscr{E}$中的边来计算属性$m$的适当前提。</li>
 <li>如果$\mathscr{L} \nvDash P \rightarrow P^{“}$，则向专家询问蕴涵式$P \rightarrow P^{“}$。<ol>
 <li>接受，将其$P \rightarrow P^{“}$加入$\mathscr{L}$。</li>
-<li>拒绝，$g$作为$P \rightarrow { m }$的反例。<ol>
+<li>拒绝，$g$作为$P \rightarrow \{ m \}$的反例。<ol>
 <li>如果$m \notin g’$，则将集合$M \backslash g’$作为$\mathscr{H}_{\mathbb{K}, m}^{\notin}$的一条边加入$\mathscr{E}$中。</li>
 </ol>
 </li>
@@ -421,10 +421,10 @@ Tr(\mathscr{G} \cup \mathscr{H})=\min(Tr(\mathscr{G}) \vee Tr(\mathscr{H}))</scr
 <li>最后考虑$M$中的剩余属性。</li>
 </ol>
 <p>这一过程在算法6中正式给出。请注意，在此算法中，我们仅非正式地将专家交互描述为“expert confirms $Q→Q^{“}$”或“ask expert for valid counterexample ”，这在文献中是常见的。但也有可能更正式地描述这种相互作用，就像在$^{[6]}$中所做的那样。然而，我们不会在这里这样做，因为我们没有必要进行进一步的考虑。</p>
-<p>在算法6终止时的形式背景为$\mathbb{K}$，$\mathscr{L}$是$\mathbb{K}<em>{B, G}$的一个基，并且$\mathscr{L}$仅包含形式$P \rightarrow P^{“}$的蕴涵式，其中$P$是$\mathbb{K}</em>{B, G}$的适当前提。</p>
+<p>在算法6终止时的形式背景为$\mathbb{K}$，$\mathscr{L}$是<script type="math/tex">\mathbb{K}_{B, G}</script>的一个基，并且$\mathscr{L}$仅包含形式$P \rightarrow P^{“}$的蕴涵式，其中$P$是$\mathbb{K}_{B, G}$的适当前提。</p>
 <p>证明$\mathbb{K}$的适当前提就是$\mathbb{K}_{B, G}$的适当前提。$\Leftarrow$Lemma 3。</p>
-<p>假设对于某些属性$m$，$P$是$\mathbb{K}<em>{BG}$中的一个真前提。由Lemma 2 知这等价于$P$是$\mathscr{H}</em>{\mathbb{K}, m}^{\notin}$的极小超图横截面。由于所有的反例均取自于$\mathbb{K}<em>{BG}$，则有$\mathscr{H}</em>{\mathbb{K}, m}^{\notin} \subseteq  \mathscr{H}<em>{BG, m}^{\notin}$,因此$P$也是$\mathscr{H}</em>{\mathbb{K}, m}^{\notin}$的一个超图横截面。这证明了在$\mathscr{H}_{\mathbb{K}, m}^{\notin}$的超图横截面中$P$的极小性。</p>
-<p>现在假设$Q \subseteq P$是$\mathscr{H}<em>{\mathbb{K}, m}^{\notin}$的一个极小超图，那么$Q$是$\mathbb{K}$的一个适当前提，并且有$\mathscr{L} \vDash Q \rightarrow Q^{“}$。而由Lemma 3 可知，$Q$也是$\mathbb{K}</em>{BG}$的一个适当前提，是$\mathscr{H}<em>{BG, m}^{\notin}$的一个极小超图横截面。则$P=Q$。这证明了$P$也是$\mathscr{H}</em>{\mathbb{K}, m}^{\notin}$的极小超图横截面即$P$是$\mathbb{K}$的一个适当前提。</p>
+<p>假设对于某些属性$m$，$P$是$\mathbb{K}_{BG}$中的一个真前提。由Lemma 2 知这等价于$P$是$\mathscr{H}_{\mathbb{K}, m}^{\notin}$的极小超图横截面。由于所有的反例均取自于$\mathbb{K}_{BG}$，则有$\mathscr{H}_{\mathbb{K}, m}^{\notin} \subseteq  \mathscr{H}_{BG, m}^{\notin}$,因此$P$也是$\mathscr{H}_{\mathbb{K}, m}^{\notin}$的一个超图横截面。这证明了在$\mathscr{H}_{\mathbb{K}, m}^{\notin}$的超图横截面中$P$的极小性。</p>
+<p>现在假设$Q \subseteq P$是$\mathscr{H}_{\mathbb{K}, m}^{\notin}$的一个极小超图，那么$Q$是$\mathbb{K}$的一个适当前提，并且有$\mathscr{L} \vDash Q \rightarrow Q^{“}$。而由Lemma 3 可知，$Q$也是$\mathbb{K}_{BG}$的一个适当前提，是$\mathscr{H}_{BG, m}^{\notin}$的一个极小超图横截面。则$P=Q$。这证明了$P$也是$\mathscr{H}_{\mathbb{K}, m}^{\notin}$的极小超图横截面即$P$是$\mathbb{K}$的一个适当前提。</p>
 <p>$\Rightarrow$ 算法6终止的形式背景$\mathbb{K}$的前提基与$\mathbb{K}_{BG}$的前提基相同。</p>
 <p>词汇积累</p>
 <ul>
@@ -432,10 +432,10 @@ Tr(\mathscr{G} \cup \mathscr{H})=\min(Tr(\mathscr{G}) \vee Tr(\mathscr{H}))</scr
 </ul>
 <h3 id="6-2-Using-the-improvements"><a href="#6-2-Using-the-improvements" class="headerlink" title="6.2 Using the improvements"></a>6.2 Using the improvements</h3><h4 id="6-2-1-Querying-the-hierarchy-of-attribute-concepts"><a href="#6-2-1-Querying-the-hierarchy-of-attribute-concepts" class="headerlink" title="6.2.1 Querying the hierarchy of attribute concepts"></a>6.2.1 Querying the hierarchy of attribute concepts</h4><p><span style="color:red">find single proper premises</span>:</p>
 <p>算法2和算法3都要求在第一步中计算所有的单一适当前提。在属性探索中，形式背景$\mathbb{K}$最初是不完整的。因此，简单地计算$\mathbb{K}$的所有单个适当前提是不够的，因为我们不知道当形式背景$\mathbb{K}$扩张时它们是否仍然是适当前提。</p>
-<p>然而，如果属性${ m }$是$\mathbb{K}$的一个适当前提，并且专家确认蕴涵式${ m } \rightarrow { m }^{“}$成立，则 Lemma 3 确保了当形式背景$\mathbb{K}$扩张时${ m }$仍然是一个前提。</p>
+<p>然而，如果属性$\{ m \}$是$\mathbb{K}$的一个适当前提，并且专家确认蕴涵式$\{ m \} \rightarrow \{ m \}^{“}$成立，则 Lemma 3 确保了当形式背景$\mathbb{K}$扩张时$\{ m \}$仍然是一个前提。</p>
 <p><span style="color:red">find irreducibles</span>:</p>
 <p>在算法3中，需要知道哪些属性概念是交不可约的。不幸的是，在工作形式背景$\mathbb{K}$中满足可约的属性概念$\mu m$在$\mathbb{K}$的扩展中可能不再满足可约。</p>
-<p>我们可以向专家提出蕴涵式${ n \in { m }^{“} | \mu m &lt; \mu n } \rightarrow { m }$来确定是否可以移除可约属性${ m }$。如果专家接受该蕴涵式，则属性$m$在形式背景$\mathbb{K}$扩张时仍然是交可约的。</p>
+<p>我们可以向专家提出蕴涵式$\{ n \in \{ m \}^{“} | \mu m &lt; \mu n \} \rightarrow \{ m \}$来确定是否可以移除可约属性$\{ m \}$。如果专家接受该蕴涵式，则属性$m$在形式背景$\mathbb{K}$扩张时仍然是交可约的。</p>
 <p>算法7显示了这两个初始查询是如何执行的。</p>
 <img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200712154529970.png" srcset="/img/loading.gif" class>
 <p><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200712154529970.png" srcset="/img/loading.gif" alt></p>
