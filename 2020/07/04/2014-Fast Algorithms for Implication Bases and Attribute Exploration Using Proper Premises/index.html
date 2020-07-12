@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.9k 字
+      4.7k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      50
+      60
        分钟
     </span>
   
@@ -384,7 +384,7 @@
 <li>facilitate：便于，促进，帮助；使容易。</li>
 <li>implicit：隐式的。</li>
 </ul>
-<h3 id="6-1-Incremental-Computation-of-Proper-Premises-Using-Berge-Multiplication"><a href="#6-1-Incremental-Computation-of-Proper-Premises-Using-Berge-Multiplication" class="headerlink" title="6.1 Incremental Computation of Proper Premises Using Berge Multiplication"></a>6.1 Incremental Computation of Proper Premises Using Berge Multiplication</h3><p>定义两个超图$\mathscr{G}$和$\mathscr{H}$以边进行合并为</p>
+<h3 id="6-1-Incremental-Computation-of-Proper-Premises-Using-Berge-Multiplication"><a href="#6-1-Incremental-Computation-of-Proper-Premises-Using-Berge-Multiplication" class="headerlink" title="6.1 Incremental Computation of Proper Premises Using Berge Multiplication"></a>6.1 Incremental Computation of Proper Premises Using Berge Multiplication</h3><h4 id="6-1-1-Berge-Multiplication-and-its-Offspring"><a href="#6-1-1-Berge-Multiplication-and-its-Offspring" class="headerlink" title="6.1.1 Berge Multiplication and its Offspring"></a>6.1.1 Berge Multiplication and its Offspring</h4><p>定义两个超图$\mathscr{G}$和$\mathscr{H}$以边进行合并为</p>
 <script type="math/tex; mode=display">
 \mathscr{G}\vee \mathscr{H}:=\{ g\cup h|g\in \mathscr{G},\ h\in \mathscr{H} \}</script><p>集合$S$中$\subseteq-minimal$集（子集序）为</p>
 <script type="math/tex; mode=display">
@@ -439,6 +439,35 @@ Tr(\mathscr{G} \cup \mathscr{H})=\min(Tr(\mathscr{G}) \vee Tr(\mathscr{H}))</scr
 <p>算法7显示了这两个初始查询是如何执行的。</p>
 <img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200712154529970.png" srcset="/img/loading.gif" class>
 <p><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200712154529970.png" srcset="/img/loading.gif" alt></p>
+<h4 id="6-2-2-Candidate-Sets"><a href="#6-2-2-Candidate-Sets" class="headerlink" title="6.2.2 Candidate Sets"></a>6.2.2 Candidate Sets</h4><p>将对候选集的限制调整到属性探索设置并非易事。</p>
+<p>问题是，一个属性$u$不是$\mathbb{K}_{init}$中的属性m的候选的属性，但$u$仍然可以是$\mathbb{K}_{B,G}$中的候选属性。</p>
+<p>例子：考虑 Table 7 中的形式背景$\mathbb{K}_{B,G}$，在经过算法7的预处理后，我们得到 Table 8 中的形式背景$\mathbb{K}_{init}$以及蕴涵集$\mathscr{L}_{init}=\{ \{v\} \rightarrow \{m\} \}$。假设我们想获得属性$m$的适当前提，则可计算候选集为：$C_{init}=\{ u \in M \backslash \{m\} |not\ \exists v\in M: \mu u \wedge \mu m \le _{init} \mu v \lt _{init} \mu m \}$。</p>
+
+<p><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/images/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200712225021028.png" srcset="/img/loading.gif" alt></p>
+<p>很容易从 Fig. 7 的概念格中看出，它是空集，因此无法计算出属性$m$的前提$\{ u, w \}$。然而从 Fig. 6 的概念格中可以看出，$\{ u, w \}$确实是属性$m$的前提。</p>
+<p>但是请注意，如果我们先计算属性$v$的适当前提 ，再计算属性$m$的适当前提，则不会出现上述问题。然后向专家询问蕴涵式$\{m,u\} \rightarrow \{v\}$是否成立，使得专家添加$E$作为反例。</p>
+<p>显然，这个问题可以通过固定处理属性的顺序来避免，我们可以使$M$中的&lt;序满足$\mu m \lt _{init} \mu n \Rightarrow m \lt n$。算法8中使用了候选集和这种顺序。</p>
+<img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200712231347704.png" srcset="/img/loading.gif" class>
+<p><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200712231347704.png" srcset="/img/loading.gif" alt></p>
+<p>如果属性$m$是这中顺序的第一个属性，则$\mu m$是最小的属性概念，因此属性$m$的候选集为$M \backslash \{m\}$。这意味着在第一次迭代后可以获得属性$m$的所有适当前提。而在算法2中，属性$m$的所有适当前提在属性$m$的迭代或属性$v (\mu v \lt \mu m)$的迭代后获得。因此，由归纳法可知，对于所有的属性$n$，以下条件成立：</p>
+<p>在属性$n$处理后，</p>
+<ul>
+<li>对于属性$n$的每一个适当前提$P$，$\mathscr{L}$包含有蕴涵式$P \rightarrow P^{‘’}$。</li>
+<li>对于在$\mathbb{K}_{B,G}$不成立的每个蕴涵式$S \rightarrow \{n\}$，均向$\mathbb{K}$中添加了相应的反例。</li>
+</ul>
+<p>这保证了在$\mathbb{K}_{B,G}$计算的候选集恰好是$\mathbb{K}$中的候选集。下面的 Lemma 7 可以说明这一点。</p>
+<blockquote>
+<p>Lemma 7 假设我们允许算法8运行到属性$m$的迭代，记$\mathbb{K}_m$为此次迭代中获得的形式背景，$\mathbb{K}_{B,G}$为背后的形式背景，$\le_{m}$和$\le_{B,G}$分别为相应概念格的序。</p>
+</blockquote>
+<p>那么</p>
+<script type="math/tex; mode=display">
+\begin{align}
+C_{B,G}=& \{ u\in M \backslash \{m\} | not\ \exists v\in M: \mu u \wedge \mu m \le _{BG}{\mu v} \lt _{BG}{\mu m} \} \newline 
+=& \{ u\in M \backslash \{m\} | not\ \exists v\in M: \mu u \wedge \mu m \le _m{\mu v} \lt _m{\mu m} \} 
+\end{align}</script><p>词汇积累</p>
+<ul>
+<li>induction：归纳法。</li>
+</ul>
 <h2 id="7-Conclusion"><a href="#7-Conclusion" class="headerlink" title="7 Conclusion"></a>7 Conclusion</h2><p>本文</p>
 <ol>
 <li>证明了，当主基具有最小基数时，适当前提的基通常可以更有效地计算。</li>
