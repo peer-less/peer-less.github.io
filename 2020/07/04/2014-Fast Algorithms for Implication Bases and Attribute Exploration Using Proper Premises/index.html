@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.7k 字
+      5.1k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      60
+      66
        分钟
     </span>
   
@@ -456,6 +456,7 @@ Tr(\mathscr{G} \cup \mathscr{H})=\min(Tr(\mathscr{G}) \vee Tr(\mathscr{H}))</scr
 <li>对于在$\mathbb{K}_{B,G}$不成立的每个蕴涵式$S \rightarrow \{n\}$，均向$\mathbb{K}$中添加了相应的反例。</li>
 </ul>
 <p>这保证了在$\mathbb{K}_{B,G}$计算的候选集恰好是$\mathbb{K}$中的候选集。下面的 Lemma 7 可以说明这一点。</p>
+<hr>
 <blockquote>
 <p>Lemma 7 假设我们允许算法8运行到属性$m$的迭代，记$\mathbb{K}_m$为此次迭代中获得的形式背景，$\mathbb{K}_{B,G}$为背后的形式背景，$\le_{m}$和$\le_{B,G}$分别为相应概念格的序。</p>
 </blockquote>
@@ -464,7 +465,26 @@ Tr(\mathscr{G} \cup \mathscr{H})=\min(Tr(\mathscr{G}) \vee Tr(\mathscr{H}))</scr
 \begin{align}
 C_{B,G}=& \{ u\in M \backslash \{m\} | not\ \exists v\in M: \mu u \wedge \mu m \le _{BG}{\mu v} \lt _{BG}{\mu m} \} \newline 
 =& \{ u\in M \backslash \{m\} | not\ \exists v\in M: \mu u \wedge \mu m \le _m{\mu v} \lt _m{\mu m} \} 
-\end{align}</script><p>词汇积累</p>
+\end{align}</script><p>Proof 从 Lemma 6 可知</p>
+<script type="math/tex; mode=display">
+\mu v \lt _{BG}\mu m \Leftrightarrow \mu v \lt _{init}\mu m \Leftrightarrow \mu v \lt _m \mu m</script><p>而且，由FCA可知一个事实——$\mu u \wedge \mu m \le _{BG}\mu v\ iff\ \{u,m\}^{‘BG} \subseteq \{v\}^{‘BG}$即有$\{u,m\} \rightarrow \{v\}$在$\mathbb{K}_{BG}$中成立。如果有$\mu v \lt _m{\mu m}$，则可知属性$v$在之前的迭代过程中已处理，因此所有在$\mathbb{K}_m$中成立的蕴涵式$S \rightarrow \{v\}\ iff\ they\ hold\ in\ \mathbb{K}_{BG}$。所以可以得到$all\ v\in M\ with\ \mu v \lt _m{\mu m}$。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\mu u \wedge \mu m \le _{BG}\mu v &\Leftrightarrow \{u,m\} \rightarrow \{v\}\ holds\ in\ \mathbb{K}_{BG} \newline
+&\Leftrightarrow \{u,m\} \rightarrow \{v\}\ holds\ in\ \mathbb{K}_m\ \Leftrightarrow \mu u \wedge \mu m \le _m{\mu v} 
+\end{align}</script><p>从上式三式（9-11）可得以下结论等价：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+u\notin C_m &\Leftrightarrow \exists v\in M: \mu u \wedge \mu m \le _m{\mu v} \lt _m{\mu m} \newline
+&\Leftrightarrow \exists v\in M: \mu u \wedge \mu m \le _{BG}{\mu v} \lt _{BG}{\mu m} \newline
+&\Leftrightarrow u\notin C_{BG}
+\end{align}</script><p>这证明了$C_m = C_{BG}$。</p>
+<hr>
+<p>Lemma 7 说明了：如果我们在 background context 中运行算法2， 获得的候选集与以 subcontext 作为算法8的输入获得的候选集相同。而算法8的正确性可由算法2的正确性直接获得（Lemma 1）。</p>
+<h4 id="6-2-3-Removing-Reducibles"><a href="#6-2-3-Removing-Reducibles" class="headerlink" title="6.2.3 Removing Reducibles"></a>6.2.3 Removing Reducibles</h4><p>从 Lemma 6 中，我们可以知道，一旦$\mathbb{K}_{init}$被计算，则在探索过程中，不可约属性集将不会改变，并且实际上与$\mathbb{K}_{BG}$中的不可约属性集相同。因此，可直接将搜索空间限制为不可约属性集来直接扩展算法8获得算法9，而算法9的正确性是算法3和算法9的直接结果。</p>
+<img src="/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200713231141823.png" srcset="/img/loading.gif" class>
+<p><img src="/peerless.github.io/2020/07/04/2014-Fast%20Algorithms%20for%20Implication%20Bases%20and%20Attribute%20Exploration%20Using%20Proper%20Premises/image-20200713231141823.png" srcset="/img/loading.gif" alt></p>
+<p>词汇积累</p>
 <ul>
 <li>induction：归纳法。</li>
 </ul>

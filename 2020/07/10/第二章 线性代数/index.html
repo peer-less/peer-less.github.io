@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      3k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      37
        分钟
     </span>
   
@@ -277,7 +277,74 @@ x^Ty=\parallel x\parallel_2\parallel y\parallel_2 \cos\theta\qquad 其中\theta�
 <script type="math/tex; mode=display">
 \parallel x\parallel_{\infin}=\max\limits_i |x_i|</script><p><span style="color:red"><strong>Frobenius</strong> 范数（Frobenius norm）</span>：衡量矩阵的大小。</p>
 <script type="math/tex; mode=display">
-\parallel A\parallel_F=\sqrt{\sum\limits_{i,j} A_{i,j}^2}</script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+\parallel A\parallel_F=\sqrt{\sum\limits_{i,j} A_{i,j}^2}</script><h2 id="2-5-矩阵分解"><a href="#2-5-矩阵分解" class="headerlink" title="2.5 矩阵分解"></a>2.5 矩阵分解</h2><p><span style="color:red">特征分解（eigendecomposition）</span>：将矩阵分解成一组特征向量和特征值。</p>
+<script type="math/tex; mode=display">
+Av=\lambda v</script><p>标量$\lambda$为特征向量$v$对应的特征值（eigenvalue）。（类似地，我们也可以定义 左特征向量（left eigenvector）$v^⊤A = v^⊤λ$，但是通常我们更关注右特征向量（right eigenvector））。</p>
+<p>假设矩阵 <strong>A</strong> 有 <em>n</em> 个线性无关的特征向量 $\{ v^{(1)}, . . . , v^{(n)} \}$，对应着特征值$\{ λ_1, . . . , λ_n \}$。我们将特征向量连接成一个矩阵，使得每一列是一个特征向量：$V = \{ v^{(1)}, . . . , v^{(n)} \}$类似地，我们也可以将特征值连接成一个向量 $λ = \{ λ_1, . . . , λ_n \}^T$。因此 <strong>A</strong> 的 特征分解（eigendecomposition）可以记作</p>
+<script type="math/tex; mode=display">
+A = V diag(λ) V^{-1}</script><p><span style="color:red">正交分解</span>：每个实对称矩阵都可以分解为实特征向量和实特征值。</p>
+<script type="math/tex; mode=display">
+A = Q \Lambda Q^T</script><p>其中$Q$是$A$的特征向量组成的正交矩阵，$\Lambda$是对角矩阵。特征值$\lambda_i$对应的特征向量是矩阵$Q$的第$i$列，记作$Q_{:,i}$。我们通常按降序排列 的元素。在该约$\Lambda$定下，特征分解唯一当且仅当所有的特征值都是唯一的。</p>
+<p>我们可以将 A 看作沿方向 $v^{(i)}$ 延展 $λ_i$ 倍的空间。如图2.3 所示的例子。</p>
+<img src="/2020/07/10/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/image-20200713160411504.png" srcset="/img/loading.gif" class>
+<p><img src="/peerless.github.io/2020/07/10/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/image-20200713160411504.png" srcset="/img/loading.gif" alt></p>
+<p>实对称矩阵的特征分解也可以用于优化二次方程 $f(x) = x^⊤Ax$，其中限制 $∥x∥_2 = 1$。当 $x$等于 $A$ 的某个特征向量时，$f$ 将返回对应的特征值。在限制条件下，函数  的最大值$f$是最大特征值，最小值是最小特征值。</p>
+<p><span style="color:red">奇异值分解（singular value decomposition, SVD）</span>：将矩阵分解为 奇异向量（singular vector）和 奇异值（singular value）。</p>
+<script type="math/tex; mode=display">
+A = U D V^T</script><p>其中假设$A$是一个$m \times n$的矩阵，那么$U$将是一个$m \times m$的方阵，$D$是一个$m \times n$的矩阵，$V$是一个$n \times n$的方阵。</p>
+<p>这些矩阵中的每一个经定义后都拥有特殊的结构。矩阵 $U$ 和 $V$ 都定义为正交矩阵，而矩阵 $D$ 定义为对角矩阵。注意，矩阵 $D$ 不一定是方阵。</p>
+<p>对角矩阵 $D$ 对角线上的元素被称为矩阵 $A$ 的 奇异值（singular value）。矩阵$U$ 的列向量被称为 左奇异向量（left singular vector），矩阵 $V$ 的列向量被称 右奇异向量（right singular vector）。</p>
+<p>$A$的<span style="color:red">左奇异向量（left singular vector）</span>是 $AA^⊤$ 的特征向量。</p>
+<p>$A$的<span style="color:red">右奇异向量（right singular vector）</span>是 $A^⊤A$ 的特征向量。</p>
+<p>$A$的<span style="color:red">非零奇异值</span>是 $A^⊤A$ 特征值的平方根，同时也是$AA^⊤$ 特征值的平方根。</p>
+<h2 id="2-6-Moore-Penrose-伪逆、迹运算、行列式"><a href="#2-6-Moore-Penrose-伪逆、迹运算、行列式" class="headerlink" title="2.6 Moore-Penrose 伪逆、迹运算、行列式"></a>2.6 Moore-Penrose 伪逆、迹运算、行列式</h2><p> <span style="color:red">Moore-Penrose 伪逆（Moore-Penrose pseudoinverse）</span>：矩阵$A$的伪逆定义为</p>
+<script type="math/tex; mode=display">
+A^+ = \lim\limits_{\alpha \searrow 0}(A^{\top} A + \alpha I)^{-1}A^{\top}</script><p>但实际的伪逆算法没有基于这个定义，而是</p>
+<script type="math/tex; mode=display">
+A^+ = V D^+ U^{\top}</script><p>其中，矩阵$U,\ D,\ V$分别是矩阵$A$奇异值分解后得到的矩阵。对角矩阵$D$的伪逆$D^+$是其非0元素取倒数之后再转置得到的。</p>
+<p>当矩阵$A$的列数多于行数时，使用伪逆求解线性方程是众多可能解法中的一种。特别地，$x = A^+ y$ 是方程所有可行解中欧几里得范数 $∥x∥_2$ 最小的一个。</p>
+<p>当矩阵 $A$ 的行数多于列数时，可能没有解。在这种情况下，通过伪逆得到的 $x$使得  $Ax$和$y$的欧几里得距离 $∥Ax - y∥_2$ 最小。</p>
+<p><span style="color:red">迹运算</span>：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\parallel A \parallel_F &= \sqrt{Tr(AA^{\top})} \newline
+Tr(A) &= Tr(A^{\top}) \newline
+Tr(ABC) &= Tr(BCA) = Tr(CAB) \newline
+Tr(AB) &= Tr(BA) 
+\end{align}</script><p><span style="color:red">行列式</span>：记作 $det(A)$，是一个将方阵  $A$ 映射到实数的函数。行列式等于矩阵特征值的乘积。行列式的绝对值可以用来衡量矩阵参与矩阵乘法后空间扩大或者缩小了多少。</p>
+<p>如果行列式是 0，那么空间至少沿着某一维完全收缩了，使其失去了所有的体积。如果行列式是 1，那么这个转换保持空间体积不变。</p>
+<h2 id="2-7-PCA（主成分分析，principal-components-analysis）"><a href="#2-7-PCA（主成分分析，principal-components-analysis）" class="headerlink" title="2.7 PCA（主成分分析，principal components analysis）"></a>2.7 PCA（主成分分析，principal components analysis）</h2><hr>
+<p>问题描述：假设我们有 $m$ 个数据点 $x^{(1)}, . . . , x^{(m)}∈\mathbb{R}^n$，对于每个数据点$x^{(i)}$ ，我们希望找到⼀个对应的点 $c^{(i)} \in \mathbb{R}^l,\ l\lt n$去表⽰它 (相当于对它进⾏降维)，并且让损失的信息量尽可能少。</p>
+<hr>
+<p>解题思路</p>
+<p>我们可以将这个过程看作是一个编码解码的过程。</p>
+<p>编码函数：$f(x) = c$；</p>
+<p>解码函数：$x \approx g(f(x))$；</p>
+<p>则 PCA 由我们选择的解码函数确定，而为了简化解码器，我们使用矩阵乘法将编码映射回$\mathbb{R}^n$，即$g(c) = Dc$，其中$D \in \mathbb{R}^{n \times l}$是定义的解码矩阵，且$D$的列向量相互正交。</p>
+<p>此时，问题可能有多个解。而为了获得唯一解，则可假定$D$的所有列向量均具有单位范数。</p>
+<p>对于给定的$x$，我们需要找到信息损失最小的$c^*$，即</p>
+<script type="math/tex; mode=display">
+c^* = \arg\min\limits_c ||x - g(c)||_2 = \arg\min\limits_c ||x - g(c)||_2^2</script><p>我们用$L^2$范数来衡量它们的距离，又因$L^2$范数是非负的并且其平方运算在非负值上单调递增，则两者在相同的$c$上取得最小值，则可用平方$L^2$范数代替$L^2$范数。而</p>
+<script type="math/tex; mode=display">
+||x - g(c)||_2 = (x - g(c))^{\top}(x - g(c)) = x^{\top}x - x^{\top}g(c) - {g(c)}^{\top}x + {g(c)}^{\top}{g(c)}</script><p>则可忽略不依赖$c$的$x^{\top}x$，则有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+c^* &= \arg\min\limits_c[x^{\top}x - x^{\top}g(c) - {g(c)}^{\top}x + {g(c)}^{\top}{g(c)}] \newline
+&= \arg\min\limits_c[-2x^{\top}g(c) + {g(c)}^{\top}{g(c)}] \newline
+代入g(c)=Dc， &= \arg\min\limits_c[-2x^{\top}Dc + {\left(Dc\right)}^{\top}{Dc}] \newline
+&= \arg\min\limits_c[-2x^{\top}Dc + c^{\top}D^{\top}{Dc}] \newline
+由于D具有单位正交性，&= \arg\min\limits_c[-2x^{\top}Dc + c^{\top}I_l c] \newline
+&= \arg\min\limits_c[-2x^{\top}Dc + c^{\top} c] \newline
+\end{align}</script><p>则对$c$求梯度，并令其为0有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\nabla_c (-2x^{\top}Dc + c^{\top} c) &= 0 \newline
+-2D^{\top}x + 2c &= 0 \newline
+则， c &= D^{\top}x
+\end{align}</script><p>因此，</p>
+<p>编码函数：$f(x) = c = D^{\top}x$；</p>
+<p>编码解码得到的重构函数：$r(x) = g(f(x)) = g(c) = Dc = DD^{\top}x$；</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
             <div>
