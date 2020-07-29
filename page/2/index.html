@@ -17,7 +17,7 @@
   <meta name="description" content="个人博客，记录成长的点滴。">
   <meta name="author" content="peerless">
   <meta name="keywords" content="">
-  <title>归档 - peerless</title>
+  <title>peerless</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -143,6 +143,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -152,33 +156,60 @@
     
       <div class="container nopadding-md">
         <div class="py-5" id="board"
-          >
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 11 篇文章</p>
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/2020/06/30/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%AD%A6%E7%A7%91%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2020-计算机科学-并行计算学科发展历程</span>
-      <span style="float: right;">06-30</span>
-    </a>
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/06/28/2018-CS-A%20General%20Form%20of%20Attribute%20Exploration%20/">2018-CS-A General Form of Attribute Exploration </a>
+
+      <a href="/2020/06/28/2018-CS-A%20General%20Form%20of%20Attribute%20Exploration%20/" class="index-excerpt">
+        
+        
+          
+        
+        <div> 
+A General Form of Attribute Exploration行文思路简要总结问题：如何从经典属性探索出发获得通用的属性探索？
+​            1.回顾经典属性探索算法。
+​            2.通过引入3个条件扩展属性探索算法：
+
+引入两个闭包算子$c_{cert}(A)$与$c_{univ}(A)$。
+不明确指定提供的反例。
+只向专家询问满足$c_{cert</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-06-28
+          </div>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2020/06/28/2018-CS-A%20General%20Form%20of%20Attribute%20Exploration%20/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">2018-CS-A General Form of Attribute Exploration </span>
-      <span style="float: right;">06-28</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -357,7 +388,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "归档&nbsp;",
+        "Self-discipline, Exercise more, Do not stay up all night&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

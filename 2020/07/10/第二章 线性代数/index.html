@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3k 字
+      3.2k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      37
+      40
        分钟
     </span>
   
@@ -250,7 +250,7 @@
 <li><span style="color:red">线性无关（linearly independent）</span>：如果一组向量中的任意一个向量都不能表示成其他向量的线性组合，那么这组向量称为 线性无关（linearly independent）。</li>
 <li><span style="color:red">奇异的（singular）</span>：一个列向量线性相关的方阵。</li>
 </ul>
-<h2 id="2-4-范数"><a href="#2-4-范数" class="headerlink" title="2.4 范数"></a>2.4 范数</h2><p style="text-indent:2em"><span style="color:red">范数（singular）</span>是将向量映射到非负值的函数。。直观上来说，向量 x 的范数衡量从原点到点 x 的距离。更严格地说，范数是满足下列性质的任意函数：</p>
+<h2 id="2-4-范数"><a href="#2-4-范数" class="headerlink" title="2.4 范数"></a>2.4 范数</h2><p style="text-indent:2em"><span style="color:red">范数（singular）</span>是将向量映射到非负值的函数。直观上来说，向量 x 的范数衡量从原点到点 x 的距离。更严格地说，范数是满足下列性质的任意函数：</p>
 
 <ul>
 <li>$f(x)=0\Rightarrow x=0$</li>
@@ -344,7 +344,20 @@ c^* &= \arg\min\limits_c[x^{\top}x - x^{\top}g(c) - {g(c)}^{\top}x + {g(c)}^{\to
 \end{align}</script><p>因此，</p>
 <p>编码函数：$f(x) = c = D^{\top}x$；</p>
 <p>编码解码得到的重构函数：$r(x) = g(f(x)) = g(c) = Dc = DD^{\top}x$；</p>
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+<p>接下来，我们就需挑选最优的编码矩阵$D$，所以我们必须最小化所有维度和所有点上的误差矩阵的 Frobenius 范数。</p>
+<script type="math/tex; mode=display">
+D^* = \arg\min\limits_D \sqrt{\sum\limits_{i,j} \left(x_j^{(i)} - r(x^{(i)})_j \right)^2} \qquad subject\ to\ D^{\top}D = I_l</script><p>而为了方便，我们考虑$l = 1$的情况，此时问题简化为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&d^* = \arg\min\limits_d \sum\limits_i \left( x_j^{(i)} - dd^{\top}x^{(i)} \right)^2 \newline
+&s.t.\ d^{\top}d = 1
+\end{align}</script><p>考虑标量$d^{\top}x^{(i)}$的转置与自身相等，则可化为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+d^* &= \arg\min\limits_d \sum\limits_i \left( x_j^{(i)} - d^{\top}x^{(i)}d \right)^2 \quad s.t.\ d^{\top}d = 1 \newline
+&= \arg\min\limits_d \sum\limits_i \left( x_j^{(i)} - {x^{(i)}}^{\top}dd \right)^2 
+
+\end{align}</script><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
             <div>
@@ -379,6 +392,12 @@ c^* &= \arg\min\limits_c[x^{\top}x - x^{\top}g(c) - {g(c)}^{\top}x + {g(c)}^{\to
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/07/14/2016-ICCS-Parallel%20Attribute%20Exploration/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2016-ICCS-Parallel Attribute Exploration</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

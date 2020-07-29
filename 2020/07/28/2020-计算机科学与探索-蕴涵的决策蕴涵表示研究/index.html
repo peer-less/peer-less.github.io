@@ -17,7 +17,7 @@
   <meta name="description" content="个人博客，记录成长的点滴。">
   <meta name="author" content="peerless">
   <meta name="keywords" content="">
-  <title>2015-CLA-NextCloures Parallel Computation of the Canonical Base - peerless</title>
+  <title>2020-计算机科学与探索-蕴涵的决策蕴涵表示研究 - peerless</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-01 16:54">
-      2020年7月1日 下午
+    <time datetime="2020-07-28 14:35">
+      2020年7月28日 下午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      3.8k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      49
        分钟
     </span>
   
@@ -204,144 +204,139 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="NextClosures-Parallel-Computation-of-the-Canonical-Base"><a href="#NextClosures-Parallel-Computation-of-the-Canonical-Base" class="headerlink" title="NextClosures: Parallel Computation of the Canonical Base"></a>NextClosures: Parallel Computation of the Canonical Base</h1><div class="note note-primary">
-            <p>属性探索、并行算法、NextCloures</p>
+              <h1 id="蕴涵的决策蕴涵表示研究"><a href="#蕴涵的决策蕴涵表示研究" class="headerlink" title="蕴涵的决策蕴涵表示研究"></a>蕴涵的决策蕴涵表示研究</h1><div class="note note-primary">
+            <p>属性探索、决策蕴涵</p>
           </div> 
-<a id="more"></a>
-<!-- <p class='note note-info'>论文、属性探索</p> -->
-<h2 id="论文基本信息"><a href="#论文基本信息" class="headerlink" title="论文基本信息"></a>论文基本信息</h2><p>​            1. 作者：Francesco Kriegel 、Daniel Borchmann。</p>
-<p>​            2. 期刊：International Journal of General Systems。</p>
-<p>​            3. 会议：CLA。</p>
-<p>​            4. 时间：2015。</p>
-<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ul>
-<li>形式背景的规范基在形式概念分析中起着举足轻重的作用。</li>
-<li>目前所提的计算主基的算法都是线性序的，即一次只计算一个伪内涵。</li>
-<li>本文介绍一种允许以并行方式计算主基的方法。</li>
-<li>实验表明，对于足够大的数据集，加速比与CPU的数量成正比。</li>
-</ul>
-<p>词汇积累：</p>
-<ul>
-<li>canonical base: 主基，正则基，规范基。</li>
-<li>remedies: 救济方法，弥补手段。</li>
-<li>deficit: 缺陷。</li>
-<li>is proportional to: 与之成正比。</li>
-</ul>
-<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><ol>
-<li><p>有两种已知的线性序的算法可以计算形式背景的主基$^{[6, 12]}$，即一次只计算一个蕴涵式。这两种算法还计算了给定形式背景的所有形式概念。</p>
-</li>
-<li><p>目前为止，还不知道能否在多项式时间内计算主基。</p>
-</li>
-<li><p>实际上，对于以字典序来计算伪内涵的算法，都表明了它无法在多项式时间内计算出主基。</p>
-</li>
-<li><p>已有并行式计算给定形式背景的概念格的方法$^{[5, 13]}$。</p>
-</li>
-<li><p>本文想探索出一种并行式计算主基的算法，该思想已经被Lindg[11]用来顺序计算给定形式背景的概念格。</p>
-<p> 思想：为了计算主基，则需要计算出形式背景的所有内涵和伪内涵的概念格。这个格需要按级别顺序自下而上的计算，并且基于该格特定层上有一定的“宽度”在该计算可以并行完成。</p>
-<p> 现在有一个事实：对于计算内涵/伪内涵$B$的上邻域，则只需要迭代所有$m\notin B$的属性并计算出$B\cup \{m\}$的闭包。</p>
-<p> 而在lindg中计算该闭包的方法为：$B\rightarrow B^{II}$。</p>
-<p> 而且实验结果表明，对于合适的大的形式背景，主基的计算速度与CPU的数量成正比。</p>
-</li>
-</ol>
-<h2 id="2-Preliminaries"><a href="#2-Preliminaries" class="headerlink" title="2 Preliminaries"></a>2 Preliminaries</h2><p>1.A model of $X\rightarrow Y$ is a set $T\subseteq M\Leftrightarrow X\subseteq T\Rightarrow Y\subseteq T$.</p>
-<p>2.A model of $L$ is a model of all implications in $L$, and $X^L$ is the superset of $X$ that is a model of $L$.</p>
-<p>3.$X^L$的计算方式如下：</p>
+<h2 id="论文基本信息"><a href="#论文基本信息" class="headerlink" title="论文基本信息"></a>论文基本信息</h2><p>​            1.作者：王亚丽、翟岩慧、张少霞、贾楠、李德玉。</p>
+<p>​            2.期刊：计算机科学与探索。</p>
+<p>​            3.时间：2020/07/23。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>1.决策蕴涵是一种特殊的蕴涵，而决策蕴涵的研究就是在蕴涵中建立并研究一个/多个封闭的子系统(包括决策蕴涵子系统及相应的语义和语构子系统)。</p>
+<p>2.为了进一步厘清蕴涵和决策蕴涵之间的关系，对由决策蕴涵子系统能不能得到整蕴涵系统进行了研究。</p>
+<p>3.首先给出了蕴涵可以由决策蕴涵表示的充要条件；</p>
+<p>​    接着通过实例表明，存在一些蕴涵不可由决策蕴涵表示，因此，进一步区分了直接表示和间接表示；</p>
+<p>​    随后，通过研究决策背景中只有一个决策属性时不可被直接表示的蕴涵所具有的特点，给出了蕴涵不可由决策蕴涵直接表示的充要条件，并给出了不可被直接表示蕴涵的生成方法。</p>
+<p>4.这种研究为蕴涵和规范基的研究提供了一种新视角，同时也为形式概念分析更深入的理论研究工作奠定了基础。</p>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h2><p>1.形式概念分析(Formal Concept Analysis，FCA)是由德国 Wille R 教授于 1982 年提出的一种通过形式背景建立概念格来对数据进行分析和提取规则的一个强有力的工具[1-2]。</p>
+<p>2.目前，FCA 已被广泛地应用到机器学习、社会网络、软件工程、信息检索、基于认知的概念学习、知识约简等相关领域[3-15]。</p>
+<p>3.形式概念分析(概念格)中对知识获取的研究就是对蕴涵的研究[16-21]，但由于蕴涵数目庞大，无法满足用户的需求，因此如何获取完备无冗余的蕴涵规则集仍是研究的热点[17]。</p>
+<p>4.文献[17]从逻辑方面对完备性和无冗余性进行了讨论，其中 Ganter 等已经讨论了蕴涵的语义特征和语构特征，提出了三条蕴涵推理规则，而且证明了这三条推理规则相对于蕴涵的语义是完备的，并给出了源于文献[22]的一个蕴涵基(完备无冗余的蕴涵集合)。。已经证明，该蕴涵基在所有蕴涵基中所含的蕴涵个数最少。</p>
+<p>5.曲开社等进一步讨论蕴涵和逻辑的关系，提出了一种新的蕴涵基，并给出一种有效的方法来生成该蕴涵基[23]。</p>
+<p>6.为了减少蕴涵的数目，曲开社等提出了决策背景及决策蕴涵的概念[24]，并讨论了一种直观的推理规则( 推理规则)，该推理规则通过增加决策蕴涵的前提或者减小决策蕴涵的结论来导出新的决策蕴涵[20]。</p>
+<p>7.文献[20]还讨论了基于该推理规则的完备性和冗余性，并提出了一种基于最小生成子[25]的决策蕴涵规范基生成算法。另外，文献[26]提出了一种基于真前提的决策蕴涵规范基生成算法，实验结果表明该算法效率更高。</p>
+<p>8.研究发现， 推理规则在语构特征上并非是完备的，因此文献[24]提出了合并推理规则，并证明合并推理规则和 推理规则(扩增推理规则)是完备的推理规则集。</p>
+<p>9.在此基础上，文献[27]又给出一条新的推理规则——后件合并推理规则，它只对前件相同的决策蕴涵的后件进行合并。因此，后件合并推理规则在形式上更简洁。文献[27]也证明了扩增推理规则和后件合并推理规则是合理的、完备的并且是无冗余的。</p>
+<p>10.此外，文献[28]给出一个决策蕴涵基(称为决策蕴涵规范基)。该规范基基于决策前提[29]，即由决策前提作为该决策蕴涵集的前提，由决策前提相对于决策子背景的闭包作为该决策蕴涵集的结论。文献[28]还证明了该决策蕴涵规范基是完备的、无冗余的、并且在所有完备的决策蕴涵集中所含的决策蕴涵最少，因而决策蕴涵规范基是最精简的和最优的。</p>
+<p>11.研究结果表明，决策蕴涵规范基是蕴涵规范基[17]在决策背景下的对应概念，并且具有蕴涵规范基的所有优点。</p>
+<p style="text-indent:2em">本文将从语构方面深入研究由这些子系统(决策蕴涵)能不能得到整个系统(所有的蕴涵)。如果蕴涵可以由决策蕴涵推出，那么关于蕴涵的研究就可以转化为决策蕴涵的研究。这样就可以由决策蕴涵来生成蕴涵，甚至可以由决策蕴涵规范基生成蕴涵规范基。</p>
+
+<h2 id="2-FCA基本概念"><a href="#2-FCA基本概念" class="headerlink" title="2 FCA基本概念"></a>2 FCA基本概念</h2><h2 id="3-蕴涵"><a href="#3-蕴涵" class="headerlink" title="3 蕴涵"></a>3 蕴涵</h2><p>蕴涵的语义特征：</p>
+<p><strong>定义6$^{[17]}$</strong> 设$K=(G, M, I)$是一个形式背景，$T\subseteq M$且$A\rightarrow B$是形式背景$K$下的一个蕴涵。如果属性子集$A\nsubseteq T$或$B\subseteq T$，则称$T$是蕴涵$A\rightarrow B$的一个模型，记为$T\models (A\rightarrow B)$。设$\Theta$为一个蕴涵集，如果对于每一个$(A\rightarrow B)\in \Theta$都有$T\models (A\rightarrow B)$，则称$T$是$\Theta$的一个模型，记为$T\models \Theta$。</p>
+<p><strong>定义7$^{[17]}$</strong> 设$K=(G, M, I)$$是一个形式背景，$ $\Theta$为$K$的一个蕴涵集，若对任意的$T\subseteq M$，$T\models \Theta$蕴涵$T\models A\rightarrow B$，则称$A\rightarrow B$可以从$\Theta$语义导出。记为$\Theta \vdash A\rightarrow B$。若对任意的$(A\rightarrow B)\in \Theta$且$(\Theta \backslash (A\rightarrow B)) \vdash (A\rightarrow B)$，则称$A\rightarrow B$相对于$\Theta$是冗余的。</p>
+<p><strong>定义8$^{[17]}$</strong> 设$K=(G, M, I)$$是一个形式背景，$ $\Theta$为$K$的一个蕴涵集，若对任意的$A\rightarrow B,\ \Theta \vdash A\rightarrow B$均成立，则称$\Theta$是$K$的一个完备集。</p>
+<p>蕴涵的语构特征：</p>
+<p>（1）$X\rightarrow X,\ X\subseteq M$；（自反性）</p>
+<p>（2）若$X\rightarrow Y \in \Theta$，则$X\cup Z \rightarrow Y \in \Theta,\ X, Y, Z \subseteq M$；（增广性）</p>
+<p>（3）若$X\rightarrow Y \in \Theta$且$Y\cup Z \rightarrow W \in \Theta$，则$X\cup Z \rightarrow W \in \Theta,\ X, Y, Z \subseteq M$。（伪传递性）</p>
+<p>文献[30]已经证明这三条推理规则相对于蕴涵的语义是完备的，即从$\Theta$中导出的任意蕴涵都可以重复使用上述三条推理规则从$\Theta$中推出。</p>
+<h2 id="4-决策蕴涵"><a href="#4-决策蕴涵" class="headerlink" title="4 决策蕴涵"></a>4 决策蕴涵</h2><h3 id="4-1-决策蕴涵的语义特征"><a href="#4-1-决策蕴涵的语义特征" class="headerlink" title="4.1 决策蕴涵的语义特征"></a>4.1 决策蕴涵的语义特征</h3><p><strong>定义9$^{[20]}$</strong> 设$K=(G, M, I)<script type="math/tex">是一个形式背景，如果令</script>M=C\cup D,\ I=I_C \cup I_D$，其中$C$是条件属性集，$D$是决策属性集，$C\cap D = \varnothing,\ I_C = G \times C$是条件关系，$I_D = G \times D$是决策关系，此时$K=(G, C, D, I)$为一个以$C$为条件，$D$为决策的决策背景。</p>
+<p><strong>定义11$^{[20]}$</strong> 设$K=(G, C\cup D, I_C \cup I_D)$是一个决策背景，若$A\subseteq C$且$B\subseteq D$，则称$A\rightarrow B$是一个决策蕴涵。此时，$A$为该决策蕴涵的前提，$B$为该决策蕴涵的结论。</p>
+<h3 id="4-1-决策蕴涵的语构特征"><a href="#4-1-决策蕴涵的语构特征" class="headerlink" title="4.1 决策蕴涵的语构特征"></a>4.1 决策蕴涵的语构特征</h3><p>决策蕴涵的语构方面主要研究推理规则的合理性、完备性和无冗余性。</p>
+<p>文献[24]提出两条推理规则：</p>
 <script type="math/tex; mode=display">
 \begin{align}
-X^L:=\bigcup_{n\geq 1}X^{L_n}\ where\ X^{L_1}:&=X\cup \bigcup \{B\mid A\rightarrow B\in L\ and\ A\subseteq X\} \newline
-and\ X^{L_{n+1} }:&=(X^{L_n})^{L_1} for\ all\ n\in N
-\end{align}</script><p>当且仅当$X，X\subseteq M$是$\mathbb{K}^<em>$闭包时，很容易判定$X$是形式背景$K$的内涵/伪内涵。$\mathbb{K}^</em>$闭包定义如下：</p>
+扩增推理规则&：\frac{A\rightarrow B, A_1 \supseteq A, B_1 \subseteq B}{A_1 \rightarrow B_1} \newline
+合并推理规则&：\frac{A\rightarrow B, A_1 \rightarrow B_1}{A\cup A_1 \rightarrow B \cup B_1}
+\end{align}</script><p>并且证明了这两条规则是合理、完备和非冗余的。</p>
+<p>文献[27]在此基础上提出了一条新的推理规则：</p>
 <script type="math/tex; mode=display">
 \begin{align}
-X^{\mathbb{K}^*}:=\bigcup_{n\geq 1}X^{\mathbb{K}_n^*}\ where\ X^{\mathbb{K}_1^*}:&=X\cup\bigcup \{P^{II}\mid P\in PsInt(\mathbb{K})\ and\ P\subsetneq X\} \newline
-and\ X^{\mathbb{K}_{n+1}^*}:&=(X^{\mathbb{K}_n^*})^{\mathbb{K}_1^*} for\ all\ n\in N
-\end{align}</script><p>如果$L$是形式背景$\mathbb{K}$的主基，则$L^<em>$与$\mathbb{K}^</em>$重合。$L^*$闭包定义如下：</p>
+后件合并推理规则&：\frac{A \rightarrow B_1, A\rightarrow B_2}{A\rightarrow B_1 \cup B_2}
+\end{align}</script><p>并且证明了这条规则是合理、完备和非冗余的。</p>
+<h2 id="5-决策蕴涵表示蕴涵"><a href="#5-决策蕴涵表示蕴涵" class="headerlink" title="5 决策蕴涵表示蕴涵"></a>5 决策蕴涵表示蕴涵</h2><h3 id="5-1-蕴涵表示的逻辑简化"><a href="#5-1-蕴涵表示的逻辑简化" class="headerlink" title="5.1 蕴涵表示的逻辑简化"></a>5.1 蕴涵表示的逻辑简化</h3><p><strong>引理1</strong> 设$A\rightarrow B$是形式背景$K$下的一个蕴涵，则蕴涵$A\rightarrow B$成立，当且仅当$\forall b_i \in B, A\rightarrow b_i$均成立。</p>
+<p><strong>证明</strong> </p>
 <script type="math/tex; mode=display">
-\begin{align}
-X^{L^*}:=\bigcup_{n\geq 1}X^{L_n^*}\ where\ X^{L_1^*}:&=X\cup \bigcup \{B\mid A\rightarrow B\in L\ and\ A\subsetneq X\} \newline
-and\ X^{L_{n+1}^*}:&=(X^{L_n^*})^{L_1^*} for\ all\ n\in N
-\end{align}</script><p>4.内涵：$B=B^{II}$。</p>
-<p>伪内涵：$P\neq P^{II}$，且$P$的每一个伪内涵子集$Q，Q\subsetneq P$，满足$Q^{II}\subseteq P$。将形式背景$K$上的所有伪内涵集合记为$PsInt(K)$。</p>
-<p>蕴涵式：$\{P\rightarrow P^{II}\mid P\in PsInt(K)\}$。</p>
-<h2 id="3-Parallel-Computation-of-the-Canonical-Base"><a href="#3-Parallel-Computation-of-the-Canonical-Base" class="headerlink" title="3 Parallel Computation of the Canonical Base"></a>3 Parallel Computation of the Canonical Base</h2><p>1.$NextCloures$算法由Ganter$^{[6]}$提出，用于枚举主基。</p>
-<ul>
-<li>算法思想：以一定的线性顺序(即字典序)计算形式背景K的所有内涵和伪内涵。</li>
-<li>优势：下一个(伪)意图是唯一确定的，但我们可能需要回溯才能找到它。</li>
-<li>该算法本质上是顺序的，即不可能将其并行化。</li>
-</ul>
-<p>2.我们的方法按照子集序枚举所有的内涵和伪内涵。</p>
-<ul>
-<li>易于并行化枚举。</li>
-<li>多线程实现中，不同线程之间不需要通信。</li>
-</ul>
-<p>原因：检测$P$是否为伪内涵时，只需判断$P$的伪内涵子集$Q\subsetneq P$，是否满足满足$Q^{II}\subseteq P$。即可按基数递增来判断伪内涵。</p>
-<p>算法思想的基本工作流程：</p>
-<p>​            1. 判断$\varnothing=\varnothing^{II}\Rightarrow \varnothing$是内涵/伪内涵。</p>
-<ol>
-<li>假设基数$&lt;k$的所有伪内涵均已确定，然后就可正确判断出属性集$P，P\subseteq M，|P|=k$是内涵/伪内涵。</li>
-<li>设定一个候选集合储存当前层次的内涵/伪内涵，而无论何时才找到伪内涵$P$，它的$\subseteq-next\ cloure$都是由$P^{II}$唯一确定的。</li>
-<li>如果$B$是一个内涵则它的$\subseteq-next\ cloure$为$(B\cup \{m\})^{\mathbb{K}^*},\ m\notin B$。</li>
-</ol>
-<p>具体的工作流程：</p>
-<p>基本定义：</p>
-<ul>
-<li>$K$：有限的形式背景。</li>
-<li>$k$：当前候选集的基数。候选集为储存当前层级的内涵/伪内涵。</li>
-<li>$C$：候选集合。</li>
-<li>$\mathfrak{B}$：形式概念集合。</li>
-<li>$L$：蕴涵式集合。</li>
-</ul>
-<p>具体流程：</p>
-<p>1.$k:=0，C:=\{\varnothing\}，\mathfrak{B}:=\varnothing，L:=\varnothing$.</p>
-<p>2.并行化：对于每个基数$|C|=k$的候选集合C $\in C$，确定它是否是$L^<em>-closed$。如果不是，则将它的$L^</em>-closure$加入候选集合$C$，跳到5。如果是$L^*-closed$，则跳到3。</p>
-<p>3.如果C是形式背景$K$的内涵，那么将形式概念$(C^I，C)$加入集合$\mathfrak{B}$中。否则C必为伪内涵，则将蕴涵式$C\rightarrow C^{II}$加入集合$L$，并且将形式概念$(C^I，C^{II})$加入集合$\mathfrak{B}$中。</p>
-<p>4.对得到的每一个内涵$C^{II}$，将它的上层邻居$C^{II}\bigcup \{m\}且m\notin C^{II}$加入候选集合$C$中。</p>
-<p>5.等待基数为$k$的所有候选集合都处理完毕，如果$k&lt;M$则递增$k$，并且跳到2；否则算法结束，返回形式概念集合$\mathfrak{B}$和蕴涵式集合$L$。</p>
-<img src="/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/1593623335.jpg" srcset="/img/loading.gif" class>
-<p><img src="/peerless.github.io/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/1593623335-1593786388801.jpg" srcset="/img/loading.gif" alt></p>
-<p>词汇积累：</p>
-<ul>
-<li>backtracking：回溯。</li>
-<li>level-wise：逐级。</li>
-<li>coincide：一致。</li>
-<li>inductive：归纳的；感应的，诱导的。</li>
-<li>suffices：满足。</li>
-</ul>
-<h2 id="4-Benchmarks"><a href="#4-Benchmarks" class="headerlink" title="4 Benchmarks"></a>4 Benchmarks</h2><p style="text-indent:2em">本节主要目的在于将我们并行式的算法与线性序的NextCloures算法在计算主基时进行定性与定量的比较分析。 
-</p>
-
-
-<p style="text-indent:2em">结果：并行式算法在一定的极限下，算法的运行时间与可用CPU的数量成正比的减少。 
-</p>
-
-<p>​        特点：同一层的候选集不能彼此影响，即线程之间不需要通信。</p>
-<p>​        异常情况：在某些情况下，当使用所有可用的CPU时，计算时间会增加。（原因未知）—-可能是由于平台或操作系统的一些技术细节，比如基准测试过程中执行的一些后台任务，或者线程维护带来的开销。</p>
-<p>数据集：FCA Data Repository$^{[4]}$。</p>
-<img src="/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/image-20200723003519115.png" srcset="/img/loading.gif" class>
-<p><img src="/peerless.github.io/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/images/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/image-20200723003519115-1595918426558.png" srcset="/img/loading.gif" alt></p>
-<p>基准测试结果：计算主基所用的时间基本与CPU数量成线性负相关。</p>
-<img src="/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/image-20200723003803863.png" srcset="/img/loading.gif" class>
-<p><img src="/peerless.github.io/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/images/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/image-20200723003803863-1595918434190.png" srcset="/img/loading.gif" alt></p>
-<img src="/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/image-20200723003944602.png" srcset="/img/loading.gif" class>
-<p>仅一个CPU的时候，本文方法与原方法所用时间基本相同，但当增加CPU的数量时，本文方法明显优于原方法，大致减少了$\frac13$到3比例的时间。</p>
-<p><img src="/peerless.github.io/2020/07/01/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/images/2015-CLA-NextCloures%20Parallel%20Computation%20of%20the%20Canonical%20Base/image-20200723003944602-1595918438926.png" srcset="/img/loading.gif" alt></p>
-<p>词汇积累：</p>
-<ul>
-<li>benchmarks：基准测试。</li>
-<li>overhead caused：导致的开销。</li>
-</ul>
-<h2 id="5-Conclusion"><a href="#5-Conclusion" class="headerlink" title="5 Conclusion"></a>5 Conclusion</h2><p style="text-indent:2em">本文介绍了计算正则基的并行式算法NextCloures。该算法以层次化的顺序（即增加基数），自下而上的构造给定形式背景的所有内涵和伪内涵的概念格。</p>
-
-<p style="text-indent:2em">由于概念格中某一层的元素可以独立计算，也可以并行枚举，从而产生了计算正则基的并行算法。</p>
-
-<p>可能的扩展：</p>
-<ul>
-<li>处理一组蕴涵式或约束闭包算子给出的具有背景知识的形式背景。</li>
-<li>属性探索：包含专家交互，以探索部分已知形式背景的规范基。<ul>
-<li>可以让几位专家同时回答问题。</li>
-<li>由于前提基数的增加即问题的难度与经典属性探索线性序提出的问题相比不断增加。</li>
-</ul>
-</li>
-</ul>
+\begin{align*}
+必要性：\newline
+因为& b_i \in B，所以有B=\{b_i\} \cup \{B-\{b_i\}\} \newline
+又因为& A\rightarrow B成立，所以A \rightarrow \{b_i\} \cup \{B-\{b_i\}\} \newline
+由自反&性推理规则可知，\{b_i\} \rightarrow \{b_i\}成立。 \newline
+再由增&广性推理规则可知，\{b_i\} \cup (B-\{b_i\}) \rightarrow \{b_i\}成立。\newline
+最后由&伪传递性推理规则及 \begin{cases} A \rightarrow \{b_i\} \cup \{B-\{b_i\}\} \newline\newline
+\{b_i\} \cup (B-\{b_i\}) \rightarrow \{b_i\} \end{cases}成立。\newline
+可知&A \rightarrow b_i成立。\newline\newline
+充分性: \newline
+我们&先证明 A\rightarrow \{b_1\} \cup \{b_2\}成立。\newline
+由自反&性推理规则可知 \{b_1\} \cup \{b_2\}\rightarrow \{b_1\} \cup \{b_2\}成立。\newline
+而因为& A \rightarrow b_i成立则由伪传递性推理规则及 
+\begin{cases}
+A \rightarrow b_1 \newline\newline
+\{b_1\} \cup \{b_2\}\rightarrow \{b_1\} \cup \{b_2\}
+\end{cases}成立。\newline
+可知& A \cup \{b_2\} \rightarrow \{b_1\} \cup \{b_2\}成立。\newline
+因为& A\cup \{b_2\} = A，即A \rightarrow \{b_1\} \cup \{b_2\} \newline
+接下来&，令B_1 \triangleq \{b_1\} \cup \{b_2\} \newline
+同理&，可证A \rightarrow B_1 \cup \{b_3\} \newline
+以此类&推，即可证明A \rightarrow B成立。
+\end{align*}</script><p><strong>引理2</strong> 设$A \rightarrow b$是形式背景$K$的一个蕴涵，$A_1 \subseteq A$。若$A_1 \rightarrow b$成立，则由增广性推理规则可知$A \rightarrow b$成立。</p>
+<p>引理2 说明，只需求出$b$成立的最小前件$A_1$，就可得到蕴涵$A \rightarrow b$。显然此时$b \notin A$。 </p>
+<h3 id="5-2-蕴涵表示的几种情况"><a href="#5-2-蕴涵表示的几种情况" class="headerlink" title="5.2 蕴涵表示的几种情况"></a>5.2 蕴涵表示的几种情况</h3><p>在形式背景$K=(G, M, I)$中，令$M=C \cup D，I = I_C \cup I_D$，即$K=(G, C \cup D, I_C \cup I_D)$，则蕴涵$A \rightarrow b$在$K$中存在六种情形：</p>
+<p>（1）$A \subseteq C，b \in D$；</p>
+<p>（2）$A \subseteq D，b \in D$；</p>
+<p>（3）$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in D$；</p>
+<p>（4）$A \subseteq C，b \in C$；</p>
+<p>（5）$A \subseteq D，b \in C$；</p>
+<p>（6）$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in C$；</p>
+<p>由于情形（1）（5）为决策蕴涵，情形（2）（4）为子背景上的蕴涵，则需判断情形（3）（6）能否由（1）（2）（4）（5）推出，而互换$C、D$，则情形（3）（6）可互换。则仅考虑情形（3）即可。</p>
+<p>首先，有</p>
+<p><strong>引理 3</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in D$。则如果$A \rightarrow b$可以由决策蕴涵表示，则$A \rightarrow b$必然是由伪传递性推理规则推导出的。</p>
+<p><strong>证明</strong></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+对于自反性推理规则&，由于b \notin A，则A \rightarrow b不具有自反性。\newline\newline
+对于增广性推理规则&，若X \cup Z \rightarrow Y可应用于A \rightarrow b，则X \cup Z = A 和 Y = \{b\}\newline
+由于A为使蕴涵成立&的最小前件，则\forall N\subset A，N \rightarrow b均不成立。\newline
+显然为了使推理规则&有意义，则Z \neq \varnothing，此时X \subseteq A，\begin{cases} 当X \subset A，X \rightarrow b不成立。\newline
+当X=A时，X\rightarrow b即为 A \rightarrow b  \end{cases}
+\newline\newline
+对于伪传递性推理规则&，如果A\rightarrow b可由\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}推导出，\newline
+则有，X \cup Z = A
+\end{align*}</script><p><strong>定理 1</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in D。A \rightarrow b$可以使用伪传递性推理规则推导出，当且仅当$\exists X, Y, Z \subseteq C \cup D，$满足$C\neq \varnothing，Y \neq \varnothing，b \notin Y，Y\cup Z \nsubseteq A，A \nsubseteq Y \cup Z，X \cup Z = A$且$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
+<p><strong>证明</strong></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+必要性& \newline
+&若X=\varnothing，则Z=A，而\varnothing \rightarrow Y成立，则Y=\varnothing，\newline
+&从而Y\cup Z \rightarrow b即为A \rightarrow b，因此X \neq \varnothing \newline\newline
+&证Y \neq \varnothing，由于A为使蕴涵成立的最小前件，则\forall N\subset A，N \rightarrow b均不成立。\newline
+&由X\cup Z = A，可知Z\subseteq A。\newline
+&当Z\subset A时，Z\rightarrow b不成立。为使Y\cup Z \rightarrow b成立，有Y \neq \varnothing。\newline
+&当Z=A时，Z \rightarrow b即为A \rightarrow b，因此Y \neq \varnothing。\newline\newline
+&现假设b\in Y，因为X\rightarrow Y成立。则由引理1可知X \rightarrow b成立。\newline
+&此时，由X \cup Z = A，可知X\subseteq A。\newline
+&由于X\cup Z为使蕴涵X \cup Z \rightarrow b成立的最小前件。\newline
+&因此，当X\subset A时，X \rightarrow b不成立。显然矛盾。\newline
+&当X=A时，X\rightarrow b 即为A \rightarrow b。则b\notin Y。\newline\newline
+&现假设Y \cup Z \subset A。由于A为使蕴涵成立的最小前件，\newline
+&因此，当Y\cup Z \subset A时，Y \cup Z \rightarrow b不成立，矛盾，则Y\cup Z \nsubseteq A。\newline\newline
+&现假设A\subseteq Y\cup Z，由增广性推理规则可知Y \cup Z \rightarrow b可由A \rightarrow b推出。则A\nsubseteq Y \cup Z。\newline\newline
+充分性& \newline
+&由于A为使蕴涵成立的最小前件，则\forall N\subset A，N \rightarrow b均不成立，\newline
+&则Y \cup Z \nsubseteq A保证了Y \cup Z \rightarrow b的可成立性。\newline
+&为证明A\rightarrow b可由伪传递性推理规则推出，\newline
+&只需证X \rightarrow Y和Y \cup Z \rightarrow b不等于且不依赖于A\rightarrow b。\newline
+&\begin{cases}
+X\rightarrow Y依赖于A \rightarrow b：指A\subseteq X且b\in Y。\newline
+Y\cup Z \rightarrow b依赖于A \rightarrow b：指A\subseteq Y\cup Z。
+\end{cases} \newline
+&由b\notin Y可知，X\rightarrow Y 不等于且不依赖于A \rightarrow b。\newline
+&由A\nsubseteq Y \cup Z可知，Y \cup Z \rightarrow b不等于且不依赖于A \rightarrow b。
+\end{align*}</script><p>直接表示：可由情形（1）（2）（4）（5）推导出情形（3）。</p>
+<p>间接表示：情形（3）必须依赖于情形（3）/（6）才能推导出。</p>
+<p>本文只考虑直接表示。</p>
+<p>首先给出$A \rightarrow b$直接表示的判定条件。</p>
+<p><strong>定理 2</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in D。A \rightarrow b$可以使用伪传递性推理规则推导出，当且仅当$\exists X, Y, Z \subseteq C \cup D，$满足$C\neq \varnothing，Y \neq \varnothing，b \notin Y，Y\cup Z \nsubseteq A，A \nsubseteq Y \cup Z，X \cup Z = A$且满足以下条件之一：</p>
+<p>（1）$X=A_2，Z=A_3$，且$\exists\ Y \subseteq D$使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
+<p>（2）$X=A_3，Z=A_2$，且$\exists\ Y \subseteq $C使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
@@ -363,9 +358,7 @@ and\ X^{L_{n+1}^*}:&=(X^{L_n^*})^{L_1^*} for\ all\ n\in N
                     
                       <a class="hover-with-bg" href="/tags/%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2/">属性探索</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%B9%B6%E8%A1%8C%E7%AE%97%E6%B3%95/">并行算法</a>
-                    
-                      <a class="hover-with-bg" href="/tags/NextCloures/">NextCloures</a>
+                      <a class="hover-with-bg" href="/tags/%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5/">决策蕴涵</a>
                     
                   </div>
                 
@@ -378,18 +371,12 @@ and\ X^{L_{n+1}^*}:&=(X^{L_n^*})^{L_1^*} for\ all\ n\in N
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/02/%E5%8F%B0%E5%A4%A7%E6%9D%8E%E5%AE%8F%E6%AF%85%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-HW1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">台大李宏毅机器学习-HW1</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/30/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%AD%A6%E7%A7%91%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/">
-                        <span class="hidden-mobile">2020-计算机科学-并行计算学科发展历程</span>
+                      <a href="/2020/07/21/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A6%82%E7%8E%87%E8%AE%BA/">
+                        <span class="hidden-mobile">第三章 概率论</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -646,7 +633,7 @@ and\ X^{L_{n+1}^*}:&=(X^{L_n^*})^{L_1^*} for\ all\ n\in N
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "2015-CLA-NextCloures Parallel Computation of the Canonical Base&nbsp;",
+        "2020-计算机科学与探索-蕴涵的决策蕴涵表示研究&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
