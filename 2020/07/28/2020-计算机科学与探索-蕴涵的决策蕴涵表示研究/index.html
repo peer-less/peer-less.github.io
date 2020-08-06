@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.8k 字
+      5.9k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      49
+      78
        分钟
     </span>
   
@@ -207,14 +207,15 @@
               <h1 id="蕴涵的决策蕴涵表示研究"><a href="#蕴涵的决策蕴涵表示研究" class="headerlink" title="蕴涵的决策蕴涵表示研究"></a>蕴涵的决策蕴涵表示研究</h1><div class="note note-primary">
             <p>属性探索、决策蕴涵</p>
           </div> 
+<a id="more"></a>
 <h2 id="论文基本信息"><a href="#论文基本信息" class="headerlink" title="论文基本信息"></a>论文基本信息</h2><p>​            1.作者：王亚丽、翟岩慧、张少霞、贾楠、李德玉。</p>
 <p>​            2.期刊：计算机科学与探索。</p>
 <p>​            3.时间：2020/07/23。</p>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>1.决策蕴涵是一种特殊的蕴涵，而决策蕴涵的研究就是在蕴涵中建立并研究一个/多个封闭的子系统(包括决策蕴涵子系统及相应的语义和语构子系统)。</p>
 <p>2.为了进一步厘清蕴涵和决策蕴涵之间的关系，对由决策蕴涵子系统能不能得到整蕴涵系统进行了研究。</p>
 <p>3.首先给出了蕴涵可以由决策蕴涵表示的充要条件；</p>
-<p>​    接着通过实例表明，存在一些蕴涵不可由决策蕴涵表示，因此，进一步区分了直接表示和间接表示；</p>
-<p>​    随后，通过研究决策背景中只有一个决策属性时不可被直接表示的蕴涵所具有的特点，给出了蕴涵不可由决策蕴涵直接表示的充要条件，并给出了不可被直接表示蕴涵的生成方法。</p>
+<p>接着通过实例表明，存在一些蕴涵不可由决策蕴涵表示，因此，进一步区分了直接表示和间接表示；</p>
+<p>随后，通过研究决策背景中只有一个决策属性时不可被直接表示的蕴涵所具有的特点，给出了蕴涵不可由决策蕴涵直接表示的充要条件，并给出了不可被直接表示蕴涵的生成方法。</p>
 <p>4.这种研究为蕴涵和规范基的研究提供了一种新视角，同时也为形式概念分析更深入的理论研究工作奠定了基础。</p>
 <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h2><p>1.形式概念分析(Formal Concept Analysis，FCA)是由德国 Wille R 教授于 1982 年提出的一种通过形式背景建立概念格来对数据进行分析和提取规则的一个强有力的工具[1-2]。</p>
 <p>2.目前，FCA 已被广泛地应用到机器学习、社会网络、软件工程、信息检索、基于认知的概念学习、知识约简等相关领域[3-15]。</p>
@@ -334,9 +335,103 @@ Y\cup Z \rightarrow b依赖于A \rightarrow b：指A\subseteq Y\cup Z。
 <p>间接表示：情形（3）必须依赖于情形（3）/（6）才能推导出。</p>
 <p>本文只考虑直接表示。</p>
 <p>首先给出$A \rightarrow b$直接表示的判定条件。</p>
-<p><strong>定理 2</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in D。A \rightarrow b$可以使用伪传递性推理规则推导出，当且仅当$\exists X, Y, Z \subseteq C \cup D，$满足$C\neq \varnothing，Y \neq \varnothing，b \notin Y，Y\cup Z \nsubseteq A，A \nsubseteq Y \cup Z，X \cup Z = A$且满足以下条件之一：</p>
+<p><strong>定理 2</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in D。A \rightarrow b$可以使用伪传递性推理规则推导出，当且仅当$\exists X, Y, Z \subseteq C \cup D，$满足$C\neq \varnothing，Y \neq \varnothing，b \notin Y，Y\cup Z \nsubseteq A，A \nsubseteq Y \cup Z，X \cup Z = A$且满足以下条件之一：$A_2\subseteq C，A_3\subseteq D$</p>
 <p>（1）$X=A_2，Z=A_3$，且$\exists\ Y \subseteq D$使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
 <p>（2）$X=A_3，Z=A_2$，且$\exists\ Y \subseteq $C使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
+<p>证明</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+必要性& \newline
+&根据题设，A\rightarrow b属于情形（3）中的蕴涵。若A\rightarrow b可由\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}直接表示。\newline
+&则X\rightarrow b和Y\cup Z \rightarrow b均不属于情形（3）/（6）。\newline
+&因此，X不满足X\cap C \neq \varnothing，X\cap D \neq \varnothing；\newline
+&Z不满足Z\cap C \neq \varnothing，Z\cap D \neq \varnothing。\newline
+&即为（1）（2）（4）（5）的情形，即X=A_2，Z=A_3或X=A_3，Z=A_2。\newline
+&当X=A_2，Z=A_3时，X\rightarrow Y必不为（3）/（6）。则Y\cup Z \rightarrow b均不属于情形（3）/（6）时，\newline
+&有Y\cap C = \varnothing，即Y\subseteq D；\newline
+&当X=A_3，Z=A_2时，X\rightarrow Y必不为（3）/（6）。则Y\cup Z \rightarrow b均不属于情形（3）/（6）时，\newline
+&有Y\cap D = \varnothing，即Y\subseteq C；\newline\newline
+充分性& \newline
+&由假设和定理1，可知A\rightarrow b可由伪传递性推理规则表示。\newline
+&现假设条件（1）（2）成立时，X\rightarrow Y和Y\cup Z\rightarrow b必不属于或依赖于情形（3）/
+（6）。\newline
+&当X=A_2，Z=A_3，且\exists\ Y \subseteq D时，显然X\rightarrow Y属于情形（1），Y\cup Z \rightarrow b属于情形（2）。\newline
+&当X=A_3，Z=A_2，且\exists\ Y \subseteq C时，显然X\rightarrow Y属于情形（5），Y\cup Z \rightarrow b属于情形（4）。\newline
+\end{align*}</script><p>下面给出一个例子说明情形（3）不是冗余的，即存在情形（3）所示的蕴涵不能被决策蕴涵表示。</p>
+<img src="/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730115313378.png" srcset="/img/loading.gif" class>
+<p><img src="/peerless.github.io/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730115313378.png" srcset="/img/loading.gif" alt></p>
+<p>因为$\{a,d\}^{“} = \{x_2\}^{‘} = \{a,b,d\}$，显然$\{a\} \cup \{d\} \rightarrow \{b\}$是该决策背景的蕴涵。</p>
+<p>令$A_2 \triangleq \{a\}，A_3 \triangleq \{d\}$，则$\{a\} \cup \{d\} \rightarrow \{b\}$属于情形（3）。接下来，利用伪传递性推理规则来推导该蕴涵。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+由定理1，&我们首先假设X \neq \varnothing，Y \neq \varnothing。\newline
+&首先考虑Z = \varnothing的情况。此时，需要找到Y使 \frac{\{a\} \cup \{d\} \rightarrow Y,Y\rightarrow b}{\{a\} \cup \{d\} \rightarrow \{b\} }成立。\newline
+&而Y所有可能的取值为\{a,b,d,ab,ad,bd,abd\}。\newline
+&当Y取\{a,d\}中任意一个时，Y\rightarrow b均不成立。\newline
+&当Y取\{b,ab,ad,bd,abd\}中任意一个时，用到了\{a\} \cup \{d\} \rightarrow \{b\}自身。\newline
+&因此，当Z=\varnothing时，不存在Y使\{a\} \cup \{d\} \rightarrow \{b\}可由其他蕴涵推出，即\{a\} \cup \{d\} \rightarrow \{b\}不冗余。\newline\newline
+&接下来，考虑Z \neq \varnothing的情况，需要找到Y使 \frac{\{a\} \rightarrow Y,Y \cup \{d\} \rightarrow b}{\{a\} \cup \{d\} \rightarrow \{b\} }或 \frac{ \{d\} \rightarrow Y,Y \cup \{a\}  \rightarrow b}{\{a\} \cup \{d\} \rightarrow \{b\} }成立。\newline
+&而Y所有可能的取值为\{a,b,d,ab,ad,bd,abd\}。\newline
+&当Y取\{a,b,d,ab,ad,bd,abd\}。\newline
+&当Y取\{a\}时，用到了\{a\} \cup \{d\} \rightarrow \{b\}本身。\newline
+&当Y取\{b,d,ab,ad,bd,abd\}中的任意一个时，\{a\} \rightarrow Y不成立。\newline
+&类似的，当Y取\{d\}时，用到了\{a\} \cup \{d\} \rightarrow \{b\}本身。\newline
+&当Y取\{a,b,ab,ad,bd,abd\}中的任意一个时，\{d\} \rightarrow Y不成立。\newline
+&因此，当Z \neq \varnothing时，不存在Y使\{a\} \cup \{d\} \rightarrow \{b\}可由其他蕴涵推出，即\{a\} \cup \{d\} \rightarrow \{b\}不冗余。
+\end{align*}</script><h3 id="5-3-蕴涵表示的具体方法"><a href="#5-3-蕴涵表示的具体方法" class="headerlink" title="5.3 蕴涵表示的具体方法"></a>5.3 蕴涵表示的具体方法</h3><p>例1 说明某些蕴涵确实不可直接归结为决策蕴涵和子背景的蕴涵。</p>
+<p>因此，我们需找到蕴涵不可以被直接表示时 应满足的条件，并生成相应的蕴涵。</p>
+<p>为此，我们首先讨论决策属性只有一个属性的情形下， $Y$存在或不存在的情况。</p>
+<p><strong>引理 5</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in D$。若决策属性$D$中只有一个属性，则$A \rightarrow b$是冗余的。</p>
+<p>证明</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+根据题设&，A \rightarrow b属于情形（3）的蕴涵。\newline
+&若决策属性D只有一个属性，由于b\in D，所以A_3 = \{b\}，\newline
+&则由自反性推理规则\{b\} \rightarrow \{b\}以及增广性推理规则b\in A，\newline
+&则可知，A \rightarrow b是冗余的。
+\end{align*}</script><p>接下来，分析情形（6）中的蕴涵是否可被直接表示。</p>
+<p>容易证明定理1、2对于情形（6）也是成立的。可得</p>
+<p><strong>推论 1</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in C。A \rightarrow b$可以使用伪传递性推理规则推导出，当且仅当$\exists X, Y, Z \subseteq C \cup D，$满足$C\neq \varnothing，Y \neq \varnothing，b \notin Y，Y\cup Z \nsubseteq A，A \nsubseteq Y \cup Z，X \cup Z = A$且$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
+<p><strong>推论 2</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in C。A \rightarrow b$可以使用伪传递性推理规则推导出，当且仅当$\exists X, Y, Z \subseteq C \cup D，$满足$C\neq \varnothing，Y \neq \varnothing，b \notin Y，Y\cup Z \nsubseteq A，A \nsubseteq Y \cup Z，X \cup Z = A$且满足以下条件之一：$A_2\subseteq C，A_3\subseteq D$</p>
+<p>（1）$X=A_2，Z=A_3$，且$\exists\ Y \subseteq D$使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
+<p>（2）$X=A_3，Z=A_2$，且$\exists\ Y \subseteq C$使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
+<p>下面的例子表明，当决策属性$D$中只有一个属性时，对于推论2中的两种情况，情形（6）中的蕴涵不总是可以被直接表示。</p>
+<img src="/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730131326376.png" srcset="/img/loading.gif" class>
+<img src="/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730131536900.png" srcset="/img/loading.gif" class>
+<p><img src="/peerless.github.io/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730131326376.png" srcset="/img/loading.gif" alt><img src="/peerless.github.io/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730131536900.png" srcset="/img/loading.gif" alt></p>
+<p>首先考虑推论2中的（1）。此时，需要找到$Y\subseteq D$使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。则$Y=\{d\}$，由$\{d\} \rightarrow b$不成立可知$\{a\} \cup \{d\} \rightarrow \{b\}$不可以被直接表示。</p>
+<p>接下来，考虑推论2中的（2）。此时，需要找到$Y\subseteq C$使$\frac{X\rightarrow Y，Y \cup Z \rightarrow b \Rightarrow X \cup Z \rightarrow b}{A \rightarrow b}$成立。</p>
+<p>$Y$所有可能的取值为$\{a,b,ab\}$。无论$Y$取何值，$\{d\} \rightarrow Y$都不成立，因此$\{a\} \cup \{d\} \rightarrow \{b\}$不可以被直接表示。</p>
+<p>由例2可知，当决策属性$D$中只有一个属性时，对于推论 2 所示的两种情况，情形（6）中的蕴涵$A\rightarrow b$不可以被直接表示的充要条件及发现算法。</p>
+<p><strong>引理 5</strong> 设$K=(G, C \cup D, I_C \cup I_D)$ 是一个决策背景，$A \rightarrow b$是$K$上的一个蕴涵，其中$A \cap C \neq \varnothing，A \cap D \neq \varnothing，b \in C$。若决策属性$D$中只有一个属性，则$X=A_2，Z=A_3$，且$\exists\ Y \subseteq D$时，$A \rightarrow b$不可以被直接表示。</p>
+<p>证明</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+&当决策属性D中只有一个属性d时，由Y \neq \varnothing和Y\subseteq D可知Y=\{d\}。\newline
+&由Z=A_3 \subseteq D可知Z=\{d\}，由A\cap D \neq \varnothing和A\cap C \neq \varnothing可知Y\cup Z \subsetneq A。\newline
+&再由于A为使蕴涵成立的最小前件，可知Y \cup Z \rightarrow b 不成立，从而，A \rightarrow b不可以被直接表示。
+\end{align*}</script><p>接下来，给出推论2中（2）情形（6）中的蕴涵$A \rightarrow b$也不可以被直接表示的判定条件。</p>
+<img src="/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730140328255.png" srcset="/img/loading.gif" class>
+<p><img src="/peerless.github.io/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730140328255.png" srcset="/img/loading.gif" alt></p>
+<p>当 中只有一个属性 时，由引理 5 可知，情形（3）中的蕴涵都是冗余的，因此不必生成;对于情形（6），定理 3 事实上给出了不可被直接表示的蕴涵的生成方法。</p>
+
+<p><img src="/peerless.github.io/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/images/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/image-20200730140851645.png" srcset="/img/loading.gif" alt></p>
+<p>显然，上述算法的复杂度较高，因此难以应用于具体的数据集中。</p>
+<h2 id="6-结论与展望"><a href="#6-结论与展望" class="headerlink" title="6 结论与展望"></a>6 结论与展望</h2><p>本文使用蕴涵推理规则来研究蕴涵是否可由决策蕴涵表示。</p>
+<ol>
+<li><p>首先给出蕴涵可以被直接表示时应满足的条件。</p>
+</li>
+<li><p>找出不可以直接归结为决策蕴涵的的蕴涵应满足的充要条件。</p>
+</li>
+<li><p>给出了不可以直接归结为决策蕴涵的蕴涵的生成方法。</p>
+</li>
+</ol>
+<p>存在的问题：</p>
+<ol>
+<li>由于蕴涵推理的复杂性，未对蕴涵的间接表示进行深入的研究。</li>
+<li>不能被直接表示蕴涵的生成算法，复杂度较大，无法用于实际的数据集。</li>
+<li>决策蕴涵规范基与蕴涵规范基之间是否存在着联系。</li>
+</ol>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
@@ -370,6 +465,12 @@ Y\cup Z \rightarrow b依赖于A \rightarrow b：指A\subseteq Y\cup Z。
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2016-CLA-A New Practical Tool for Performing Interactive Exploration over Concept Lattices</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

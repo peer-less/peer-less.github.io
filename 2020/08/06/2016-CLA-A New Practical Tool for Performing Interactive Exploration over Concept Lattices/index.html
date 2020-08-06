@@ -17,7 +17,7 @@
   <meta name="description" content="个人博客，记录成长的点滴。">
   <meta name="author" content="peerless">
   <meta name="keywords" content="">
-  <title>第三章 概率论 - peerless</title>
+  <title>2016-CLA-A New Practical Tool for Performing Interactive Exploration over Concept Lattices - peerless</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -152,8 +152,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-07-21 23:17">
-      2020年7月21日 晚上
+    <time datetime="2020-08-06 09:59">
+      2020年8月6日 上午
     </time>
   </div>
 
@@ -163,7 +163,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      1.6k 字
     </span>
   
 
@@ -173,7 +173,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      19
        分钟
     </span>
   
@@ -204,67 +204,116 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h1 id="第三章-概率论"><a href="#第三章-概率论" class="headerlink" title="第三章 概率论"></a>第三章 概率论</h1><p class="note note-info">深度学习、花书、概率论</p>
+              <h1 id="LatViz-A-New-Practical-Tool-for-Performing-Interactive-Exploration-over-Concept-Lattices"><a href="#LatViz-A-New-Practical-Tool-for-Performing-Interactive-Exploration-over-Concept-Lattices" class="headerlink" title="LatViz: A New Practical Tool for Performing Interactive Exploration over Concept Lattices"></a>LatViz: A New Practical Tool for Performing Interactive Exploration over Concept Lattices</h1><p class="note note-info">属性探索、应用工具</p>
 
 <a id="more"></a>
-<h2 id="3-1-概率与随机变量"><a href="#3-1-概率与随机变量" class="headerlink" title="3.1 概率与随机变量"></a>3.1 概率与随机变量</h2><ul>
-<li>频率学派概率（Frequentist Probability）：认为概率和事件发生的频率相关。</li>
-<li>贝叶斯学派概率（Bayesian Probability）：认为概率是对某件事发生的确定程度，可以理解成是确信的程度。</li>
-<li>随机变量（Random Variable）：一个可能随机取不同值的变量。例如：抛掷一枚硬币，出现正面或者反面的结果。</li>
-</ul>
-<h2 id="3-2-概率分布"><a href="#3-2-概率分布" class="headerlink" title="3.2 概率分布"></a>3.2 概率分布</h2><p><span style="color:red">概率质量函数（PMF，Probabily Mass Function）</span>：对于离散型变量，我们先定义⼀个随机变量，然后⽤ ~ 符号来说明它遵循的分布：$x \sim P(x)$，函数$P$是随机变量$x$的$PMF$。</p>
-<p>例如，考虑一个离散型随机变量$x$有$k$个不同的值，我们可以假设$x$是均匀分布的，则它的$PMF$可设为：</p>
-<script type="math/tex; mode=display">
-P(x=x_i) = \frac1 k</script><p>对所有的$i$都成立。</p>
-<p><span style="color:red">概率密度函数（PDF，Probabily Density Function）</span>：对于连续型变量，如果一个函数$p$是$PDF$，则</p>
+<h2 id="论文基本信息"><a href="#论文基本信息" class="headerlink" title="论文基本信息"></a>论文基本信息</h2><p>​            1. 作者：Mehwish Alam，Thi Nhu Nguyen Le，and Amedeo Napoli。</p>
+<p>​            2. 会议：CLA。</p>
+<p>​            3. 时间：2016。</p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ol>
+<li>由于web of Data(WOD) 的增长，在探索、交互、分析和发现方面出现了许多新的挑战。</li>
+<li>一个基本问题：在WOD之上获得这些概念格之后，用户如何通过概念格交互地探索和分析这些数据。</li>
+<li>引入一个新工具：LatViz；原功能：构造概念格及其导航；新功能：专家交互、模式结构的可视化、AOC偏序集、概念标注、基于若干过滤准则的概念格以及蕴涵的直观可视化。</li>
+</ol>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><ol>
+<li>WOD 包含的所有信息都以实体和关系的形式表示，从而允许将语义嵌入到该数据的表示中。</li>
+<li>WOD主要以资源描述框架(RDF，Resource Description Framework)的形式表示数据。</li>
+<li>已有几种方法可以访问此数据，并用于数据分析的可视化与交互探索。<ol>
+<li>LODLive$^{[1]}$：用户可以选择 DBpedia 和 Freebase 等数据集，并指定一个实体作为浏览节点弧标记图的起点。</li>
+<li>RelFinder$^{[2]}$：在给定几个实体的情况下，该工具会自动找到连接这些实体的路径。</li>
+</ol>
+</li>
+<li>这些工具有助于深入了解 RDF 图包含的内容，但它们不是为知识发现的目的而构建的。</li>
+<li>本文介绍了一个新的工具 LatViz，它通过引入多种功能来显著改善用户与概念格之间的交互性。</li>
+</ol>
+<h2 id="2-Motivating-Example"><a href="#2-Motivating-Example" class="headerlink" title="2 Motivating Example"></a>2 Motivating Example</h2><p>一个例子：搜索特定团队与其研究领域相关的会议或期刊的论文。</p>
+<p>1.通过特定的关键字或作者名，找到感兴趣的论文。</p>
+<p>2.通过增加更多的查询条件以缩小查询范围，获得关于特定关键字或作者组的论文。</p>
+<p>3.如果专家想要了解团队与团队外其他研究界成员的合作情况，以及团队成员的多样性和专业性，这不是简单的查询就能直接获得的。</p>
+<p>4，基于这个场景，本文展示了如何通过一个合适的可视化工具来指导专家，以便在概念格的帮助下获得这些感兴趣的信息。</p>
+<h2 id="3-Preliminaries"><a href="#3-Preliminaries" class="headerlink" title="3 Preliminaries"></a>3 Preliminaries</h2><h3 id="3-1-Pattern-Structures"><a href="#3-1-Pattern-Structures" class="headerlink" title="3.1 Pattern Structures"></a>3.1 Pattern Structures</h3><p>基本概念：</p>
 <script type="math/tex; mode=display">
 \begin{align}
-分布满足非负性条件&：\forall x\in \mathsf{x}， p(x) \ge 0 \newline
-分布满足归一化条件&：\int_{-\infty}^{\infty} p(x)dx = 1
-\end{align}</script><p>例如在（a, b）上的均匀分布：</p>
+&模式结构：(G，(D, \sqcap)，\delta) \newline
+&G：对象集。 \newline
+&(D，\sqcap)：描述 D 的交半格。 \newline
+&\delta ：G\rightarrow D，将对象映射到其描述。
+\end{align}</script><p>算子运算：</p>
 <script type="math/tex; mode=display">
-U(x; a, b) = \frac {1_{ab(x)} }{b-a}</script><p>其中$1_{ab(x)}$表示在（a, b）内为1，否则为0。</p>
-<p><span style="color:red">累积分布函数（CDF，Cummulative Distribution Function）</span>：表示对小于$x$的概率的积分：</p>
+\begin{align}
+A^{\Box} &= \sqcap_{g\in A}\delta(g) \quad &for\ A\subseteq G \newline
+d^{\Box} &= \{ g\in G | d\sqsubseteq \delta(g) \} \quad &for\ d\in D 
+\end{align}</script><p>偏序关系：</p>
 <script type="math/tex; mode=display">
-CDF(x) = \int_{-\infty}^{x} p(t) dt</script><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt 
-<span class="hljs-keyword">from</span> scipy.stats <span class="hljs-keyword">import</span> uniform
-%matplotlib inline
+\begin{align}
+&c\sqsubseteq d \Leftrightarrow c\sqcap d = c \newline
+&(A_1, d_1) \le (A_2, d_2) \Leftrightarrow A_1\subseteq A_2(d_2\sqsubseteq d_1)
+\end{align}</script><p>概念：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+A^{\Box} &= d \newline
+A &= d^{\Box}
+\end{align}</script><p>区间模式结构（Interval Pattern Structures）：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&c = (a_i, b_i) \quad d = (e_i, f_i) \newline
+&c \sqcap d = (min(a_i, e_i)，max(b_i, f_i))
+\end{align}</script><h3 id="3-2-Web-of-Data-and-its-Classification"><a href="#3-2-Web-of-Data-and-its-Classification" class="headerlink" title="3.2 Web of Data and its Classification"></a>3.2 Web of Data and its Classification</h3><p>RDF被写作三元组：&lt;$subject, predicate, object$&gt;。</p>
+<p>DBLP的RDF存储示例：</p>
+<img src="/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806113720037.png" srcset="/img/loading.gif" class>
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806113720037.png" srcset="/img/loading.gif" alt></p>
+<p>$t_1$：论文$s_1$具有“模式结构”的关键字。</p>
+<p>为了允许对RDF数据进行交互式数据探索，专家通过定义任务需求提出了一组限制条件，并根据该任务需求创建SPARQL查询以获得特定的数据。</p>
+<h2 id="4-LatViz-for-Interactive-Exploration-of-Concept-Lattices"><a href="#4-LatViz-for-Interactive-Exploration-of-Concept-Lattices" class="headerlink" title="4 LatViz for Interactive Exploration of Concept Lattices"></a>4 LatViz for Interactive Exploration of Concept Lattices</h2><h3 id="4-1-User-Interface"><a href="#4-1-User-Interface" class="headerlink" title="4.1 User Interface"></a>4.1 User Interface</h3><p>LatViz：实现两种从二进制的形式背景中构建概念格的算法。</p>
+<p>其中一种在$^{[7]}$，另一种构建概念格的高效算法是 AddIntent$^{[8]}$。</p>
+<p>演示地址：<a href="http://latviz.loria.fr/latviz/。" target="_blank" rel="noopener">http://latviz.loria.fr/latviz/。</a></p>
+<p>一个例子</p>
+<p>基于 Table 1 将$Subject$作为对象集，将$Object$作为属性集。</p>
+<p>RDF三元组：LORIA知识发现团队的出版物。</p>
+<p>对象：343个。</p>
+<p>属性：1516个。</p>
 
-<span class="hljs-comment"># 生成样本</span>
-fig, ax = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
-r = uniform.rvs(loc=<span class="hljs-number">0</span>, scale=<span class="hljs-number">1</span>, size=<span class="hljs-number">1000</span>)
-ax.hist(r, density=<span class="hljs-literal">True</span>, histtype=<span class="hljs-string">'stepfilled'</span>, alpha=<span class="hljs-number">0.5</span>)
-<span class="hljs-comment"># 均匀分布 pdf</span>
-x = np.linspace(uniform.ppf(<span class="hljs-number">0.01</span>), uniform.ppf(<span class="hljs-number">0.99</span>), <span class="hljs-number">100</span>)
-ax.plot(x, uniform.pdf(x), <span class="hljs-string">'r-'</span>, lw=<span class="hljs-number">5</span>, alpha=<span class="hljs-number">0.8</span>, label=<span class="hljs-string">'uniform pdf'</span>)</code></pre>
-<img src="/2020/07/21/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A6%82%E7%8E%87%E8%AE%BA/image-20200731122057031.png" srcset="/img/loading.gif" class>
-<p><img src="/peerless.github.io/2020/07/21/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A6%82%E7%8E%87%E8%AE%BA/image-20200731122057031.png" srcset="/img/loading.gif" alt></p>
-<h2 id="3-3-条件概率与条件独立"><a href="#3-3-条件概率与条件独立" class="headerlink" title="3.3 条件概率与条件独立"></a>3.3 条件概率与条件独立</h2><p><span style="color:red">边缘概率（Marginal Probability）</span>：定义在子集上的概率分布被称为边缘概率分布。</p>
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806115136696.png" srcset="/img/loading.gif" alt></p>
+<h3 id="4-2-AOC-Posets"><a href="#4-2-AOC-Posets" class="headerlink" title="4.2 AOC-Posets"></a>4.2 AOC-Posets</h3><p>AOC-Posets：属性和对象概念的偏序集合，在$^{[9, 10]}$中首次引入。</p>
 <script type="math/tex; mode=display">
-\forall x\in \mathsf{x}，P(\mathsf{x} = x) = \sum\limits_y P(\mathsf{x}=x, \mathsf{y}=y)</script><p><span style="color:red">条件概率（Conditional Probability）</span>：某个事件在给定其他事件发生时的概率。</p>
-<script type="math/tex; mode=display">
-P(\mathsf{y}=y | \mathsf{x}=x) = \frac{P(\mathsf{y}=y , \mathsf{x}=x)}{P(\mathsf{x}=x)}</script><p><span style="color:red">条件概率的链式法则（Chan Rule of Conditional Probability）</span>：任何多维随机变量的联合概率分布，都可以分解成只有⼀个变量的条件概率相乘的形式。</p>
-<script type="math/tex; mode=display">
-P(x_1, ..., x_n) = P(x_1) \Pi_{i=2}^{n} (x_i|x_1, ..., x_{i-1})</script><p><span style="color:red">独立性（Independence）</span>：两个随机变量$x$和$y$的概率分布能够表示成两个因子的乘积形式。</p>
-<script type="math/tex; mode=display">
-\forall x\in \mathsf{x}, y\in \mathsf{y}, p(\mathsf{x}=x, \mathsf{y}=y) = p(\mathsf{x}=x)p(\mathsf{y}=y)</script><p><span style="color:red">条件独立性（Conditional Independence）</span>：两个随机变量$x$和$y$的条件概率对于$z$的每一个值都可以写成乘积的形式。</p>
-<script type="math/tex; mode=display">
-\forall x\in \mathsf{x}, y\in \mathsf{y}, z\in \mathsf{z}, p(\mathsf{x}=x, \mathsf{y}=y | \mathsf{z}=z) = p(\mathsf{x}=x | \mathsf{z}=z)p(\mathsf{y}=y | \mathsf{z}=z)</script><h2 id="3-4-随机变量的度量"><a href="#3-4-随机变量的度量" class="headerlink" title="3.4 随机变量的度量"></a>3.4 随机变量的度量</h2><p><span style="color:red">期望（Expectation）</span>：函数$f$关于概率分布$P(x)$或$p(x)$的期望表示由概率分布产生$x$，再计算$f$作用到$x$后$f(x)$的平均值。</p>
-<p>对于离散型随机变量，可以通过求和得到：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{X \sim P}[f(x)] = \sum\limits_x P(x)f(x)</script><p>对于连续型随机变量，可以通过求积分得到：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{X \sim P}[f(x)] = \int\limits P(x)f(x) dx</script><p>另外，期望是线性的：</p>
-<script type="math/tex; mode=display">
-\mathbb{E}_{X}[\alpha f(x) + \beta g(x)] = \alpha \mathbb{E}_{X}[f(x)] + \beta  \mathbb{E}_{X}[g(x)]</script><p><span style="color:red">方差（Variance）</span>：依据随机变量$x$的概率分布，衡量随机变量$x$的函数值会呈现多大的差异。描述采样得到的函数值在期望上的波动程度：</p>
-<script type="math/tex; mode=display">
-Var(f(x)) = \mathsf{E}[(f(x) - \mathbb{E}[f(x)])^2]</script><p>将方差开平方即为<span style="color:red">标准差（Standard Deviation）</span>。</p>
-<p><span style="color:red">协方差（Covariance）</span>：衡量两组值之间的线性相关程度。</p>
-<script type="math/tex; mode=display">
-Cov(f(x), g(y)) = \mathbb{E}[\left(f(x) - \mathbb{E}[f(x)]\right) \left(g(y) - \mathbb{E}[g(y)] \right)]</script><p>注意：独立比0协方差要求更强，因为独立还排除了非线性的相关。</p>
-<img src="/2020/07/21/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A6%82%E7%8E%87%E8%AE%BA/image-20200801143413314.png" srcset="/img/loading.gif" class>
-<p><img src="/peerless.github.io/2020/07/21/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A6%82%E7%8E%87%E8%AE%BA/image-20200801143413314.png" srcset="/img/loading.gif" alt></p>
+\begin{align}
+&对象概念：(g^{"}, g') \quad &g\in G \newline
+&属性概念：(m', m^{"}) \quad &m\in M
+\end{align}</script><p>对象概念$(g^{“}, g’)$外延包含$g$的低概念集合，从下到上。</p>
+<p>属性概念$(m^{“}, m’)$内涵包含$m$的高概念集合，从上到下。</p>
+<h3 id="4-3-Displaying-Concept-Lattice-Level-wise"><a href="#4-3-Displaying-Concept-Lattice-Level-wise" class="headerlink" title="4.3 Displaying Concept Lattice Level-wise"></a>4.3 Displaying Concept Lattice Level-wise</h3><p>LatViz允许通过交互来层次化地创建概念格。</p>
+
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806121302798.png" srcset="/img/loading.gif" alt></p>
+<p>第一层：专家使用 Amedeo Napoli 来定位论文，显示由 Amedeo Napoli 撰写的论文数量为152.</p>
+<p>第二层：加入formal concept analysis来定位论文，结果由152降到了55。</p>
+<h3 id="4-4-Display-Sub-Super-Concepts-of-a-Concept"><a href="#4-4-Display-Sub-Super-Concepts-of-a-Concept" class="headerlink" title="4.4 Display Sub/Super Concepts of a Concept"></a>4.4 Display Sub/Super Concepts of a Concept</h3>
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806121541550.png" srcset="/img/loading.gif" alt="image-20200806121541550"></p>
+<h3 id="4-5-Display-Hide-the-Sub-lattice"><a href="#4-5-Display-Hide-the-Sub-lattice" class="headerlink" title="4.5 Display/Hide the Sub-lattice"></a>4.5 Display/Hide the Sub-lattice</h3>
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806121758814.png" srcset="/img/loading.gif" alt></p>
+<p>专家只对Amedeo Napoli 关于知识表示的论文感兴趣的概念子格。</p>
+<h3 id="4-6-Interval-Pattern-Structures"><a href="#4-6-Interval-Pattern-Structures" class="headerlink" title="4.6 Interval Pattern Structures"></a>4.6 Interval Pattern Structures</h3><p>本文提取了论文的三个属性，即论文发表的年份、论文发表时的会议排名以及最终的页数。</p>
+
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806123124284.png" srcset="/img/loading.gif" alt></p>
+<h3 id="4-7-Lattice-Filtering-Criteria"><a href="#4-7-Lattice-Filtering-Criteria" class="headerlink" title="4.7 Lattice Filtering Criteria"></a>4.7 Lattice Filtering Criteria</h3><p>两类过滤：一是二值形式背景构建的概念格；二是区间模式结构构建的概念格。</p>
+<p>过滤条件：stability, lift, extent size, intent size。</p>
+
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806123454487.png" srcset="/img/loading.gif" alt></p>
+<p>查找Amedeo Napoli发表的关于模式结构和FCA主题的论文。</p>
+<p>属性数量设为 3（Amedeo Napoli、formal concept analysis、pattern structure）。</p>
+<p>寻找2012-2015年在排名1-4的会议上发表的论文，并且具有不少于2页且不超过42页的页数，则可以为所有三个属性的值设置相应的过滤器。</p>
+
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806124240193.png" srcset="/img/loading.gif" alt></p>
+<h3 id="4-8-Attribute-Implications"><a href="#4-8-Attribute-Implications" class="headerlink" title="4.8  Attribute Implications"></a>4.8  Attribute Implications</h3>
+<p><img src="/peerless.github.io/2020/08/06/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/images/2016-CLA-A%20New%20Practical%20Tool%20for%20Performing%20Interactive%20Exploration%20over%20Concept%20Lattices/image-20200806124601090.png" srcset="/img/loading.gif" alt></p>
+<h2 id="5-Related-Tools"><a href="#5-Related-Tools" class="headerlink" title="5   Related Tools"></a>5   Related Tools</h2><p>RV-Xplorer（RDF View Explorer）$^{[3]}$：一个在RDF图形上可视化视图的工具，主要用于识别数据中感兴趣的部分并允许数据分析。它还被扩展为集群SPARQL查询答案。</p>
+<p>CREDO$^{[12]}$和FooCA$^{[13]}$：从针对搜索引擎提出的查询中获取答案，并创建概念网格，然后将其显示给专家进行交互。</p>
+<p>CEM$^{[15]}$：一个电子邮件管理器，允许快速搜索电子邮件，通常处理较小的概念格。</p>
+<p>Gamelis$^{[16]}$：一个基于FCA的文档组织系统，允许几个导航操作。</p>
+<p>Sewelis$^{[17]}$和Sparkis$^{[18]}$：允许在知识图上导航/交互。</p>
+<p>ToscanaJ$^{[19]}$：在算法$^{[7]}$的帮助下，重用了构建概念格的源代码。它不仅可以应用于WOD，而且已经扩展到可以解释任何类型的数据。</p>
+<h2 id="6-Discussion-and-Future-Improvements"><a href="#6-Discussion-and-Future-Improvements" class="headerlink" title="6 Discussion and Future Improvements"></a>6 Discussion and Future Improvements</h2><p>1.从未来的角度看，希望增加实现模式结构的变体。</p>
+<p>2.将蕴涵扩展到关联规则。</p>
+<p>3.考虑矩阵因子分解。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
             </article>
             <hr>
@@ -274,9 +323,9 @@ Cov(f(x), g(y)) = \mathbb{E}[\left(f(x) - \mathbb{E}[f(x)]\right) \left(g(y) - \
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-AI%E5%9C%A3%E7%BB%8F/">深度学习(AI圣经)</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2/">属性探索</a>
                     
                   </div>
                 
@@ -284,11 +333,9 @@ Cov(f(x), g(y)) = \mathbb{E}[\left(f(x) - \mathbb{E}[f(x)]\right) \left(g(y) - \
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                      <a class="hover-with-bg" href="/tags/%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2/">属性探索</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%8A%B1%E4%B9%A6/">花书</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/">概率论</a>
+                      <a class="hover-with-bg" href="/tags/%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7/">应用工具</a>
                     
                   </div>
                 
@@ -301,18 +348,12 @@ Cov(f(x), g(y)) = \mathbb{E}[\left(f(x) - \mathbb{E}[f(x)]\right) \left(g(y) - \
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2020-计算机科学与探索-蕴涵的决策蕴涵表示研究</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/07/14/2016-ICCS-Parallel%20Attribute%20Exploration/">
-                        <span class="hidden-mobile">2016-ICCS-Parallel Attribute Exploration</span>
+                      <a href="/2020/07/28/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8E%A2%E7%B4%A2-%E8%95%B4%E6%B6%B5%E7%9A%84%E5%86%B3%E7%AD%96%E8%95%B4%E6%B6%B5%E8%A1%A8%E7%A4%BA%E7%A0%94%E7%A9%B6/">
+                        <span class="hidden-mobile">2020-计算机科学与探索-蕴涵的决策蕴涵表示研究</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -569,7 +610,7 @@ Cov(f(x), g(y)) = \mathbb{E}[\left(f(x) - \mathbb{E}[f(x)]\right) \left(g(y) - \
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "第三章 概率论&nbsp;",
+        "2016-CLA-A New Practical Tool for Performing Interactive Exploration over Concept Lattices&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
