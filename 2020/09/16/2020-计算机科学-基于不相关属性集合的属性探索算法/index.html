@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客，记录成长的点滴。">
+  <meta name="author" content="peerless">
+  <meta name="keywords" content="">
+  <title>2020-计算机科学-基于不相关属性集合的属性探索算法 - peerless</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>peerless</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-09-16 14:26">
+      2020年9月16日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h1 id="基于不相关属性集合的属性探索算法"><a href="#基于不相关属性集合的属性探索算法" class="headerlink" title="基于不相关属性集合的属性探索算法"></a>基于不相关属性集合的属性探索算法</h1><p class="note note-info">属性探索、不相关属性、算法改进</p>
+
+<a id="more"></a>
+<h2 id="论文基本信息"><a href="#论文基本信息" class="headerlink" title="论文基本信息"></a>论文基本信息</h2><p>​            1. 作者：沈夏炯、杨继勇、张磊。</p>
+<p>​            2. 期刊：计算机科学。</p>
+<p>​            3. 时间：2020。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>1.耗时瓶颈：“寻找下一个与专家交互的问题”这一环节存在大量冗余计算。</p>
+<p>2.针对这个问题，通过分析伪内涵和内涵与主基的内在逻辑关系提出并证明了三个定理。</p>
+<p>3.根据定理给出一种基于不相关属性集合的属性探索算法，该算法在计算内涵与伪内涵时，跳过对既不是内涵也不是伪内涵的属性集合的判断过程。</p>
+<p>4，算法最好的时间复杂度为$O(mn^2P^2)$，最坏的时间复杂度为$O(mn^3P^2)$。</p>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h2><p>1.属性探索的过程</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+首先，&根据形式背景中的属性集合，提出属性与属性间的蕴涵关系是否成立的问题。\newline
+其次，&由专家判断这些问题是否成立。\newline
+之后，&根据专家的不同回答，计算下一个需要交互的属性与属性间的蕴涵式。\newline
+最后，&算法循环产生问题，从而获取到领域专家知识中的主基。
+\end{align*}</script><p>2.属性探索过程的示例</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+用户（&对象）、权限（属性）\newline
+首先，&提出问题：实验室的所有人都可以打开实验室的门？\newline
+&专家回答：可以。\newline
+&说明：实验室的所有人都可以打开实验室的门，这一蕴涵成立。并提出问题：可以打开实验室门的人是不是都可以打开保险柜的门？\newline
+&专家回答：不行，并提出反例：小明。\newline
+&将反例（小明）加到形式背景中，对新的形式背景提出新的蕴涵式问题。\newline
+\vdots& \newline
+最后，&算法经过多次迭代后能够获取到访问控制授权的知识背景以及权限（属性）间的关系。
+\end{align*}</script><p>3.应用领域</p>
+<p>2012，Borchmann$^{[10]}$从形式概念分析出发，为属性探索提出了一个通用的描述框架，将属性探索的变体看作通用框架的一个实例。</p>
+<p>2015，Borchmann$^{[11]}$，提出了基于置信度概念的属性探索，为在可能有错误的形式背景中进行属性探索，提供了一个可行性方案。</p>
+<p>2013，Glodeanu$^{[12]}$提出了带有模糊属性与背景知识的属性探索算法，该算法允许专家给出模糊的回答。</p>
+<p>2009，Obiedkov$^{[13]}$以属性探索方式构建访问控制模型。</p>
+<p>2013，Jaschke和Rudolph$^{[14]}$将属性探索应用于Web查询中，提出了一种基于属性探索的网络信息检索方法。</p>
+<p>2015，Obiedkov和Romashkin$^{[15]}$根据协作属性探索来构建众包领域本体。</p>
+<p>2018，Hanika和Zumbragel$^{[16]}$提出了协作概念探索。</p>
+<p>2019，Codocedo$^{[17]}$使用属性探索提出了一个计算模式结构形式背景的方法。</p>
+<p>4.计算过程过于耗时，无法满足大数据时代对海量数据知识获取的需求。</p>
+<p>2014，Borchmann$^{[18, 19]}$为属性探索设置一个适当的前提以提高算法效率，但也使得该算法具有了一定的局限性。</p>
+<p>2016，Kriegel$^{[20]}$提出了一种并行属性探索算法，减少了属性探索算法的整体耗时，但并没有改进单个节点串行算法的时间复杂度。</p>
+<p>5.本文着眼于寻找并规避算法内在的冗余计算过程，以有效降低算法的时间开销。</p>
+<p>关键瓶颈：寻找下一个与专家交互的问题。</p>
+<p>传统的属性探索算法以计算蕴涵伪壳的方式寻找下一个交互问题。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+& J: 蕴涵集，B，P，H，B_1，B_2：属性集 \newline
+定义：&固定一个蕴涵集J和B\subseteq P，若H\subseteq P满足三个条件：\newline
+& （1）B\subseteq P; \newline
+& （2）对任一蕴涵式B_1 \rightarrow B_2\in J，若B_1\subset H，则必有B_2\subseteq H; \newline
+& （3）在（1）（2）的意义下是最小的。\newline
+此时，&称为B相对于J的蕴涵伪壳（implication pseudo-hull），记为J*(B)。
+\end{align*}</script><p>2009，赵小香$^{[21]}$运用属性集合与蕴涵集合的相关性对属性探索算法进行改进，但是该算法在寻找下一个交互问题时，需要逐个遍历属性集合的所有方式，耗时仍较为明显。</p>
+<p>本文发现</p>
+<ul>
+<li>存在一类与主基不相关的集合。这些集合包含主基中的某个蕴涵式的前件，不包含这个蕴涵式的后件。</li>
+<li>所有的主基和内涵集合都不含有这类属性集合。</li>
+</ul>
+<p>对此，本文提出了一个AEUS（Attribute Exploration of Unrelated Set）算法，借助属性集合与主基不相关的关系，跳过与主基不相关的属性属性集合是否为下一个属性探索问题的判断过程，减少寻找下一个交互问题的搜索空间，降低算法的时间复杂度。</p>
+<h2 id="2-基础知识"><a href="#2-基础知识" class="headerlink" title="2 基础知识"></a>2 基础知识</h2><p>1.伪内涵</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：&设K=(U, M, I)是一个形式背景，Y\subseteq M，满足 \newline
+& （1）Y\neq f(g(Y)) \left(即Y\subset f(g(Y)) \right); \newline
+& （2）对每一个伪内涵Y_1\subset Y都有f(g(Y_1))\subseteq Y; \newline
+则称Y & 是一个伪内涵。
+\end{align*}</script><p>2.蕴涵式（值依赖）</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：&设K=(U, M, I)是一个形式背景，Y_1, Y_2\subseteq M，\newline
+& 若g(Y_1)\subseteq g(Y_2)，则蕴涵式Y_1\rightarrow Y_2 在K中成立。 
+\end{align*}</script><p>3.主基</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：&设K=(U, M, I)是一个形式背景，则称值依赖集合\{ B\rightarrow f(g(B)) - B | B是K的伪内涵 \}是K的主基。 
+\end{align*}</script><p>4.相关</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：&设K=(U, M, I)是一个形式背景，蕴涵式集合J(K)，蕴涵式C\rightarrow D\in J(K)。\newline
+& 若属性集合T\subseteq M，当且仅当C\nsubseteq T或D\subseteq T时，称T与C\rightarrow D相关。\newline
+& 若T与J(K)中所有的蕴涵式都相关，则称T与J(K)相关。
+\end{align*}</script><p>5.字典序</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：& 设K=(U, M, I)是一个形式背景，M=\{m_1, m_2, \cdots, m_n \}。\newline
+& M中属性满足基本线性序关系：m_1<m_2< \cdots <m_n，\newline
+& 则对任意的Y_1, Y_2\subseteq M, 当且仅当存在m_i\in Y_2-Y_1 \newline
+& 且Y_1\cap \{ m_1, m_2, \cdots, m_{i-1} \} = Y_2\cap \{ m_1, m_2, \cdots, m_{i-1} \}时，记Y_1<Y_2。
+\end{align*}</script><h2 id="3-属性探索算法理论研究与改进"><a href="#3-属性探索算法理论研究与改进" class="headerlink" title="3 属性探索算法理论研究与改进"></a>3 属性探索算法理论研究与改进</h2><p>1.属性探索算法以主动提出问题的方式与领域专家交互， 通过字典序遍历属性集合，并测试该集合是否是伪内涵或者 内涵。</p>
+<p>2.利用是伪内涵的属性集合产生蕴涵式，从而构建形式背景的主基，获取到相关的背景知识。由于该字典序是所有属性幂集上的一个线性序，所以这保证了属性探索算法的完 备性。但当属性数目较多时，算法的耗时很长。 </p>
+<p>3.==上述过程中耗时的关键在于，通过遍历的方式测试属性集是否为伪内涵或者内涵的过程存在大量冗余计算==。</p>
+<p>4.本文发现，如果==属性集合包含主基中某个蕴涵式的前件，但是不包含后件==，那么这个==属性集合就不可能是内涵或者伪内涵==。这有助于跳过一些不必要的计算过程。</p>
+<h3 id="3-1-理论依据"><a href="#3-1-理论依据" class="headerlink" title="3.1 理论依据"></a>3.1 理论依据</h3><p>1.开区间$<B, d>$</B,></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：& 给定形式背景K=(U, M, I),属性集合B，D\subseteq M且B<D。\newline
+& 若集合T=\{ C|B<C<D, C\subseteq M \}，\newline
+& 则称T是属性集合B与属性集合D在序<上的开区间，记为<B, D>。
+\end{align*}</script><p>2.$B^+ \succ B$</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：& 给定形式背景K=(U, M, I),属性集合B，B^+\subseteq M且<B,B^+>为空集。\newline
+& 则称B^+仅大于B，记为B^+ \succ B。
+\end{align*}</script><p>3.$B \precnsim N$</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：& 给定形式背景K=(U, M, I),属性集合B，N\subseteq M, B<N,且N\nsupseteq B, \newline
+& 若对任意的属性集合T\in <B, N>，都有T\supset B， \newline
+& 则称N非平凡仅大于B，记为B \precnsim B。
+\end{align*}</script><p>4.不相关</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+定义：& 给定形式背景k=(U, M, I)与K上的主基J(K),蕴涵式C\rightarrow D\in J(K), \newline
+& 若属性集合T\subseteq M，当且仅当C\subseteq T且D\nsubseteq T时， \newline
+& 则称T与蕴涵式C\rightarrow D不相关。\newline
+& 
+\end{align*}</script><p>5.定理1：给定形式背景$K=(U, M, I)$与K上的主基$J(K)$，任意蕴涵式$C\rightarrow D\in J(K)$。若属性集合$T$与$C\rightarrow D$不相关，则在$K$中，$T$既不是内涵也不是伪内涵。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+证明：& \newline
+（1）&先证T不是内涵: f(g(T))\neq T\newline
+& 由于T与C\rightarrow D不相关，所以由定义11（不相关）可知C\subseteq T且D\nsubseteq T。 \newline
+& 由性质1（B\subseteq f(g(B))）可知T\subseteq f(g(T))，所以有C\subseteq T\subseteq f(g(T))。\newline
+& 而由C\subseteq T和性质1 \left( B\subseteq D \Rightarrow g(B)\supseteq g(D) \right)可知g(T)\subseteq g(C)，f(g(C))\subseteq f(g(T))。\newline
+& 将式f(g(C))\subseteq f(g(T))两端同时减C得到f(g(C))-C\subseteq f(g(T))-C。\newline
+& 又因为C\rightarrow D\in J(K)，所以f(g(C))-C=D, \newline
+& 而因为D\nsubseteq T且D\subseteq f(g(T))-C，所以f(g(T))-C\nsubseteq T，移项得， \newline
+& f(g(T)) \nsubseteq C \cup T，而C\subseteq T，则\newline
+& f(g(T)) \nsubseteq C \cup T = T即证f(g(T)) \nsubseteq T。 \newline
+\newline
+（2）&再证T不是伪内涵：反证法。\newline
+& 假设T满足条件：对每一个伪内涵Y_1\subset Y都有f(g(Y_1))\subseteq Y，则称Y是一个伪内涵。\newline
+& 则对任意伪内涵Y_1\subset T都有f(g(Y_1))\subseteq T。\newline
+& 而由于C\rightarrow D\in J(K)，所以C在K中是一个伪内涵，则有f(g(C))-C=D。 \newline
+& 又因为T与C\rightarrow D\in J(K)不相关，则有C\subseteq T且D\nsubseteq T。\newline
+& 所以有f(g(C))-C=D\nsubseteq T，则有f(g(C))\nsubseteq T。\newline
+& 即存在一个伪内涵C\subset T，不满足f(g(C))\subseteq T。即证。
+\end{align*}</script><p>定理1表明：如果属性集合与主基中任何一个蕴涵式不相关（也即包含蕴涵式前件，但是不包含蕴涵式后件）。</p>
+<p>那么这个属性集合既不是内涵也不是伪内涵。因为在属性探索中只考虑是内涵或者伪内涵的属性集合，所以满足定理1的属性集合可以不予计算。</p>
+<p>6.引理1：设$K=(U, M,  I)$是一个形式背景，对任意的$Y_1，Y_2\subseteq M$。若$Y_1\lt Y_2$，则 $Y_2\nsubseteq Y1$.</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+证明：& \newline
+& 因为Y_1\lt Y_2，由定义7（字典序）可知\exist\ m\in Y_2-Y_1且Y_1\cap \{ m_1, m_2, \cdots, m_{i-1} \} = Y_2\cap \{ m_1, m_2, \cdots, m_{i-1} \}。\newline
+& 若Y_2\subseteq Y_1，则有m_i = Y_2 - Y_1 = \emptyset，即不存在这样的m_i，与Y_1\lt Y_2矛盾，所以有Y_2\nsubseteq Y1。
+\end{align*}</script><p>7.定理2：给定形式背景$K=(U,M,I)$与$K$上的主基$J(K)$，对于任意蕴涵式$B\rightarrow f(g(B))-B\in J(K)$，若存在$B^+, N\subseteq M$，满足$B^+\succ B$且$B^+$与$J(K)$不相关，$B\precsim N$且$N$与$J(K)$相关。则在区间$<B,\ \min(f(g(b)), n)>$内既不存在内涵也不存在伪内涵。</B,\></p>
+<script type="math/tex; mode=display">
+\begin{align*}
+证明：& 因为B^+与J(K)不相关，由定理1可知B^+既不是内涵也不是伪内涵。 \newline
+& (1)设f(g(B))\gt N，由定义10（B \precnsim N）可知，对于任意的属性集合C\in <B, N>，都满足B\subseteq C。\newline
+& 因为C\lt N\lt f(g(B))，所以由引理1可知f(g(B))\nsubseteq C，即C满足定义11（不相关）的条件，\newline
+& 可知C既不是内涵也不是伪内涵。而由于C是区间<B,\ N>的任意属性集合。\newline
+& 所以在区间<B,\ N>内，既不存在内涵也不存在伪内涵。\newline
+\newline
+& (2)设N\gt f(g(B))时，由定义10（B \precnsim N）可知，对于任意的属性集合C\in <B,\ f(g(B))>都满足B\subseteq B_k。\newline
+& 因为C\lt f(g(B))，所以由引理1可知f(g(B))\nsubseteq C，即C满足定义11（不相关）的条件，\newline
+& 可知C既不是内涵也不是伪内涵。而由于C是区间<B,\ f(g(B))>的任意属性集合。\newline
+& 所以在区间<B,\ f(g(B))>内，既不存在内涵也不存在伪内涵。\newline
+\newline
+& (3)设N=f(g(B))时，因为字典序是一个线性序，所以N\subseteq f(g(B))，f(g(B))\subseteq N。\newline
+& 由定义10（B \precnsim N）可知，对于任意的属性集合C\in <B,\ f(g(B))>都满足B\subseteq B_k。\newline
+& 因为C\lt f(g(B))，所以由引理1可知f(g(B))\nsubseteq C，即C满足定义11（不相关）的条件，\newline
+& 可知C既不是内涵也不是伪内涵。而由于C是区间<B,\ f(g(B))>的任意属性集合。\newline
+& 所以在区间<B,\ f(g(B))=N>内，既不存在内涵也不存在伪内涵。\newline
+\newline
+证毕。
+\end{align*}</script><p>定理2表明：对于主基中的任何一个蕴涵式，通过计算蕴涵式前件属性集合的仅大于属性集合的不相关性，和非平凡仅大于属性集合的相关性，可以得到一个既不存在内涵也不存在伪内涵的属性集合区间。</p>
+<p>这为我们在以字典序遍历并判断属性集是否为伪内涵或内涵时，忽略这些属性集合区间的计算，提供了理论依据。</p>
+<p>8.定理3：给定形式背景$K=(U,M,I)$与$K$上的主基$J(K)$和属性集合$T\subseteq M$，蕴涵式集合$J_{\lt T}(K) = \{ C\rightarrow D\ |\ C\rightarrow D\in J(K)且C\lt T \}$。若属性集合$T$与$J_{\lt T}(K)$相关，则$T$与$J(K)$相关。</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+证明：& \newline
+& 由题干知J_{\lt T}(K)\subseteq J(K)，因为T与J_{\lt T}(K)相关，\newline
+& 所以对于任意的C\rightarrow D\in J_{\lt T}(K)，都满足C\nsubseteq T或D\subseteq T。\newline
+& 又因为对于任意的E\rightarrow F\in J(K)-J_{\lt T}(K)都满足T\lt E，\newline
+& 所以由引理1可知E\nsubseteq T，即T满足定义6（相关）的条件，\newline
+& 即T与J(K)-J_{\lt T}(K)相关。又因为T与J_{\lt T}(K)相关，所以T与J(K)相关。\newline
+证毕。
+\end{align*}</script><p>定理3表明：给定一个形式背景和主基，若某个属性集合与主基中小于字典序的蕴涵式都相关，则该属性集合与主基相关，即某个属性集合与主基相关的必要条件是该属性集合与主基中小于字典序的蕴涵式都相关。</p>
+<p>在属性探索算法中，以字典序遍历属性集合时，只需考虑此属性集合是否与当前的部分主基相关，不需要考虑其字典序之后的蕴涵式。定理3为我们在属性探索中判断属性集合与主基是否相关提供了理论依据。</p>
+<h3 id="3-2-属性探索算法的改进"><a href="#3-2-属性探索算法的改进" class="headerlink" title="3.2 属性探索算法的改进"></a>3.2 属性探索算法的改进</h3><p>算法1：AEUS算法描述</p>
+<p><img_asset image-20201002163740499.png><img_asset image-20201002165510900.png></img_asset></img_asset></p>
+<p><img src="/peerless.github.io/2020/09/16/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%9F%BA%E4%BA%8E%E4%B8%8D%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7%E9%9B%86%E5%90%88%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2%E7%AE%97%E6%B3%95/image-20201002163740499.png" srcset="/img/loading.gif"><br><img src="/peerless.github.io/2020/09/16/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%9F%BA%E4%BA%8E%E4%B8%8D%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7%E9%9B%86%E5%90%88%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2%E7%AE%97%E6%B3%95/images/2020-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6-%E5%9F%BA%E4%BA%8E%E4%B8%8D%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7%E9%9B%86%E5%90%88%E7%9A%84%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2%E7%AE%97%E6%B3%95/image-20201002165510900.png" srcset="/img/loading.gif" alt="image-20201002165510900" style="zoom:80%;"></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2/">属性探索</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B1%9E%E6%80%A7%E6%8E%A2%E7%B4%A2/">属性探索</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%B8%8D%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7/">不相关属性</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%AE%97%E6%B3%95%E6%94%B9%E8%BF%9B/">算法改进</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/18/2020%E5%8D%8E%E4%B8%BA%E6%9D%AFD%E9%A2%98--%E6%97%A0%E4%BA%BA%E6%9C%BA%E9%9B%86%E7%BE%A4%E5%8D%8F%E5%90%8C%E5%AF%B9%E6%8A%97/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2020华为杯D题--无人机集群协同对抗</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/13/2018-%E4%B8%AD%E7%A7%91%E5%A4%A7%E5%AD%A6%E6%8A%A5-MapReduce%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%9F%BA%E4%BA%8E%E6%A6%82%E5%BF%B5%E5%88%86%E5%B1%82%E7%9A%84%E6%A6%82%E5%BF%B5%E6%A0%BC%E5%B9%B6%E8%A1%8C%E6%9E%84%E9%80%A0%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">2018-中科大学报-MapReduce环境下基于概念分层的概念格并行构造算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "RcI3ePX6qkbdKOX0xjPq8Xy3-gzGzoHsz",
+          app_key: "suQG3XDbcx2bpMJLeuKCcqS7",
+          placeholder: "由于作者水平有限，加上时间仓促，文中难免存在不足之处，敬请读者批评指正。",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "https://rci3epx6.lc-cn-n1-shared.com",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <!--
+ * @Author: your name
+ * @Date: 2020-06-04 05:16:36
+ * @LastEditTime: 2020-07-04 16:26:58
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \blog\themes\fluid\layout\_partial\footer.ejs
+--> 
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://github.com/SuperficialJ/peerless.github.io." target="_blank" rel="nofollow noopener"><span>peerless</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    <!--
+ * @Author: your name
+ * @Date: 2020-06-28 18:23:11
+ * @LastEditTime: 2020-07-04 16:28:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \peer-less.github.io\themes\fluid\layout\_partial\statistics.ejs
+--> 
+
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: inline-block">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: inline-block">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+    
+
+    
+  </div>
+
+  <p id="hitokoto" align='center'>:D 获取中...</p>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto')
+        hitokoto.innerText = data.hitokoto
+        })
+        .catch(console.error)
+  </script>
+
+  <div align='center'>
+    <span id="timeDate">载入天数...</span>
+    <span id="times">载入时分秒...</span>
+    <script>
+    var now = new Date();
+    function createtime(){
+        var grt= new Date("06/26/2020 22:53:55");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24;
+        dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+        hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){
+            hnum = "0" + hnum;
+        }
+        minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes);
+        if(String(mnum).length ==1 ){
+                  mnum = "0" + mnum;
+        }
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds);
+        if(String(snum).length ==1 ){
+                  snum = "0" + snum;
+        }
+        document.getElementById("timeDate").innerHTML = "本站安全运行&nbsp"+dnum+"&nbsp天";
+        document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+    }
+    setInterval("createtime()",250);
+    </script>
+  </div>
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "2020-计算机科学-基于不相关属性集合的属性探索算法&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+
+  
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
